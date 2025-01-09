@@ -1,0 +1,21 @@
+.image-container {
+  display: grid;
+  width: fit-content;
+  grid-template-columns: repeat(10, 1fr);
+  user-select: none;
+  margin-top: 5rem;
+
+  img {
+    grid-column: span 2;
+    user-select: none;
+    max-width: 12rem;
+    margin-top: -3.2rem;
+  }
+
+  .space {
+    grid-column: span 1;
+    // grid-row: 2;
+    // grid-column-start: 0;
+    background-color: blanchedalmond;
+  }
+}

@@ -1,25 +1,25 @@
-export default function CanvasToImg({ infos = null }) {
-  const handleDownload = () => {
-    if (infos && infos.current) {
-      var gl = infos.current.getContext("experimental-webgl", {
-        preserveDrawingBuffer: true,
-      });
-      console.log("gl:", gl);
-      var img = new Image();
-      img.src = infos.current.toDataURL("image/png");
-      var a = document.createElement("a");
-      a.href = img.src;
-      a.download = "screenshot.png";
-      a.click();
+import "../styles/components/_button.scss";
+export default function CanvasToImg({ glRef }) {
+  function download() {
+    if (glRef.current) {
+      // canvas to webp
+      const canvas = glRef.current.domElement; // canvas
+      const imgData = canvas.toDataURL("image/webp");
+      const link = document.createElement("a");
+      link.href = imgData;
+      link.download = "canvas_capture.webp";
+      link.click();
     } else {
-      console.error("Le renderer WebGL n'est pas accessible");
+      console.error("Le canvas n'a pas été trouvé");
     }
-  };
+  }
 
   return (
-    <div style={{ position: "fixed", zIndex: 1, top: "10px", left: "10px" }}>
-      <h1>Canvas to Image</h1>
-      <button onClick={handleDownload}>Télécharger l&apos;image</button>
-    </div>
+    <button
+      style={{ zIndex: 3, position: "fixed", bottom: "10px", right: "10px" }}
+      onClick={download}
+    >
+      Ajouter au musée collaboratif !
+    </button>
   );
 }

@@ -50,10 +50,31 @@
       }
     }
 
-    .space {
+    .space-sm {
       grid-column: span 1;
       // grid-row: 2;
+      // le mettre à la 3ème position
       // grid-column-start: 0;
     }
+
+    // .one {
+    //   grid-column: 3 span 2;
+    // }
+
+    // .two {
+    //   grid-column: 5;
+    // }
+
+    // .three {
+    //   grid-column: 7;
+    // }
+
+    // .four {
+    //   grid-column: 9;
+    // }
+
+    // .five {
+    //   grid-column: 3;
+    // }
   }
 }

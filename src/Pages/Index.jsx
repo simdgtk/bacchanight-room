@@ -6,8 +6,15 @@ export default function Index() {
   return (
     <>
       <Canvas
-        camera={{ position: [-2, 0, 6], fov: 75, near: 0.01, far: 100 }}
+        camera={{
+          position: [-4, 0, 5.225],
+          near: 0.01,
+          far: 100,
+          // zoom: 130,
+          fov: 75,
+        }}
         style={{ position: "fixed", top: "0", left: "0", zIndex: "0" }}
+        // orthographic={true}
       >
         <Experience></Experience>
       </Canvas>

@@ -10,11 +10,10 @@ export default function Index() {
           position: [-4, 0, 5.225],
           near: 0.01,
           far: 100,
-          // zoom: 130,
-          fov: 75,
+          zoom: 130,
         }}
         style={{ position: "fixed", top: "0", left: "0", zIndex: "0" }}
-        // orthographic={true}
+        orthographic={true}
       >
         <Experience></Experience>
       </Canvas>

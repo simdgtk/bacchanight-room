@@ -1,7 +1,10 @@
 // Dependencies
-import { OrbitControls } from "@react-three/drei";
+import { DragControls, OrbitControls } from "@react-three/drei";
+import { useRef } from "react";
 
 export default function Experience() {
+  const draggableObjects = useRef();
+
   return (
     <>
       {/* Controls */}
@@ -33,11 +36,19 @@ export default function Experience() {
         <meshBasicMaterial color={"#beb8da"} />
       </mesh>
 
+      {/* Objects */}
+      <DragControls axisLock="y">
+        <mesh position={[-2, -0.75, 2]} ref={draggableObjects}>
+          <boxGeometry args={[0.5, 0.5, 0.5]} />
+          <meshBasicMaterial color={"#000000"} />
+        </mesh>
+      </DragControls>
+
       {/* Grid Helper */}
       <gridHelper
-        args={[10, 10, 0xffffff, "teal"]}
+        args={[4, 10, 0xffffff, "teal"]}
         position={[-1.6, -0.98, 2.1]}
-        scale={[0.4, 1, 0.4]}
+        scale={[1, 1, 1]}
       />
     </>
   );

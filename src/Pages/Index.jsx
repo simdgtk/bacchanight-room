@@ -6,7 +6,7 @@ export default function Index() {
   return (
     <>
       <Canvas
-        camera={{ position: [0, 0, 1.5], fov: 75, near: 0.001, far: 100 }}
+        camera={{ position: [-2, 0, 6], fov: 75, near: 0.01, far: 100 }}
         style={{ position: "fixed", top: "0", left: "0", zIndex: "0" }}
       >
         <Experience></Experience>

@@ -1,9 +1,18 @@
 // Dependencies
 import { DragControls, OrbitControls } from "@react-three/drei";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Experience({ model }) {
+  // Grid References
+  const leftWallGrid = useRef();
+  const rightWallGrid = useRef();
   const floorGrid = useRef();
+
+  const [whichSurface, setWhichSurface] = useState("none");
+
+  useEffect(() => {
+    console.log(whichSurface);
+  }, [whichSurface]);
 
   return (
     <>
@@ -20,18 +29,55 @@ export default function Experience({ model }) {
         // enablePan={false}
       />
 
-      {/* Walls  */}
-      <mesh position={[-1.5, 0.91, 0]}>
-        <boxGeometry args={[4.2, 16 / 4.2, 0.2]} />
-        <meshBasicMaterial color={"brown"} />
-      </mesh>
-      <mesh position={[0.5, 0.911, 2]} rotation={[0, Math.PI / 2, 0]}>
-        <boxGeometry args={[4.2, 16 / 4.2, 0.2]} />
-        <meshBasicMaterial color={"pink"} />
+      {/* Left Wall  */}
+      <mesh
+        position={[-1.6, 0.91, 0]}
+        onClick={() => {
+          setWhichSurface("Left-wall");
+        }}
+      >
+        <boxGeometry args={[4, 16 / 4.2, 0.2]} />
+        <meshBasicMaterial color={"blue"} />
       </mesh>
 
+      <gridHelper
+        ref={leftWallGrid}
+        args={[16 / 4.2, 8, 0xffffff, "purple"]}
+        position={[-1.6, 0.93, 0.11]}
+        scale={[1, 1, 1]}
+        rotation={[Math.PI / 2, 0, 0]}
+        // visible={false}
+      />
+
+      {/* Right Wall  */}
+      <mesh
+        position={[0.5, 0.911, 2]}
+        rotation={[0, Math.PI / 2, 0]}
+        onClick={() => {
+          setWhichSurface("Right-wall");
+        }}
+      >
+        <boxGeometry args={[4.2, 16 / 4.2, 0.2]} />
+        <meshBasicMaterial color={"red"} />
+      </mesh>
+
+      <gridHelper
+        ref={rightWallGrid}
+        args={[16 / 4.2, 8, 0xffffff, "purple"]}
+        position={[0.39, 0.93, 2.1]}
+        scale={[1, 1, 1]}
+        rotation={[0, 0, Math.PI / 2]}
+        // visible={false}
+      />
+
       {/* Floor */}
-      <mesh position={[-1.5, -1.09, 2]} rotation={[-Math.PI / 2, 0, 0]}>
+      <mesh
+        position={[-1.5, -1.09, 2]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        onClick={() => {
+          setWhichSurface("floor");
+        }}
+      >
         <boxGeometry args={[4.2, 4.2, 0.2]} />
         <meshBasicMaterial color={"#beb8da"} />
       </mesh>
@@ -41,18 +87,18 @@ export default function Experience({ model }) {
         args={[4, 8, 0xffffff, "teal"]}
         position={[-1.6, -0.98, 2.1]}
         scale={[1, 1, 1]}
-        visible={false}
+        // visible={false}
       />
 
       {/* Objects */}
       <DragControls
         axisLock="y"
-        onDrag={() => {
-          floorGrid.current.visible = true;
-        }}
-        onDragEnd={() => {
-          floorGrid.current.visible = false;
-        }}
+        // onDrag={() => {
+        //   floorGrid.current.visible = true;
+        // }}
+        // onDragEnd={() => {
+        //   floorGrid.current.visible = false;
+        // }}
       >
         {model && (
           <mesh position={[model.positionX, model.positionY, model.positionZ]}>

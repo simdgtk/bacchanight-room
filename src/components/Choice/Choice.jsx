@@ -8,7 +8,6 @@ export default function Choice({
   positionZ,
   addModel,
 }) {
-  const test = null;
   return (
     <>
       <button

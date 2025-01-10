@@ -1,6 +1,6 @@
 @import '../../styles/base/variables';
 
-.choice {
+.select {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,7 +23,7 @@
   }
 }
 
-.label-choice{
+.label-select{
   font-size: 18px;
   font-weight: 600;
   color: $primary-color;

@@ -7,6 +7,7 @@ export default function Choice({
   positionY,
   positionZ,
   addModel,
+  label,
   path
 }) {
   return (
@@ -17,7 +18,8 @@ export default function Choice({
           addModel(color, positionX, positionY, positionZ);
         }}
       >
-        <img src={path} width={40} />
+        <img src={path} width={40} alt={label} />
+        <p className="label-choice">{label}</p>
       </button>
     </>
   );

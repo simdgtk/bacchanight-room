@@ -19,13 +19,13 @@ export default function AllRooms() {
       .then((res) => res.json())
       .then((json) => {
         if (Array.isArray(json)) {
-          setArrayRooms(json); // Mettre à jour le state avec les données récupérées
+          setArrayRooms(json);
         } else {
           console.error("Les données reçues ne sont pas un tableau.");
         }
       })
       .catch((err) => console.error("Erreur lors du fetch :", err));
-  }, []); // Le tableau vide [] garantit que le fetch est exécuté une seule fois au montage du composant
+  }, []);
 
   return (
     <div className="rooms">
@@ -35,12 +35,15 @@ export default function AllRooms() {
           {/* Parcourir arrayRooms et afficher les images */}
           {arrayRooms.map((room, index) => (
             <React.Fragment key={index}>
-              <img
-                src={`http://localhost:3000/uploads/${room}`} // Générer le bon chemin pour chaque image
-                alt={`Salle ${index + 1}`}
-              />
+              <div className="grid-container__images__img-container">
+                {/* `http://localhost:3000/uploads/${room}` */}
+                <img
+                  src={salleImage} // Générer le bon chemin pour chaque image
+                  alt={`Salle ${index + 1}`}
+                />
+              </div>
               {/* Ajouter un espace après certains éléments */}
-              {(index + 1) % space.current === spaceAfter.current && (
+              {index % space.current === spaceAfter.current && (
                 <div className="space-sm"></div>
               )}
             </React.Fragment>

@@ -35,7 +35,7 @@
       grid-template-columns: repeat(4, 1fr);
     }
 
-    img {
+    &__img-container {
       grid-column: span 2;
       user-select: none;
       max-width: 15rem;
@@ -49,11 +49,17 @@
         max-width: 10rem;
       }
 
-      transition: transform 0.3s ease-in-out;
+      transition: transform 0.2s ease-in-out;
 
       &:hover {
         cursor: pointer;
-        transform: scale(2.5);
+        transform: scale(1.5);
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
 
@@ -84,4 +90,6 @@
     //   grid-column: 3;
     // }
   }
+
+  &__img-container {}
 }

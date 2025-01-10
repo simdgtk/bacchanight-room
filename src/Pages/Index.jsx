@@ -1,13 +1,15 @@
-// Depedencies
+import { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { useState } from "react";
 
 // Custom import
 import Experience from "../Experience/Experience.jsx";
 import Choice from "../components/Choice/Choice.jsx";
+import CanvasToImg from "../components/CanvasToImg.jsx";
 
 export default function Index() {
   const [model, setModel] = useState({});
+  const glRef = useRef(null);
 
   const addModel = (color, positionX, positionY, positionZ) => {
     if (Object.keys(model).length === 0) {
@@ -29,6 +31,13 @@ export default function Index() {
           far: 100,
           zoom: 120,
         }}
+        onCreated={({ gl }) => {
+          glRef.current = gl;
+          gl.preserveDrawingBuffer = true;
+        }}
+        gl={{
+          preserveDrawingBuffer: true,
+        }}
         style={{ position: "fixed", top: "0", left: "0", zIndex: "0" }}
         orthographic={true}
       >
@@ -43,6 +52,7 @@ export default function Index() {
           addModel={addModel}
         />
       </div>
+      <CanvasToImg glRef={glRef} />
     </>
   );
 }

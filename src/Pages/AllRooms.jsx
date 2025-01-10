@@ -1,82 +1,50 @@
 import salleImage from "../assets/salle.png";
 import "../styles/pages/_all-rooms.scss";
-import React from "react";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 export default function AllRooms() {
-  const arrayRooms = [...Array(231).keys()];
+  const [arrayRooms, setArrayRooms] = useState([]); // Utilisation du state pour gérer les salles
   const space = useRef(9);
   const spaceAfter = useRef(4);
+
   useEffect(() => {
+    // Adapter l'espacement en fonction de la largeur de la fenêtre
     if (window.innerWidth < 1220) {
       space.current = 3;
       spaceAfter.current = 2;
     }
-  });
+
+    // Récupération des données depuis l'API
+    fetch("http://localhost:3000/all/")
+      .then((res) => res.json())
+      .then((json) => {
+        if (Array.isArray(json)) {
+          setArrayRooms(json); // Mettre à jour le state avec les données récupérées
+        } else {
+          console.error("Les données reçues ne sont pas un tableau.");
+        }
+      })
+      .catch((err) => console.error("Erreur lors du fetch :", err));
+  }, []); // Le tableau vide [] garantit que le fetch est exécuté une seule fois au montage du composant
+
   return (
     <div className="rooms">
       <h1>Le musée collaboratif : 231 salles déjà faites</h1>
       <div className="grid-container">
         <div className="grid-container__images">
-          {arrayRooms.map((index) => (
+          {/* Parcourir arrayRooms et afficher les images */}
+          {arrayRooms.map((room, index) => (
             <React.Fragment key={index}>
-              <img src={salleImage} alt="" />
-              {index % space.current === spaceAfter.current && (
-                <div className="space-sm"></div> // Ajoute un espace après chaque 5e élément d'un groupe de 9
+              <img
+                src={`http://localhost:3000/uploads/${room}`} // Générer le bon chemin pour chaque image
+                alt={`Salle ${index + 1}`}
+              />
+              {/* Ajouter un espace après certains éléments */}
+              {(index + 1) % space.current === spaceAfter.current && (
+                <div className="space-sm"></div>
               )}
             </React.Fragment>
           ))}
-          {/* <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <div className="space-sm">test</div>
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <div className="space-sm">test</div>
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <div className="space-sm">test</div>
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <div className="space-sm">test</div>
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" />
-          <img src={salleImage} alt="" /> */}
-          {/* {[...Array(20)].map((_, index) => (
-            index <= 5 ? <img src={salleImage} alt="" key={index} /> : null
-          ))} */}
-          {/* <div className="space-sm">test</div> */}
-          {/* <img src={salleImage} alt="" /> */}
-          {/* <div className="space-sm">test</div> */}
         </div>
       </div>
     </div>

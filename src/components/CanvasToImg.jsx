@@ -4,11 +4,18 @@ export default function CanvasToImg({ glRef }) {
     if (glRef.current) {
       // canvas to webp
       const canvas = glRef.current.domElement; // canvas
-      const imgData = canvas.toDataURL("image/webp");
-      const link = document.createElement("a");
-      link.href = imgData;
-      link.download = "canvas_capture.webp";
-      link.click();
+      canvas.toBlob((blob) => {
+        const formData = new FormData();
+        formData.append("file", blob, new Date().getTime() + ".webp");
+
+        fetch("http://localhost:3000/upload", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((response) => console.log(JSON.stringify(response)))
+          .catch((error) => console.error("Error:", error));
+      }, "image/webp");
     } else {
       console.error("Le canvas n'a pas été trouvé");
     }

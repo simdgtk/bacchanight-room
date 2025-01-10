@@ -48,6 +48,13 @@
       @media screen and (max-width: 600px) {
         max-width: 10rem;
       }
+
+      transition: transform 0.3s ease-in-out;
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(2.5);
+      }
     }
 
     .space-sm {

@@ -1,39 +1,59 @@
 // Dependencies
 import { DragControls, OrbitControls } from "@react-three/drei";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
-export default function Experience({ model }) {
+export default function Experience({
+  model,
+  handleSetWhichSurface,
+  whichSurface,
+  setIsCameraReset,
+  isCameraReset,
+}) {
+  const gridSize = whichSurface === "floor" ? 4 : 16 / 4.2;
+  const cellSize = gridSize / 8;
+
   // Grid References
   const leftWallGrid = useRef();
   const rightWallGrid = useRef();
   const floorGrid = useRef();
 
-  const [whichSurface, setWhichSurface] = useState("none");
+  // Controls References
+  const orbitControls = useRef();
+
+  const resetCamera = () => {
+    orbitControls.current.reset();
+    setIsCameraReset(false);
+  };
 
   useEffect(() => {
-    console.log(whichSurface);
-  }, [whichSurface]);
+    if (isCameraReset) resetCamera();
+  }, [isCameraReset]);
 
   return (
     <>
       {/* Controls */}
       <OrbitControls
+        ref={orbitControls}
         makeDefault
         // minPolarAngle={Math.PI / 2 - 0.3}
         // maxPolarAngle={Math.PI / 2 - 0.05}
         // minAzimuthAngle={Math.PI * 1.5 + 0.3}
         // maxAzimuthAngle={Math.PI * 2 - 0.3}
-        // minZoom={90}
-        // maxZoom={175}
+        // minZoom={50}
+        // maxZoom={300}
         // rotateSpeed={0.15}
         // enablePan={false}
       />
 
       {/* Left Wall  */}
       <mesh
-        position={[-1.6, 0.91, 0]}
+        position={[-0.1, 16 / 4.2 / 2 + 0.1, -4.2 / 2 + 0.1]}
         onClick={() => {
-          setWhichSurface("Left-wall");
+          if (whichSurface !== "leftWall") {
+            handleSetWhichSurface("leftWall");
+          } else if (whichSurface) {
+            handleSetWhichSurface("");
+          }
         }}
       >
         <boxGeometry args={[4, 16 / 4.2, 0.2]} />
@@ -42,19 +62,22 @@ export default function Experience({ model }) {
 
       <gridHelper
         ref={leftWallGrid}
-        args={[16 / 4.2, 8, 0xffffff, "purple"]}
-        position={[-1.6, 0.93, 0.11]}
-        scale={[1, 1, 1]}
+        args={[gridSize, 8, 0x000, "white"]}
+        position={[-0.1, 16 / 4.2 / 2 + 0.1, -4.2 / 2 + 0.21]}
         rotation={[Math.PI / 2, 0, 0]}
-        // visible={false}
+        visible={whichSurface === "leftWall" ? true : false}
       />
 
       {/* Right Wall  */}
       <mesh
-        position={[0.5, 0.911, 2]}
+        position={[2, 16 / 4.2 / 2 + 0.1, 0]}
         rotation={[0, Math.PI / 2, 0]}
         onClick={() => {
-          setWhichSurface("Right-wall");
+          if (whichSurface !== "rightWall") {
+            handleSetWhichSurface("rightWall");
+          } else if (whichSurface) {
+            handleSetWhichSurface("");
+          }
         }}
       >
         <boxGeometry args={[4.2, 16 / 4.2, 0.2]} />
@@ -63,19 +86,22 @@ export default function Experience({ model }) {
 
       <gridHelper
         ref={rightWallGrid}
-        args={[16 / 4.2, 8, 0xffffff, "purple"]}
-        position={[0.39, 0.93, 2.1]}
-        scale={[1, 1, 1]}
+        args={[gridSize, 8, 0x000, "white"]}
+        position={[1.89, 16 / 4.2 / 2 + 0.1, 0.1]}
         rotation={[0, 0, Math.PI / 2]}
-        // visible={false}
+        visible={whichSurface === "rightWall" ? true : false}
       />
 
       {/* Floor */}
       <mesh
-        position={[-1.5, -1.09, 2]}
+        position={[0, 0, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
         onClick={() => {
-          setWhichSurface("floor");
+          if (whichSurface !== "floor") {
+            handleSetWhichSurface("floor");
+          } else if (whichSurface) {
+            handleSetWhichSurface("");
+          }
         }}
       >
         <boxGeometry args={[4.2, 4.2, 0.2]} />
@@ -84,21 +110,31 @@ export default function Experience({ model }) {
 
       <gridHelper
         ref={floorGrid}
-        args={[4, 8, 0xffffff, "teal"]}
-        position={[-1.6, -0.98, 2.1]}
-        scale={[1, 1, 1]}
-        // visible={false}
+        args={[gridSize, 8, 0x000000, "white"]}
+        position={[-0.1, 0.11, 0.1]}
+        visible={whichSurface === "floor" ? true : false}
       />
 
       {/* Objects */}
       <DragControls
         axisLock="y"
-        // onDrag={() => {
-        //   floorGrid.current.visible = true;
-        // }}
-        // onDragEnd={() => {
-        //   floorGrid.current.visible = false;
-        // }}
+        onDrag={(localMatrix) => {
+          const clampedX = Math.max(
+            -gridSize / 2 + 0.15,
+            Math.min(gridSize / 2 - 0.351, localMatrix.elements[12])
+          );
+          const clampedZ = Math.max(
+            -gridSize / 2 + 0.36,
+            Math.min(gridSize / 2 - 0.15, localMatrix.elements[14])
+          );
+
+          localMatrix.elements[12] =
+            Math.round(clampedX / cellSize) * cellSize - 0.1 + 0.25;
+          localMatrix.elements[14] =
+            Math.round(clampedZ / cellSize) * cellSize + 0.1 - 0.25;
+          console.log(localMatrix.elements[12]);
+          console.log(localMatrix.elements[14]);
+        }}
       >
         {model && (
           <mesh position={[model.positionX, model.positionY, model.positionZ]}>
@@ -107,6 +143,7 @@ export default function Experience({ model }) {
           </mesh>
         )}
       </DragControls>
+      <axesHelper args={[100]} />
     </>
   );
 }

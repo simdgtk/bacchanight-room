@@ -1,11 +1,12 @@
 // Style
 import "./choice.scss";
-// test
+
 export default function Choice({
   color,
   positionX,
   positionY,
   positionZ,
+  name,
   addModel,
   whichSurface,
 }) {
@@ -26,12 +27,13 @@ export default function Choice({
       positionZ += 0;
       break;
   }
+
   return (
     <>
       <button
         className="choice"
         onClick={() => {
-          addModel(color, positionX, positionY, positionZ);
+          addModel(color, positionX, positionY, positionZ, name);
         }}
       >
         <img src="/img/button/test.jpg" width={40} alt="" />

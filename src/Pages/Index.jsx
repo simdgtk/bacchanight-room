@@ -9,7 +9,7 @@ import CanvasToImg from "../components/CanvasToImg.jsx";
 
 export default function Index() {
   const [model, setModel] = useState({});
-  const [whichSurface, setWhichSurface] = useState("");
+  const [whichSurface, setWhichSurface] = useState(null);
   const [isCameraReset, setIsCameraReset] = useState(false);
 
   const glRef = useRef(null);
@@ -18,13 +18,14 @@ export default function Index() {
     setWhichSurface(surface);
   };
 
-  const addModel = (color, positionX, positionY, positionZ) => {
+  const addModel = (color, positionX, positionY, positionZ, name) => {
     if (Object.keys(model).length === 0 && whichSurface !== "") {
       setModel({
         color: color,
         positionX: positionX,
         positionY: positionY,
         positionZ: positionZ,
+        name: name,
       });
     }
   };
@@ -58,9 +59,6 @@ export default function Index() {
           model={model}
           handleSetWhichSurface={handleSetWhichSurface}
           whichSurface={whichSurface}
-          // leftWall={leftWall}
-          // rightWall={rightWall}
-          // floor={floor}
         />
       </Canvas>
       <div className="test">
@@ -69,6 +67,7 @@ export default function Index() {
           positionX={0}
           positionY={0}
           positionZ={0}
+          name={whichSurface + "Object"}
           addModel={addModel}
           whichSurface={whichSurface}
         />
@@ -77,6 +76,7 @@ export default function Index() {
           positionX={0}
           positionY={0}
           positionZ={0}
+          name={whichSurface + "Object"}
           addModel={addModel}
           whichSurface={whichSurface}
         />
@@ -85,6 +85,7 @@ export default function Index() {
           positionX={0}
           positionY={0}
           positionZ={0}
+          name={whichSurface + "Object"}
           addModel={addModel}
           whichSurface={whichSurface}
         />
@@ -99,23 +100,3 @@ export default function Index() {
     </>
   );
 }
-
-// x
-// :
-// -0.412081694755545
-// y
-// :
-// -0.7409232738240863
-// z
-// :
-// -0.28689536218159506
-
-// x
-// :
-// -11.483429532241647
-// y
-// :
-// 6.2759649630207965
-// z
-// :
-// 11.464590192774713

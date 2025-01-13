@@ -3,12 +3,11 @@ import "../styles/pages/_all-rooms.scss";
 import React, { useEffect, useState, useRef } from "react";
 
 export default function AllRooms() {
-  const [arrayRooms, setArrayRooms] = useState([]); // Utilisation du state pour gérer les salles
+  const [arrayRooms, setArrayRooms] = useState([]);
   const space = useRef(9);
   const spaceAfter = useRef(4);
 
   useEffect(() => {
-    // Adapter l'espacement en fonction de la largeur de la fenêtre
     if (window.innerWidth < 1220) {
       space.current = 3;
       spaceAfter.current = 2;
@@ -38,7 +37,7 @@ export default function AllRooms() {
               <div className="grid-container__images__img-container">
                 {/* `http://localhost:3000/uploads/${room}` */}
                 <img
-                  src={salleImage} // Générer le bon chemin pour chaque image
+                  src={`http://localhost:3000/uploads/${room}`} // Générer le bon chemin pour chaque image
                   alt={`Salle ${index + 1}`}
                 />
               </div>

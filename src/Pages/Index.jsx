@@ -37,7 +37,7 @@ export default function Index() {
           position: [-10, 10, 10],
           near: 0.01,
           far: 100,
-          zoom: 60,
+          zoom: 103,
           // left: -300,
           // right: 300,
           // top: 303.15,

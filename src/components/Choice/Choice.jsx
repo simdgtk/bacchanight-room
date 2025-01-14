@@ -8,7 +8,7 @@ export default function Choice({
   positionZ,
   name,
   addModel,
-  path
+  path,
   whichSurface,
 }) {
   switch (whichSurface) {

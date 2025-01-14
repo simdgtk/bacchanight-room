@@ -10,6 +10,7 @@ export default function Choice({
   addModel,
   path,
   whichSurface,
+  label,
 }) {
   switch (whichSurface) {
     case "leftWall":
@@ -38,6 +39,7 @@ export default function Choice({
         }}
       >
         <img src={path} width={40} />
+        <p className="label-choice">{label}</p>
       </button>
     </>
   );

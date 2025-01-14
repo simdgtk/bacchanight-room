@@ -128,33 +128,3 @@ export default function Experience({
     </>
   );
 }
-
-// const gridSize = 4; // Taille de la grille
-// const cellSize = gridSize / 10; // Taille d'une case de la grille (10 divisions)
-// const [cubePosition, setCubePosition] = useState([-1.6, -0.75, 2.1]);
-
-// const handleDrag = (event) => {
-//   // Position actuelle du cube
-//   const { x, y, z } = event.object.position;
-
-//   // Limiter les mouvements du cube à la grille
-//   const clampedX = Math.max(-gridSize / 2, Math.min(gridSize / 2, x));
-//   const clampedZ = Math.max(-gridSize / 2, Math.min(gridSize / 2, z));
-
-//   // Snapper les positions aux cases de la grille
-//   const snappedX = Math.round(clampedX / cellSize) * cellSize;
-//   const snappedZ = Math.round(clampedZ / cellSize) * cellSize;
-
-//   // Appliquer les nouvelles positions
-//   event.object.position.set(snappedX, y, snappedZ);
-
-//   // Mettre à jour l'état (si nécessaire pour d'autres usages)
-//   setCubePosition([snappedX, y, snappedZ]);
-// };
-
-// const mesh = useRef();
-// const [isDragging, setIsDragging] = useState(false);
-
-// const snapToGrid = (position, gridSize) => {
-//   return position.map((coord) => Math.round(coord / gridSize) * gridSize);
-// };

@@ -19,6 +19,7 @@ export default function Experience({
   leftWallColor,
   rightWallColor,
   floorColor,
+  removeModel,
 }) {
   const gridSize =
     whichSurface === "floor"
@@ -77,9 +78,9 @@ export default function Experience({
         />
 
         {/* Objects */}
-        {models.map((model, index) => (
+        {models.map((model) => (
           <DragControls
-            key={index}
+            key={model.id}
             axisLock={surfaces.axis[whichSurface]}
             onDrag={(localMatrix) => {
               dragLockGrid(localMatrix, gridSize, cellSize, whichSurface);
@@ -89,6 +90,10 @@ export default function Experience({
               position={[model.positionX, model.positionY, model.positionZ]}
               name={model.name}
               onPointerDown={updateSurfaceOnDrag}
+              onDoubleClick={() => {
+                console.log("delete");
+                removeModel(model.id);
+              }}
             >
               <boxGeometry args={[0.5, 0.5, 0.5]} />
               <meshBasicMaterial color={model.color} />

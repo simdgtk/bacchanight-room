@@ -1,5 +1,4 @@
-import { useRef, useState } from "react";
-import { surfaces } from "../Utils/surface";
+import { useRef } from "react";
 
 export default function Room({
   whichSurface,
@@ -16,13 +15,13 @@ export default function Room({
 
   return (
     <>
-      {/* Left Wall  */}
       <mesh
         position={[-0.1, 16 / 4.2 / 2 + 0.1, -4.2 / 2 + 0.1]}
-        onClick={() => {
+        name="mur gauche"
+        onPointerUp={(e) => {
           if (whichSurface !== "leftWall") {
             handleSetWhichSurface("leftWall");
-          } else if (whichSurface) {
+          } else {
             handleSetWhichSurface(null);
           }
         }}
@@ -43,7 +42,7 @@ export default function Room({
       <mesh
         position={[2, 16 / 4.2 / 2 + 0.1, 0]}
         rotation={[0, Math.PI / 2, 0]}
-        onClick={() => {
+        onPointerUp={() => {
           if (whichSurface !== "rightWall") {
             handleSetWhichSurface("rightWall");
           } else if (whichSurface) {
@@ -67,7 +66,7 @@ export default function Room({
       <mesh
         position={[0, 0, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
-        onClick={() => {
+        onPointerUp={() => {
           if (whichSurface !== "floor") {
             handleSetWhichSurface("floor");
           } else if (whichSurface) {

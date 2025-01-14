@@ -23,6 +23,7 @@ export default function Hud({
         </div>
         <div className="hud-flex">
           <Choice
+            id={0}
             label={"Texture"}
             path={"./img/choice/texture.svg"}
             addModel={addModel}
@@ -34,6 +35,7 @@ export default function Hud({
             name={whichSurface}
           />
           <Choice
+            id={1}
             label={"Texture"}
             path={"./img/choice/texture.svg"}
             addModel={addModel}
@@ -45,6 +47,7 @@ export default function Hud({
             name={whichSurface}
           />
           <Choice
+            id={2}
             label={"Texture"}
             path={"./img/choice/texture.svg"}
             addModel={addModel}
@@ -56,6 +59,7 @@ export default function Hud({
             name={whichSurface}
           />
           <Choice
+            id={3}
             label={"Texture"}
             path={"./img/choice/texture.svg"}
             addModel={addModel}
@@ -67,6 +71,7 @@ export default function Hud({
             name={whichSurface}
           />
           <Choice
+            id={4}
             label={"Texture"}
             path={"./img/choice/texture.svg"}
             addModel={addModel}

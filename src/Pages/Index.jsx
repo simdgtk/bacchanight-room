@@ -22,11 +22,16 @@ export default function Index() {
     setWhichSurface(surface);
   };
 
-  const addModel = (color, positionX, positionY, positionZ, name) => {
+  const removeModel = (id) => {
+    setModels((prevModels) => prevModels.filter((model) => model.id !== id));
+  };
+
+  const addModel = (id, color, positionX, positionY, positionZ, name) => {
     if (whichSurface !== null) {
       setModels((prevModels) => [
         ...prevModels,
         {
+          id: id,
           color: color,
           positionX: positionX,
           positionY: positionY,
@@ -51,13 +56,24 @@ export default function Index() {
 
   return (
     <>
+      <Hud
+        title={surfaces.uiTitle[whichSurface]}
+        subtitle={
+          "Lorem ipsum dolor sit amet consectetur. Lacus posuere auctor velit integer platea fusce."
+        }
+        addModel={addModel}
+        changeColor={changeColor}
+        whichSurface={whichSurface}
+      />
+
       <Canvas
         camera={{
           position: [-10, 10, 10],
           near: 0.01,
           far: 100,
-          zoom: 100,
+          zoom: 115,
         }}
+        style={{ width: "70vw" }}
         orthographic={true}
         onCreated={({ gl }) => {
           glRef.current = gl;
@@ -76,8 +92,10 @@ export default function Index() {
           leftWallColor={leftWallColor}
           rightWallColor={rightWallColor}
           floorColor={floorColor}
+          removeModel={removeModel}
         />
       </Canvas>
+
       <div className="test">
         <button
           onClick={() => {
@@ -87,16 +105,6 @@ export default function Index() {
           Reset Camera
         </button>
       </div>
-
-      <Hud
-        title={surfaces.uiTitle[whichSurface]}
-        subtitle={
-          "Lorem ipsum dolor sit amet consectetur. Lacus posuere auctor velit integer platea fusce."
-        }
-        addModel={addModel}
-        changeColor={changeColor}
-        whichSurface={whichSurface}
-      />
     </>
   );
 }

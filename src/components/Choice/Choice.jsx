@@ -2,6 +2,7 @@
 import "./choice.scss";
 
 export default function Choice({
+  id,
   color,
   positionX,
   positionY,
@@ -34,7 +35,7 @@ export default function Choice({
       <button
         className="choice"
         onClick={() => {
-          addModel(color, positionX, positionY, positionZ, name);
+          addModel(id, color, positionX, positionY, positionZ, name);
         }}
       >
         <img src={path} width={40} />

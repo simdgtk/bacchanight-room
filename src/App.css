@@ -12,7 +12,17 @@ body,
     height: 100%;
 }
 
+#root {
+    display: flex;
+}
+
 canvas {
     background-color: #E1E7F1;
     width: 70dvw;
+}
+
+.test {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
 }

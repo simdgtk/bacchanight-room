@@ -4,9 +4,7 @@ import { useState, useRef } from "react";
 
 // Custom import
 import Experience from "../Experience/Experience.jsx";
-import Choice from "../components/Choice/Choice.jsx";
 import Hud from "../components/Hud/Hud.jsx";
-import CanvasToImg from "../components/CanvasToImg.jsx";
 
 export default function Index() {
   const [model, setModel] = useState({});
@@ -39,10 +37,6 @@ export default function Index() {
           near: 0.01,
           far: 100,
           zoom: 103,
-          // left: -300,
-          // right: 300,
-          // top: 303.15,
-          // bottom: -300,
         }}
         style={{ position: "fixed", top: "0", left: "0", zIndex: "0" }}
         orthographic={true}
@@ -63,45 +57,21 @@ export default function Index() {
         />
       </Canvas>
       <div className="test">
-
-        <Choice
-          color={"black"}
-          positionX={0}
-          positionY={0}
-          positionZ={0}
-          name={whichSurface + "Object"}
-          addModel={addModel}
-          whichSurface={whichSurface}
-        />
-        <Choice
-          color={"red"}
-          positionX={0}
-          positionY={0}
-          positionZ={0}
-          name={whichSurface + "Object"}
-          addModel={addModel}
-          whichSurface={whichSurface}
-        />
-        <Choice
-          color={"blue"}
-          positionX={0}
-          positionY={0}
-          positionZ={0}
-          name={whichSurface + "Object"}
-          addModel={addModel}
-          whichSurface={whichSurface}
-        />
-      </div>
-      <div
-        onClick={() => {
-          setIsCameraReset(true);
-        }}
-      >
-        <CanvasToImg glRef={glRef} />
+        <button
+          onClick={() => {
+            setIsCameraReset(true);
+          }}
+        >
+          Reset Camera
+        </button>
       </div>
       <Hud
         title={"Mur de gauche"}
-        subtitle={"Lorem ipsum dolor sit amet consectetur. Lacus posuere auctor velit integer platea fusce."}
+        subtitle={
+          "Lorem ipsum dolor sit amet consectetur. Lacus posuere auctor velit integer platea fusce."
+        }
+        addModel={addModel}
+        whichSurface={whichSurface}
       />
     </>
   );

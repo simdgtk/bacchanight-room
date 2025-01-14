@@ -8,6 +8,7 @@ export default function Choice({
   positionZ,
   name,
   addModel,
+  path
   whichSurface,
 }) {
   switch (whichSurface) {
@@ -36,7 +37,7 @@ export default function Choice({
           addModel(color, positionX, positionY, positionZ, name);
         }}
       >
-        <img src="/img/button/test.jpg" width={40} alt="" />
+        <img src={path} width={40} />
       </button>
     </>
   );

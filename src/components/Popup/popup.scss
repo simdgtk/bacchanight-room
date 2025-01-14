@@ -1,0 +1,40 @@
+@import '../../styles/base/variables';
+
+.popup{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content{
+  display: flex;
+  width: 70vw;
+  height: 425px;
+  background-color: #FFF;
+  border-radius: 24px;
+  border: 4px solid #E1E7F1;
+  gap: 64px;
+}
+
+.popup-right-container{
+  padding-right: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.popup-title{
+  font-size: 32px;
+  font-weight: 600;
+  color: #333B41;
+}
+.popup-text{
+  font-size: 18px;
+  margin: 16px 0 32px 0;
+  color: #333B41;
+}

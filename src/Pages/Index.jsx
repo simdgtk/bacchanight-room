@@ -5,6 +5,7 @@ import { useState, useRef } from "react";
 // Custom import
 import Experience from "../Experience/Experience.jsx";
 import Choice from "../components/Choice/Choice.jsx";
+import Hud from "../components/Hud/Hud.jsx";
 import CanvasToImg from "../components/CanvasToImg.jsx";
 
 export default function Index() {
@@ -62,6 +63,7 @@ export default function Index() {
         />
       </Canvas>
       <div className="test">
+
         <Choice
           color={"black"}
           positionX={0}
@@ -89,6 +91,7 @@ export default function Index() {
           addModel={addModel}
           whichSurface={whichSurface}
         />
+
         <button
           onClick={() => {
             setIsCameraReset(true);
@@ -97,6 +100,10 @@ export default function Index() {
           Reset Camera
         </button>
       </div>
+      <Hud
+        title={"Mur de gauche"}
+        subtitle={"Lorem ipsum dolor sit amet consectetur. Lacus posuere auctor velit integer platea fusce."}
+      />
     </>
   );
 }

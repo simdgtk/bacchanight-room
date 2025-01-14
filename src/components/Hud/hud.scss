@@ -1,0 +1,33 @@
+@import '../../styles/base/variables';
+
+.hud-container{
+  position: absolute;
+  top: 5dvh;
+  left: 5vw;
+  background-color: #F8F7FE;
+  border-radius: 12px;
+  height: 90dvh;
+  width: 30vw;
+  overflow-y: scroll;
+}
+.hud-top-content{
+  border-radius: 12px 12px 0 0;
+  padding: 28px 2vw;
+  background-color: $primary-color;
+}
+.hud-title{
+  color: #FFF;
+  font-size: 32px;
+  margin-top: 24px;
+}
+.hud-subtitle{
+  margin-top: 8px;
+  color: #FFF;
+  font-size: 18px;
+}
+.hud-flex{
+  gap: 32px;
+  padding: 28px 2vw;
+  display: flex;
+  flex-wrap: wrap;
+}

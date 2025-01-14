@@ -123,7 +123,7 @@ export default function Experience({
             </mesh>
           )}
         </DragControls>
-        {showMode && <axesHelper args={[100]} />}
+        {/* {showMode && <axesHelper args={[100]} />} */}
       </group>
     </>
   );

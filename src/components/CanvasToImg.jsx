@@ -9,16 +9,16 @@ export default function CanvasToImg({ glRef }) {
         console.log("canvas", canvas);
         canvas.toBlob((blob) => {
           const formData = new FormData();
-          formData.append("file", blob, new Date().getTime() + ".webp");
-
+          formData.append("file", blob, new Date().getTime() + ".png");
           fetch("http://localhost:3000/upload", {
             method: "POST",
             body: formData,
           })
             .then((response) => response.json())
-            .then((response) => console.log(JSON.stringify(response)))
-            .catch((error) => console.error("Error:", error));
+            .then((response) => console.log(JSON.stringify(response)));
         }, "image/webp");
+
+        // .catch((error) => console.error("Error:", error));
       }, 100);
     } else {
       console.error("Le canvas n'a pas été trouvé");

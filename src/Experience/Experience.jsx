@@ -1,152 +1,130 @@
 // Dependencies
 import { DragControls, OrbitControls } from "@react-three/drei";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 
-export default function Experience({ model }) {
+// World
+import Room from "./World/Room";
+
+// Utils
+import { surfaces } from "./Utils/surface";
+import { orbitControlsSetutp } from "./Utils/orbitControlsSetup";
+
+export default function Experience({
+  model,
+  handleSetWhichSurface,
+  whichSurface,
+  setIsCameraReset,
+  isCameraReset,
+}) {
+  const gridSize =
+    whichSurface === "floor"
+      ? 4
+      : whichSurface === "leftWall"
+      ? 16 / 4.2
+      : whichSurface === "rightWall"
+      ? 16 / 4.2
+      : undefined;
+  const cellSize = gridSize / 8;
+
   // Grid References
   const leftWallGrid = useRef();
   const rightWallGrid = useRef();
   const floorGrid = useRef();
 
-  const [whichSurface, setWhichSurface] = useState("none");
+  // Controls References
+  const orbitControls = useRef();
+
+  const resetCamera = () => {
+    if (orbitControls.current) {
+      orbitControls.current.reset();
+    }
+    setIsCameraReset(false);
+  };
+
+  const [showMode, setShowMode] = useState(true);
+  const toogleShowMode = () => {
+    setShowMode(!showMode);
+  };
 
   useEffect(() => {
-    console.log(whichSurface);
-  }, [whichSurface]);
+    if (isCameraReset) {
+      resetCamera();
+      toogleShowMode();
+    }
+    // console.log("Room position:", gridSize, cellSize, position);
+  }, [isCameraReset]);
+
+  const groupe = useRef();
 
   return (
     <>
       {/* Controls */}
       <OrbitControls
+        ref={orbitControls}
         makeDefault
-        // minPolarAngle={Math.PI / 2 - 0.3}
-        // maxPolarAngle={Math.PI / 2 - 0.05}
-        // minAzimuthAngle={Math.PI * 1.5 + 0.3}
-        // maxAzimuthAngle={Math.PI * 2 - 0.3}
-        // minZoom={90}
-        // maxZoom={175}
-        // rotateSpeed={0.15}
-        // enablePan={false}
+        // {...orbitControlsSetutp}
+        // Line Breaks
       />
+      <group position={[0, -1.9, 0]}>
+        <Room
+          whichSurface={whichSurface}
+          handleSetWhichSurface={handleSetWhichSurface}
+          gridSize={gridSize}
+          // Descend the model by 1 unit
+        />
 
-      {/* Left Wall  */}
-      <mesh
-        position={[-1.6, 0.91, 0]}
-        onClick={() => {
-          setWhichSurface("Left-wall");
-        }}
-      >
-        <boxGeometry args={[4, 16 / 4.2, 0.2]} />
-        <meshBasicMaterial color={"blue"} />
-      </mesh>
+        {/* Objects */}
+        <DragControls
+          axisLock={surfaces[whichSurface]}
+          onDrag={(localMatrix) => {
+            const clampedX = Math.max(
+              -gridSize / 2 + 0.15,
+              Math.min(gridSize / 2 - 0.351, localMatrix.elements[12])
+            );
+            const clampedY = Math.max(
+              -gridSize / 2 + 0.36,
+              Math.min(gridSize / 2 - 0.15, localMatrix.elements[13])
+            );
+            const clampedZ = Math.max(
+              -gridSize / 2 + 0.36,
+              Math.min(gridSize / 2 - 0.15, localMatrix.elements[14])
+            );
 
-      <gridHelper
-        ref={leftWallGrid}
-        args={[16 / 4.2, 8, 0xffffff, "purple"]}
-        position={[-1.6, 0.93, 0.11]}
-        scale={[1, 1, 1]}
-        rotation={[Math.PI / 2, 0, 0]}
-        // visible={false}
-      />
-
-      {/* Right Wall  */}
-      <mesh
-        position={[0.5, 0.911, 2]}
-        rotation={[0, Math.PI / 2, 0]}
-        onClick={() => {
-          setWhichSurface("Right-wall");
-        }}
-      >
-        <boxGeometry args={[4.2, 16 / 4.2, 0.2]} />
-        <meshBasicMaterial color={"red"} />
-      </mesh>
-
-      <gridHelper
-        ref={rightWallGrid}
-        args={[16 / 4.2, 8, 0xffffff, "purple"]}
-        position={[0.39, 0.93, 2.1]}
-        scale={[1, 1, 1]}
-        rotation={[0, 0, Math.PI / 2]}
-        // visible={false}
-      />
-
-      {/* Floor */}
-      <mesh
-        position={[-1.5, -1.09, 2]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        onClick={() => {
-          setWhichSurface("floor");
-        }}
-      >
-        <boxGeometry args={[4.2, 4.2, 0.2]} />
-        <meshBasicMaterial color={"#beb8da"} />
-      </mesh>
-
-      <gridHelper
-        ref={floorGrid}
-        args={[4, 8, 0xffffff, "teal"]}
-        position={[-1.6, -0.98, 2.1]}
-        scale={[1, 1, 1]}
-        // visible={false}
-      />
-
-      {/* Objects */}
-      <DragControls
-        axisLock="y"
-        // onDrag={() => {
-        //   floorGrid.current.visible = true;
-        // }}
-        // onDragEnd={() => {
-        //   floorGrid.current.visible = false;
-        // }}
-      >
-        {model && (
-          <mesh position={[model.positionX, model.positionY, model.positionZ]}>
-            <boxGeometry args={[0.5, 0.5, 0.5]} />
-            <meshBasicMaterial color={model.color} />
-          </mesh>
-        )}
-      </DragControls>
+            localMatrix.elements[12] =
+              whichSurface !== "rightWall"
+                ? Math.round(clampedX / cellSize) * cellSize - 0.1 + 0.25
+                : localMatrix.elements[12];
+            localMatrix.elements[13] =
+              whichSurface !== "floor"
+                ? Math.round(clampedY / cellSize) * cellSize + 0.1 - 0.25
+                : localMatrix.elements[13];
+            localMatrix.elements[14] =
+              whichSurface !== "leftWall"
+                ? Math.round(clampedZ / cellSize) * cellSize + 0.1 - 0.25
+                : localMatrix.elements[14];
+          }}
+        >
+          {model && (
+            <mesh
+              position={[model.positionX, model.positionY, model.positionZ]}
+              name={model.name}
+              onPointerDown={(e) => {
+                if (e.object.name.includes("floor")) {
+                  handleSetWhichSurface("floor");
+                } else if (e.object.name.includes("leftWall")) {
+                  handleSetWhichSurface("leftWall");
+                } else if (e.object.name.includes("rightWall")) {
+                  handleSetWhichSurface("rightWall");
+                }
+              }}
+            >
+              <boxGeometry args={[0.5, 0.5, 0.5]} />
+              <meshBasicMaterial color={model.color} />
+            </mesh>
+          )}
+        </DragControls>
+        {showMode && <axesHelper args={[100]} />}
+      </group>
     </>
   );
 }
-
-// const gridSize = 4; // Taille de la grille
-// const cellSize = gridSize / 10; // Taille d'une case de la grille (10 divisions)
-// const [cubePosition, setCubePosition] = useState([-1.6, -0.75, 2.1]);
-
-// const handleDrag = (event) => {
-//   // Position actuelle du cube
-//   const { x, y, z } = event.object.position;
-
-//   // Limiter les mouvements du cube à la grille
-//   const clampedX = Math.max(-gridSize / 2, Math.min(gridSize / 2, x));
-//   const clampedZ = Math.max(-gridSize / 2, Math.min(gridSize / 2, z));
-
-//   // Snapper les positions aux cases de la grille
-//   const snappedX = Math.round(clampedX / cellSize) * cellSize;
-//   const snappedZ = Math.round(clampedZ / cellSize) * cellSize;
-
-//   // Appliquer les nouvelles positions
-//   event.object.position.set(snappedX, y, snappedZ);
-
-//   // Mettre à jour l'état (si nécessaire pour d'autres usages)
-//   setCubePosition([snappedX, y, snappedZ]);
-// };
-
-// const mesh = useRef();
-// const [isDragging, setIsDragging] = useState(false);
-
-// const snapToGrid = (position, gridSize) => {
-//   return position.map((coord) => Math.round(coord / gridSize) * gridSize);
-// };
-
-// useFrame(() => {
-//   if (isDragging) {
-//     const snappedPosition = snapToGrid(
-//       mesh.current.position.toArray(),
-//       gridSize
-//     );
-//     mesh.current.position.set(...snappedPosition);
-//   }
-// });

@@ -89,13 +89,13 @@ export default function Index() {
           addModel={addModel}
           whichSurface={whichSurface}
         />
-        <button
-          onClick={() => {
-            setIsCameraReset(true);
-          }}
-        >
-          Reset Camera
-        </button>
+      </div>
+      <div
+        onClick={() => {
+          setIsCameraReset(true);
+        }}
+      >
+        <CanvasToImg glRef={glRef} />
       </div>
     </>
   );

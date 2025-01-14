@@ -1,13 +1,18 @@
-// Style
-import "./hud.scss";
 // Composant
 import BackBtn from "../BackBtn/BackBtn";
 import Choice from "../Choice/Choice";
 
+// Style
+import "./hud.scss";
+
 export default function Hud({ title, subtitle, addModel, whichSurface }) {
   return (
     <>
-      <div className="hud-container">
+      <div
+        className={`hud-container instant ${
+          whichSurface !== null ? "visible" : "hide"
+        } `}
+      >
         <div className="hud-top-content">
           <BackBtn />
           <h2 className="hud-title">{title}</h2>
@@ -26,6 +31,8 @@ export default function Hud({ title, subtitle, addModel, whichSurface }) {
             name={whichSurface}
           />
           <Choice
+            label={"Texture"}
+            path={"./img/choice/texture.svg"}
             addModel={addModel}
             color={"black"}
             positionX={0}
@@ -35,6 +42,8 @@ export default function Hud({ title, subtitle, addModel, whichSurface }) {
             name={whichSurface}
           />
           <Choice
+            label={"Texture"}
+            path={"./img/choice/texture.svg"}
             addModel={addModel}
             color={"black"}
             positionX={0}
@@ -44,6 +53,8 @@ export default function Hud({ title, subtitle, addModel, whichSurface }) {
             name={whichSurface}
           />
           <Choice
+            label={"Texture"}
+            path={"./img/choice/texture.svg"}
             addModel={addModel}
             color={"black"}
             positionX={0}
@@ -53,6 +64,8 @@ export default function Hud({ title, subtitle, addModel, whichSurface }) {
             name={whichSurface}
           />
           <Choice
+            label={"Texture"}
+            path={"./img/choice/texture.svg"}
             addModel={addModel}
             color={"black"}
             positionX={0}

@@ -1,6 +1,6 @@
 // Dependencies
 import { DragControls, OrbitControls } from "@react-three/drei";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 
 // World
 import Room from "./World/Room";
@@ -8,9 +8,10 @@ import Room from "./World/Room";
 // Utils
 import { surfaces } from "./Utils/surface";
 import { orbitControlsSetup } from "./Utils/orbitControlsSetup";
+import { dragLockGrid } from "./Utils/dragLockGrid";
 
 export default function Experience({
-  model,
+  models,
   handleSetWhichSurface,
   whichSurface,
   setIsCameraReset,
@@ -31,6 +32,7 @@ export default function Experience({
 
   const resetCamera = () => {
     if (orbitControls.current) {
+      orbitControls.current.zoom0 = 137.5;
       orbitControls.current.reset();
     }
     setIsCameraReset(false);
@@ -42,13 +44,23 @@ export default function Experience({
     }
   }, [isCameraReset]);
 
+  const updateSurfaceOnDrag = (e) => {
+    if (e.object.name.includes("floor")) {
+      handleSetWhichSurface("floor");
+    } else if (e.object.name.includes("leftWall")) {
+      handleSetWhichSurface("leftWall");
+    } else if (e.object.name.includes("rightWall")) {
+      handleSetWhichSurface("rightWall");
+    }
+  };
+
   return (
     <>
       {/* Controls */}
       <OrbitControls
         ref={orbitControls}
         makeDefault
-        // {...orbitControlsSetup}
+        {...orbitControlsSetup}
         // Line Breaks
       />
       <group position={[0, -1.9, 0]}>
@@ -59,62 +71,24 @@ export default function Experience({
         />
 
         {/* Objects */}
-        <DragControls
-          axisLock={surfaces[whichSurface]}
-          onDrag={(localMatrix) => {
-            const clampedX = Math.max(
-              -gridSize / 2 + 0.15,
-              Math.min(gridSize / 2 - 0.351, localMatrix.elements[12])
-            );
-            const clampedY = Math.max(
-              -gridSize / 2 + 0.36,
-              Math.min(gridSize / 2 - 0.15, localMatrix.elements[13])
-            );
-            const clampedZ = Math.max(
-              -gridSize / 2 + 0.36,
-              Math.min(gridSize / 2 - 0.15, localMatrix.elements[14])
-            );
-
-            localMatrix.elements[12] =
-              whichSurface === "rightWall"
-                ? localMatrix.elements[12]
-                : whichSurface === "leftWall"
-                ? Math.round(clampedX / cellSize) * cellSize + 0.25
-                : whichSurface === "floor"
-                ? Math.round(clampedX / cellSize) * cellSize - 0.1 + 0.25
-                : undefined;
-
-            localMatrix.elements[13] =
-              whichSurface === "floor"
-                ? localMatrix.elements[13]
-                : Math.round(clampedY / cellSize) * cellSize - 0.25;
-
-            localMatrix.elements[14] =
-              whichSurface === "leftWall"
-                ? localMatrix.elements[14]
-                : Math.round(clampedZ / cellSize) * cellSize + 0.1 - 0.25;
-          }}
-        >
-          {model && (
+        {models.map((model, index) => (
+          <DragControls
+            key={index}
+            axisLock={surfaces.axis[whichSurface]}
+            onDrag={(localMatrix) => {
+              dragLockGrid(localMatrix, gridSize, cellSize, whichSurface);
+            }}
+          >
             <mesh
               position={[model.positionX, model.positionY, model.positionZ]}
               name={model.name}
-              onPointerDown={(e) => {
-                if (e.object.name.includes("floor")) {
-                  handleSetWhichSurface("floor");
-                } else if (e.object.name.includes("leftWall")) {
-                  handleSetWhichSurface("leftWall");
-                } else if (e.object.name.includes("rightWall")) {
-                  handleSetWhichSurface("rightWall");
-                }
-              }}
+              onPointerDown={updateSurfaceOnDrag}
             >
               <boxGeometry args={[0.5, 0.5, 0.5]} />
               <meshBasicMaterial color={model.color} />
             </mesh>
-          )}
-        </DragControls>
-        {/* <axesHelper args={[100]} /> */}
+          </DragControls>
+        ))}
       </group>
     </>
   );

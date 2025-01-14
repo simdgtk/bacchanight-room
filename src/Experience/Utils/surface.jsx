@@ -1,5 +1,12 @@
 export const surfaces = {
-  floor: "y",
-  leftWall: "z",
-  rightWall: "x",
+  axis: {
+    floor: "y",
+    leftWall: "z",
+    rightWall: "x",
+  },
+  uiTitle: {
+    floor: "Sol",
+    leftWall: "Mur de gauche",
+    rightWall: "Mur de droite",
+  },
 };

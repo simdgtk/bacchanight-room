@@ -7,7 +7,7 @@ import Room from "./World/Room";
 
 // Utils
 import { surfaces } from "./Utils/surface";
-import { orbitControlsSetutp } from "./Utils/orbitControlsSetup";
+import { orbitControlsSetup } from "./Utils/orbitControlsSetup";
 
 export default function Experience({
   model,
@@ -26,11 +26,6 @@ export default function Experience({
       : undefined;
   const cellSize = gridSize / 8;
 
-  // Grid References
-  const leftWallGrid = useRef();
-  const rightWallGrid = useRef();
-  const floorGrid = useRef();
-
   // Controls References
   const orbitControls = useRef();
 
@@ -41,20 +36,11 @@ export default function Experience({
     setIsCameraReset(false);
   };
 
-  const [showMode, setShowMode] = useState(true);
-  const toogleShowMode = () => {
-    setShowMode(!showMode);
-  };
-
   useEffect(() => {
     if (isCameraReset) {
       resetCamera();
-      toogleShowMode();
     }
-    // console.log("Room position:", gridSize, cellSize, position);
   }, [isCameraReset]);
-
-  const groupe = useRef();
 
   return (
     <>
@@ -62,7 +48,7 @@ export default function Experience({
       <OrbitControls
         ref={orbitControls}
         makeDefault
-        // {...orbitControlsSetutp}
+        // {...orbitControlsSetup}
         // Line Breaks
       />
       <group position={[0, -1.9, 0]}>
@@ -70,7 +56,6 @@ export default function Experience({
           whichSurface={whichSurface}
           handleSetWhichSurface={handleSetWhichSurface}
           gridSize={gridSize}
-          // Descend the model by 1 unit
         />
 
         {/* Objects */}
@@ -91,17 +76,23 @@ export default function Experience({
             );
 
             localMatrix.elements[12] =
-              whichSurface !== "rightWall"
+              whichSurface === "rightWall"
+                ? localMatrix.elements[12]
+                : whichSurface === "leftWall"
+                ? Math.round(clampedX / cellSize) * cellSize + 0.25
+                : whichSurface === "floor"
                 ? Math.round(clampedX / cellSize) * cellSize - 0.1 + 0.25
-                : localMatrix.elements[12];
+                : undefined;
+
             localMatrix.elements[13] =
-              whichSurface !== "floor"
-                ? Math.round(clampedY / cellSize) * cellSize + 0.1 - 0.25
-                : localMatrix.elements[13];
+              whichSurface === "floor"
+                ? localMatrix.elements[13]
+                : Math.round(clampedY / cellSize) * cellSize - 0.25;
+
             localMatrix.elements[14] =
-              whichSurface !== "leftWall"
-                ? Math.round(clampedZ / cellSize) * cellSize + 0.1 - 0.25
-                : localMatrix.elements[14];
+              whichSurface === "leftWall"
+                ? localMatrix.elements[14]
+                : Math.round(clampedZ / cellSize) * cellSize + 0.1 - 0.25;
           }}
         >
           {model && (
@@ -123,7 +114,7 @@ export default function Experience({
             </mesh>
           )}
         </DragControls>
-        {showMode && <axesHelper args={[100]} />}
+        {/* <axesHelper args={[100]} /> */}
       </group>
     </>
   );

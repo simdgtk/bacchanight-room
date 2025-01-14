@@ -16,6 +16,9 @@ export default function Experience({
   whichSurface,
   setIsCameraReset,
   isCameraReset,
+  leftWallColor,
+  rightWallColor,
+  floorColor,
 }) {
   const gridSize =
     whichSurface === "floor"
@@ -68,6 +71,9 @@ export default function Experience({
           whichSurface={whichSurface}
           handleSetWhichSurface={handleSetWhichSurface}
           gridSize={gridSize}
+          leftWallColor={leftWallColor}
+          rightWallColor={rightWallColor}
+          floorColor={floorColor}
         />
 
         {/* Objects */}

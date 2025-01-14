@@ -1,9 +1,13 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { surfaces } from "../Utils/surface";
 
 export default function Room({
   whichSurface,
   handleSetWhichSurface,
   gridSize,
+  leftWallColor,
+  rightWallColor,
+  floorColor,
 }) {
   // Grid References
   const leftWallGrid = useRef();
@@ -24,7 +28,7 @@ export default function Room({
         }}
       >
         <boxGeometry args={[4, 16 / 4.2, 0.2]} />
-        <meshBasicMaterial color={"blue"} />
+        <meshBasicMaterial color={leftWallColor} />
       </mesh>
 
       <gridHelper
@@ -48,7 +52,7 @@ export default function Room({
         }}
       >
         <boxGeometry args={[4.2, 16 / 4.2, 0.2]} />
-        <meshBasicMaterial color={"red"} />
+        <meshBasicMaterial color={rightWallColor} />
       </mesh>
 
       <gridHelper
@@ -72,7 +76,7 @@ export default function Room({
         }}
       >
         <boxGeometry args={[4.2, 4.2, 0.2]} />
-        <meshBasicMaterial color={"#beb8da"} />
+        <meshBasicMaterial color={floorColor} />
       </mesh>
 
       <gridHelper

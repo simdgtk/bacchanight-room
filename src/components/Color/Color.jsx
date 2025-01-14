@@ -1,21 +1,19 @@
 // Style
-import "./choice.scss";
+import "./color.scss";
 // test
-export default function Choice({
-  color,
-  positionX,
-  positionY,
-  positionZ,
-  addModel,
+export default function Color({
   label,
-  path
+  path,
+  whichSurface,
+  color,
+  changeColor,
 }) {
   return (
     <>
       <button
         className="choice"
         onClick={() => {
-          addModel(color, positionX, positionY, positionZ);
+          changeColor(color, whichSurface);
         }}
       >
         <img src={path} width={40} alt={label} />

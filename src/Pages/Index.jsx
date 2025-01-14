@@ -12,6 +12,10 @@ export default function Index() {
   const [whichSurface, setWhichSurface] = useState(null);
   const [isCameraReset, setIsCameraReset] = useState(false);
 
+  const [leftWallColor, setLeftWallColor] = useState("#ff00ff");
+  const [rightWallColor, setRightWallColor] = useState("#ffff00");
+  const [floorColor, setFloorColor] = useState("#00ffff");
+
   const glRef = useRef(null);
 
   const handleSetWhichSurface = (surface) => {
@@ -30,6 +34,18 @@ export default function Index() {
           name: name,
         },
       ]);
+    }
+  };
+
+  const changeColor = (color, whichSurface) => {
+    if (whichSurface === "leftWall") {
+      setLeftWallColor(color);
+    }
+    if (whichSurface === "rightWall") {
+      setRightWallColor(color);
+    }
+    if (whichSurface === "floor") {
+      setFloorColor(color);
     }
   };
 
@@ -58,6 +74,9 @@ export default function Index() {
           models={models}
           handleSetWhichSurface={handleSetWhichSurface}
           whichSurface={whichSurface}
+          leftWallColor={leftWallColor}
+          rightWallColor={rightWallColor}
+          floorColor={floorColor}
         />
       </Canvas>
       <div className="test">
@@ -76,6 +95,7 @@ export default function Index() {
           "Lorem ipsum dolor sit amet consectetur. Lacus posuere auctor velit integer platea fusce."
         }
         addModel={addModel}
+        changeColor={changeColor}
         whichSurface={whichSurface}
       />
     </>

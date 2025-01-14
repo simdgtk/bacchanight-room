@@ -1,11 +1,18 @@
 // Composant
 import BackBtn from "../BackBtn/BackBtn";
 import Choice from "../Choice/Choice";
+import Color from "../Color/Color";
 
 // Style
 import "./hud.scss";
 
-export default function Hud({ title, subtitle, addModel, whichSurface }) {
+export default function Hud({
+  title,
+  subtitle,
+  whichSurface,
+  addModel,
+  changeColor,
+}) {
   return (
     <>
       <div
@@ -73,6 +80,11 @@ export default function Hud({ title, subtitle, addModel, whichSurface }) {
             positionZ={0}
             whichSurface={whichSurface}
             name={whichSurface}
+          />
+          <Color
+            whichSurface={whichSurface}
+            color={"#000000"}
+            changeColor={changeColor}
           />
         </div>
       </div>

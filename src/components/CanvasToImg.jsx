@@ -4,18 +4,22 @@ export default function CanvasToImg({ glRef }) {
     if (glRef.current) {
       // canvas to webp
       const canvas = glRef.current.domElement; // canvas
-      canvas.toBlob((blob) => {
-        const formData = new FormData();
-        formData.append("file", blob, new Date().getTime() + ".webp");
 
-        fetch("http://localhost:3000/upload", {
-          method: "POST",
-          body: formData,
-        })
-          .then((response) => response.json())
-          .then((response) => console.log(JSON.stringify(response)))
-          .catch((error) => console.error("Error:", error));
-      }, "image/webp");
+      setTimeout(() => {
+        console.log("canvas", canvas);
+        canvas.toBlob((blob) => {
+          const formData = new FormData();
+          formData.append("file", blob, new Date().getTime() + ".webp");
+
+          fetch("http://localhost:3000/upload", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((response) => console.log(JSON.stringify(response)))
+            .catch((error) => console.error("Error:", error));
+        }, "image/webp");
+      }, 100);
     } else {
       console.error("Le canvas n'a pas été trouvé");
     }

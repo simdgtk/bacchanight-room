@@ -15,11 +15,7 @@ export default function Hud({
 }) {
   return (
     <>
-      <div
-        className={`hud-container instant ${
-          whichSurface !== null ? "visible" : "hide"
-        } `}
-      >
+      <div className="hud-container">
         <div className="hud-top-content">
           <BackBtn />
           <h2 className="hud-title">{title}</h2>

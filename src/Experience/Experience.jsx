@@ -63,7 +63,7 @@ export default function Experience({
       <OrbitControls
         ref={orbitControls}
         makeDefault
-        {...orbitControlsSetup}
+        // {...orbitControlsSetup}
         // Line Breaks
       />
       <group position={[0, -1.9, 0]}>

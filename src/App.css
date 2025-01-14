@@ -13,9 +13,6 @@ body,
 }
 
 canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 0;
     background-color: #E1E7F1;
+    width: 70dvw;
 }

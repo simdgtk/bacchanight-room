@@ -12,8 +12,8 @@ export default function Index() {
   const [whichSurface, setWhichSurface] = useState(null);
   const [isCameraReset, setIsCameraReset] = useState(false);
 
-  const [leftWallColor, setLeftWallColor] = useState("#ff00ff");
-  const [rightWallColor, setRightWallColor] = useState("#ffff00");
+  const [leftWallColor, setLeftWallColor] = useState("#ffff00");
+  const [rightWallColor, setRightWallColor] = useState("#ff00ff");
   const [floorColor, setFloorColor] = useState("#00ffff");
 
   const glRef = useRef(null);
@@ -56,9 +56,8 @@ export default function Index() {
           position: [-10, 10, 10],
           near: 0.01,
           far: 100,
-          zoom: 60,
+          zoom: 100,
         }}
-        style={{ position: "fixed", top: "0", left: "0", zIndex: "0" }}
         orthographic={true}
         onCreated={({ gl }) => {
           glRef.current = gl;

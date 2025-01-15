@@ -9,8 +9,12 @@ export default function AllRooms() {
 
   useEffect(() => {
     if (window.innerWidth < 1220) {
-      space.current = 3;
+      space.current = 5;
       spaceAfter.current = 2;
+    }
+    if (window.innerWidth < 920) {
+      space.current = 3;
+      spaceAfter.current = 1;
     }
 
     // Récupération des données depuis l'API
@@ -26,22 +30,41 @@ export default function AllRooms() {
       .catch((err) => console.error("Erreur lors du fetch :", err));
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.clear();
+      fetch("http://localhost:3000/all/")
+        .then((res) => res.json())
+        .then((json) => {
+          if (Array.isArray(json)) {
+            setArrayRooms(json);
+          } else {
+            console.error("Les données reçues ne sont pas un tableau.");
+          }
+        })
+        .catch((err) => console.error("Erreur lors du fetch :", err));
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
   return (
     <div className="rooms">
-      <h1>Le musée collaboratif : 231 salles déjà faites</h1>
+      <h1>
+        Le musée collaboratif :{" "}
+        {`${arrayRooms.length} salle${arrayRooms.length > 1 ? "s" : ""}`} déjà
+        faite{arrayRooms.length > 1 ? "s" : ""}
+      </h1>
       <div className="grid-container">
         <div className="grid-container__images">
           {/* Parcourir arrayRooms et afficher les images */}
-          {arrayRooms.map((room, index) => (
+          {[...arrayRooms].reverse().map((room, index) => (
             <React.Fragment key={index}>
               <div className="grid-container__images__img-container">
-                {/* `http://localhost:3000/uploads/${room}` */}
                 <img
-                  src={`http://localhost:3000/uploads/${room}`} // Générer le bon chemin pour chaque image
+                  src={`http://localhost:3000/uploads/${room}`}
                   alt={`Salle ${index + 1}`}
                 />
               </div>
-              {/* Ajouter un espace après certains éléments */}
               {index % space.current === spaceAfter.current && (
                 <div className="space-sm"></div>
               )}

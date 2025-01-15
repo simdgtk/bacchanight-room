@@ -22,6 +22,7 @@
     opacity: 1;
     transform: translateX(0);
   }
+
   100% {
     opacity: 0;
     transform: translateX(-200px);
@@ -33,6 +34,7 @@
     opacity: 0;
     transform: translateX(-200px);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0);
@@ -42,31 +44,37 @@
 .hud-top-content {
   padding: 28px 2vw;
 }
-.flex-button{
+
+.flex-button {
   display: flex;
-  width: 100%;
+  width: fit-content;
   justify-content: space-between;
   padding: 28px 2vw;
 }
+
 .hud-title {
   color: $primary-color;
   font-size: 46px;
   font-weight: 400;
 }
+
 .hud-subtitle {
   margin-top: 8px;
   color: #646464;
   font-size: 20px;
 }
+
 .hud-flex {
   gap: 32px;
   padding: 28px 2vw;
   display: flex;
   flex-wrap: wrap;
 }
-.hud-text{
+
+.hud-text {
   font-size: 20px;
 }
-hr{
+
+hr {
   margin: 32px 0;
 }

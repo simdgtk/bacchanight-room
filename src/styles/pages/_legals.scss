@@ -24,8 +24,12 @@
     margin-bottom: 16px;
   }
 
+  &__link {
+    margin-top: 24px;
+  }
+
   .content {
-    margin-top: 48px;
+    margin-top: 24px;
     padding-bottom: 24px;
 
     @media screen and (max-width: 850px) {

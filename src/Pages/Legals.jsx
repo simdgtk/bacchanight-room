@@ -4,6 +4,9 @@ export default function Legals() {
   return (
     <div className="legals">
       <h1>Mentions légales</h1>
+      <a href="/" className="legals__link">
+        Revenir à l&apos;expérience 3D
+      </a>
       <div className="content">
         <div className="content__section">
           <h2 className="content__section__title">1. Informations Générales</h2>

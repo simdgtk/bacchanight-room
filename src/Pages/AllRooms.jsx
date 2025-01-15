@@ -1,6 +1,7 @@
 import salleImage from "../assets/salle.png";
 import "../styles/pages/_all-rooms.scss";
 import React, { useEffect, useState, useRef } from "react";
+import Button from "../components/Button/Button";
 
 export default function AllRooms() {
   const [arrayRooms, setArrayRooms] = useState([]);
@@ -50,7 +51,7 @@ export default function AllRooms() {
   return (
     <div className="rooms">
       <h1>
-        Le musée collaboratif :{" "}
+        Votre musée collaboratif :{" "}
         {`${arrayRooms.length} salle${arrayRooms.length > 1 ? "s" : ""}`} déjà
         faite{arrayRooms.length > 1 ? "s" : ""}
       </h1>
@@ -70,6 +71,15 @@ export default function AllRooms() {
               )}
             </React.Fragment>
           ))}
+        </div>
+      </div>
+      <div className="footer">
+        <div className="links">
+          <Button
+            label={"Ajouter ma pièce"}
+            onClick={() => (window.location.href = "/")}
+          />
+          <a href="/mentions-legales">mentions légales</a>
         </div>
       </div>
     </div>

@@ -14,6 +14,7 @@ export default function Index() {
   const [whichSurface, setWhichSurface] = useState("");
   const [isCameraReset, setIsCameraReset] = useState(false);
 
+  // Wall Color
   const [leftWallColor, setLeftWallColor] = useState("#ffff00");
   const [rightWallColor, setRightWallColor] = useState("#ff00ff");
   const [floorColor, setFloorColor] = useState("#00ffff");
@@ -54,15 +55,15 @@ export default function Index() {
     }
   };
 
-  const changeColor = (color, whichSurface) => {
+  const changeColor = (newColor, whichSurface) => {
     if (whichSurface === "leftWall") {
-      setLeftWallColor(color);
+      setLeftWallColor(newColor);
     }
     if (whichSurface === "rightWall") {
-      setRightWallColor(color);
+      setRightWallColor(newColor);
     }
     if (whichSurface === "floor") {
-      setFloorColor(color);
+      setFloorColor(newColor);
     }
   };
 
@@ -70,9 +71,7 @@ export default function Index() {
     <>
       <Hud
         title={surfaces.uiTitle[whichSurface]}
-        subtitle={
-          "Lorem ipsum dolor sit amet consectetur. Lacus posuere auctor velit integer platea fusce."
-        }
+        text={surfaces.uiDescription[whichSurface]}
         addModel={addModel}
         changeColor={changeColor}
         whichSurface={whichSurface}
@@ -119,19 +118,9 @@ export default function Index() {
         </button>
       </div>
 
-      <Hud
-        title={surfaces.uiTitle[whichSurface]}
-        subtitle={"(Couleurs)"}
-        text={
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam non, assumenda accusantium itaque autem quisquam voluptate voluptatem sint at tenetur facere! Esse accusantium, nobis inventore ipsa modi optio reprehenderit non."
-        }
-        addModel={addModel}
-        whichSurface={whichSurface}
-      />
       <div className="legals-link">
         <a href="/mentions-legales">mentions légales</a>
       </div>
-
     </>
   );
 }

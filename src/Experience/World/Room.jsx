@@ -18,7 +18,7 @@ export default function Room({
       <mesh
         position={[-0.1, 16 / 4.2 / 2 + 0.1, -4.2 / 2 + 0.1]}
         name="mur gauche"
-        onPointerUp={(e) => {
+        onPointerUp={() => {
           if (whichSurface !== "leftWall") {
             handleSetWhichSurface("leftWall");
           } else {

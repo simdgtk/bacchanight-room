@@ -1,1 +1,8 @@
 $primary-color: #000;
+
+@font-face {
+  font-family: 'Actor';
+  src: url(/public/font/actor-regular.woff2);
+  font-weight: 400;
+  font-variant-numeric: lining-nums;
+}

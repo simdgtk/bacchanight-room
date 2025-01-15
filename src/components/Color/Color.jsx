@@ -1,22 +1,23 @@
 // Style
 import "./color.scss";
 
-// Test
-export default function Choice({
+export default function Color({
   color,
   positionX,
   positionY,
   positionZ,
   addModel,
   label,
-  path
+  path,
+  whichSurface,
+  changeColor,
 }) {
   return (
     <>
       <button
         className="color"
         onClick={() => {
-          addModel(color, positionX, positionY, positionZ);
+          changeColor(color, whichSurface);
         }}
       >
         <div

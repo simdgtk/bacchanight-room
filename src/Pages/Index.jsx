@@ -11,8 +11,12 @@ import "../styles/pages/_index.scss";
 
 export default function Index() {
   const [models, setModels] = useState([]);
-  const [whichSurface, setWhichSurface] = useState(null);
+  const [whichSurface, setWhichSurface] = useState("");
   const [isCameraReset, setIsCameraReset] = useState(false);
+
+  const [leftWallColor, setLeftWallColor] = useState("#ffff00");
+  const [rightWallColor, setRightWallColor] = useState("#ff00ff");
+  const [floorColor, setFloorColor] = useState("#00ffff");
 
   const glRef = useRef(null);
 
@@ -20,11 +24,26 @@ export default function Index() {
     setWhichSurface(surface);
   };
 
-  const addModel = (color, positionX, positionY, positionZ, name) => {
-    if (whichSurface !== null) {
+  const removeModel = (id) => {
+    setModels((prevModels) => prevModels.filter((model) => model.id !== id));
+  };
+
+  const replaceModel = (id, newColor) => {
+    setModels((prevModels) => {
+      const modelToUpdate = prevModels.find((model) => model.id === id);
+      if (modelToUpdate) {
+        modelToUpdate.color = newColor;
+      }
+      return [...prevModels];
+    });
+  };
+
+  const addModel = (id, color, positionX, positionY, positionZ, name) => {
+    if (whichSurface !== "") {
       setModels((prevModels) => [
         ...prevModels,
         {
+          id: id,
           color: color,
           positionX: positionX,
           positionY: positionY,
@@ -35,16 +54,38 @@ export default function Index() {
     }
   };
 
+  const changeColor = (color, whichSurface) => {
+    if (whichSurface === "leftWall") {
+      setLeftWallColor(color);
+    }
+    if (whichSurface === "rightWall") {
+      setRightWallColor(color);
+    }
+    if (whichSurface === "floor") {
+      setFloorColor(color);
+    }
+  };
+
   return (
     <>
+      <Hud
+        title={surfaces.uiTitle[whichSurface]}
+        subtitle={
+          "Lorem ipsum dolor sit amet consectetur. Lacus posuere auctor velit integer platea fusce."
+        }
+        addModel={addModel}
+        changeColor={changeColor}
+        whichSurface={whichSurface}
+      />
+
       <Canvas
         camera={{
           position: [-10, 10, 10],
           near: 0.01,
           far: 100,
-          zoom: 60,
+          zoom: 103,
         }}
-        style={{ position: "fixed", top: "0", left: "0", zIndex: "0" }}
+        style={{ width: "70vw" }}
         orthographic={true}
         onCreated={({ gl }) => {
           glRef.current = gl;
@@ -60,8 +101,14 @@ export default function Index() {
           models={models}
           handleSetWhichSurface={handleSetWhichSurface}
           whichSurface={whichSurface}
+          leftWallColor={leftWallColor}
+          rightWallColor={rightWallColor}
+          floorColor={floorColor}
+          removeModel={removeModel}
+          replaceModel={replaceModel}
         />
       </Canvas>
+
       <div className="test">
         <button
           onClick={() => {
@@ -84,6 +131,7 @@ export default function Index() {
       <div className="legals-link">
         <a href="/mentions-legales">mentions légales</a>
       </div>
+
     </>
   );
 }

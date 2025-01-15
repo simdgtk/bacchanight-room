@@ -9,7 +9,14 @@ import Color from "../Color/Color";
 // Style
 import "./hud.scss";
 
-export default function Hud({ title, subtitle, addModel, whichSurface, text }) {
+
+export default function Hud({
+  title,
+  subtitle,
+  whichSurface,
+  addModel,
+  changeColor,
+}) {
   // État local pour gérer "select" ou "choice" et la catégorie active
   const [state, setState] = useState("select");
   const [activeCategory, setActiveCategory] = useState(null);

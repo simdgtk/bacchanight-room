@@ -3,40 +3,8 @@
 .hud-container {
   background-color: #fff;
   height: 100dvh;
-  width: 30vw;
+  width: 30dvw;
   overflow-y: scroll;
-  opacity: 0;
-  transform: translateX(0);
-}
-
-.hud-container.visible {
-  animation: hud-in 0.6s ease-in-out forwards;
-}
-
-.hud-container.hide {
-  animation: hud-out 0.6s ease-in-out forwards;
-}
-
-@keyframes hud-out {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-200px);
-  }
-}
-
-@keyframes hud-in {
-  0% {
-    opacity: 0;
-    transform: translateX(-200px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
 }
 
 .hud-top-content {

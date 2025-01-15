@@ -3,51 +3,19 @@
 .hud-container {
   background-color: #fff;
   height: 100dvh;
-  width: 30vw;
+  width: 30dvw;
   overflow-y: scroll;
-  opacity: 0;
-  transform: translateX(0);
-}
 
-.hud-container.visible {
-  animation: hud-in 0.6s ease-in-out forwards;
-}
-
-.hud-container.hide {
-  animation: hud-out 0.6s ease-in-out forwards;
-}
-
-@keyframes hud-out {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateX(-200px);
-  }
-}
-
-@keyframes hud-in {
-  0% {
-    opacity: 0;
-    transform: translateX(-200px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  /* Compatibilité avec Firefox */
+  scrollbar-width: thin; /* Réduit la largeur */
+  scrollbar-color: $primary-color #fff; /* Barre et piste */
 }
 
 .hud-top-content {
   padding: 28px 2vw;
 }
-
 .flex-button {
   display: flex;
-  width: fit-content;
   justify-content: space-between;
   padding: 28px 2vw;
 }
@@ -70,11 +38,9 @@
   display: flex;
   flex-wrap: wrap;
 }
-
 .hud-text {
   font-size: 20px;
 }
-
 hr {
   margin: 32px 0;
 }

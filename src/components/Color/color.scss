@@ -1,8 +1,7 @@
-@import '../../styles/base/variables';
+@import "../../styles/base/variables";
 
-.color-container{
+.color-container {
   aspect-ratio: 1/0.8;
- 
   width: 90%;
 }
 
@@ -17,17 +16,17 @@
   cursor: pointer;
   width: 45%;
   aspect-ratio: 1/1;
-  background-color: #FFF;
+  background-color: #fff;
   cursor: pointer;
-  &:hover{
+  &:hover {
     background-color: #f0f0f0;
   }
-  &:active{
+  &:active {
     background-color: #ecebeb;
   }
 }
 
-.label-color{
+.label-color {
   font-size: 18px;
   color: $primary-color;
 }

@@ -11,8 +11,13 @@ import "../styles/pages/_index.scss";
 
 export default function Index() {
   const [models, setModels] = useState([]);
-  const [whichSurface, setWhichSurface] = useState(null);
+  const [whichSurface, setWhichSurface] = useState("");
   const [isCameraReset, setIsCameraReset] = useState(false);
+
+  // Wall Color
+  const [leftWallColor, setLeftWallColor] = useState("#ffff00");
+  const [rightWallColor, setRightWallColor] = useState("#ff00ff");
+  const [floorColor, setFloorColor] = useState("#00ffff");
 
   const glRef = useRef(null);
 
@@ -20,11 +25,26 @@ export default function Index() {
     setWhichSurface(surface);
   };
 
-  const addModel = (color, positionX, positionY, positionZ, name) => {
-    if (whichSurface !== null) {
+  const removeModel = (id) => {
+    setModels((prevModels) => prevModels.filter((model) => model.id !== id));
+  };
+
+  const replaceModel = (id, newColor) => {
+    setModels((prevModels) => {
+      const modelToUpdate = prevModels.find((model) => model.id === id);
+      if (modelToUpdate) {
+        modelToUpdate.color = newColor;
+      }
+      return [...prevModels];
+    });
+  };
+
+  const addModel = (id, color, positionX, positionY, positionZ, name) => {
+    if (whichSurface !== "") {
       setModels((prevModels) => [
         ...prevModels,
         {
+          id: id,
           color: color,
           positionX: positionX,
           positionY: positionY,
@@ -35,16 +55,36 @@ export default function Index() {
     }
   };
 
+  const changeColor = (newColor, whichSurface) => {
+    if (whichSurface === "leftWall") {
+      setLeftWallColor(newColor);
+    }
+    if (whichSurface === "rightWall") {
+      setRightWallColor(newColor);
+    }
+    if (whichSurface === "floor") {
+      setFloorColor(newColor);
+    }
+  };
+
   return (
     <>
+      <Hud
+        title={surfaces.uiTitle[whichSurface]}
+        text={surfaces.uiDescription[whichSurface]}
+        addModel={addModel}
+        changeColor={changeColor}
+        whichSurface={whichSurface}
+      />
+
       <Canvas
         camera={{
           position: [-10, 10, 10],
           near: 0.01,
           far: 100,
-          zoom: 60,
+          zoom: 103,
         }}
-        style={{ position: "fixed", top: "0", left: "0", zIndex: "0" }}
+        style={{ width: "70vw" }}
         orthographic={true}
         onCreated={({ gl }) => {
           glRef.current = gl;
@@ -60,8 +100,14 @@ export default function Index() {
           models={models}
           handleSetWhichSurface={handleSetWhichSurface}
           whichSurface={whichSurface}
+          leftWallColor={leftWallColor}
+          rightWallColor={rightWallColor}
+          floorColor={floorColor}
+          removeModel={removeModel}
+          replaceModel={replaceModel}
         />
       </Canvas>
+
       <div className="test">
         <button
           onClick={() => {
@@ -72,15 +118,6 @@ export default function Index() {
         </button>
       </div>
 
-      <Hud
-        title={surfaces.uiTitle[whichSurface]}
-        subtitle={"(Couleurs)"}
-        text={
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam non, assumenda accusantium itaque autem quisquam voluptate voluptatem sint at tenetur facere! Esse accusantium, nobis inventore ipsa modi optio reprehenderit non."
-        }
-        addModel={addModel}
-        whichSurface={whichSurface}
-      />
       <div className="legals-link">
         <a href="/mentions-legales">mentions légales</a>
       </div>

@@ -16,6 +16,11 @@ export default function Experience({
   whichSurface,
   setIsCameraReset,
   isCameraReset,
+  leftWallColor,
+  rightWallColor,
+  floorColor,
+  removeModel,
+  replaceModel,
 }) {
   const gridSize =
     whichSurface === "floor"
@@ -68,12 +73,15 @@ export default function Experience({
           whichSurface={whichSurface}
           handleSetWhichSurface={handleSetWhichSurface}
           gridSize={gridSize}
+          leftWallColor={leftWallColor}
+          rightWallColor={rightWallColor}
+          floorColor={floorColor}
         />
 
         {/* Objects */}
-        {models.map((model, index) => (
+        {models.map((model) => (
           <DragControls
-            key={index}
+            key={model.id}
             axisLock={surfaces.axis[whichSurface]}
             onDrag={(localMatrix) => {
               dragLockGrid(localMatrix, gridSize, cellSize, whichSurface);
@@ -83,6 +91,11 @@ export default function Experience({
               position={[model.positionX, model.positionY, model.positionZ]}
               name={model.name}
               onPointerDown={updateSurfaceOnDrag}
+              onDoubleClick={() => {
+                // removeModel(model.id);
+                const newColor = "#ff00ff";
+                replaceModel(model.id, newColor);
+              }}
             >
               <boxGeometry args={[0.5, 0.5, 0.5]} />
               <meshBasicMaterial color={model.color} />

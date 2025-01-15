@@ -9,7 +9,7 @@ import { surfaces } from "../Experience/Utils/surface.jsx";
 
 export default function Index() {
   const [models, setModels] = useState([]);
-  const [whichSurface, setWhichSurface] = useState(null);
+  const [whichSurface, setWhichSurface] = useState("");
   const [isCameraReset, setIsCameraReset] = useState(false);
 
   const [leftWallColor, setLeftWallColor] = useState("#ffff00");
@@ -26,8 +26,18 @@ export default function Index() {
     setModels((prevModels) => prevModels.filter((model) => model.id !== id));
   };
 
+  const replaceModel = (id, newColor) => {
+    setModels((prevModels) => {
+      const modelToUpdate = prevModels.find((model) => model.id === id);
+      if (modelToUpdate) {
+        modelToUpdate.color = newColor;
+      }
+      return [...prevModels];
+    });
+  };
+
   const addModel = (id, color, positionX, positionY, positionZ, name) => {
-    if (whichSurface !== null) {
+    if (whichSurface !== "") {
       setModels((prevModels) => [
         ...prevModels,
         {
@@ -71,7 +81,7 @@ export default function Index() {
           position: [-10, 10, 10],
           near: 0.01,
           far: 100,
-          zoom: 115,
+          zoom: 103,
         }}
         style={{ width: "70vw" }}
         orthographic={true}
@@ -93,6 +103,7 @@ export default function Index() {
           rightWallColor={rightWallColor}
           floorColor={floorColor}
           removeModel={removeModel}
+          replaceModel={replaceModel}
         />
       </Canvas>
 

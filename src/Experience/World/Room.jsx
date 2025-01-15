@@ -22,7 +22,7 @@ export default function Room({
           if (whichSurface !== "leftWall") {
             handleSetWhichSurface("leftWall");
           } else {
-            handleSetWhichSurface(null);
+            handleSetWhichSurface("");
           }
         }}
       >
@@ -46,7 +46,7 @@ export default function Room({
           if (whichSurface !== "rightWall") {
             handleSetWhichSurface("rightWall");
           } else if (whichSurface) {
-            handleSetWhichSurface(null);
+            handleSetWhichSurface("");
           }
         }}
       >
@@ -70,7 +70,7 @@ export default function Room({
           if (whichSurface !== "floor") {
             handleSetWhichSurface("floor");
           } else if (whichSurface) {
-            handleSetWhichSurface(null);
+            handleSetWhichSurface("");
           }
         }}
       >

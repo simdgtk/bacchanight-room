@@ -20,6 +20,7 @@ export default function Experience({
   rightWallColor,
   floorColor,
   removeModel,
+  replaceModel,
 }) {
   const gridSize =
     whichSurface === "floor"
@@ -91,8 +92,9 @@ export default function Experience({
               name={model.name}
               onPointerDown={updateSurfaceOnDrag}
               onDoubleClick={() => {
-                console.log("delete");
-                removeModel(model.id);
+                // removeModel(model.id);
+                const newColor = "#ff00ff";
+                replaceModel(model.id, newColor);
               }}
             >
               <boxGeometry args={[0.5, 0.5, 0.5]} />

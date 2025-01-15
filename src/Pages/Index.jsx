@@ -7,6 +7,8 @@ import Experience from "../Experience/Experience.jsx";
 import Hud from "../components/Hud/Hud.jsx";
 import { surfaces } from "../Experience/Utils/surface.jsx";
 
+import "../styles/pages/_index.scss";
+
 export default function Index() {
   const [models, setModels] = useState([]);
   const [whichSurface, setWhichSurface] = useState(null);
@@ -72,13 +74,16 @@ export default function Index() {
 
       <Hud
         title={surfaces.uiTitle[whichSurface]}
-        subtitle={
-          "(Couleurs)"
+        subtitle={"(Couleurs)"}
+        text={
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam non, assumenda accusantium itaque autem quisquam voluptate voluptatem sint at tenetur facere! Esse accusantium, nobis inventore ipsa modi optio reprehenderit non."
         }
-        text={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam non, assumenda accusantium itaque autem quisquam voluptate voluptatem sint at tenetur facere! Esse accusantium, nobis inventore ipsa modi optio reprehenderit non."}
         addModel={addModel}
         whichSurface={whichSurface}
       />
+      <div className="legals-link">
+        <a href="/mentions-legales">mentions légales</a>
+      </div>
     </>
   );
 }

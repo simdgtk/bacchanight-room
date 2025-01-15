@@ -1,12 +1,8 @@
 @import "../../styles/base/variables";
 
 .hud-container {
-  position: absolute;
-  top: 5dvh;
-  left: 5vw;
-  background-color: #f8f7fe;
-  border-radius: 12px;
-  height: 90dvh;
+  background-color: #fff;
+  height: 100dvh;
   width: 30vw;
   overflow-y: scroll;
   opacity: 0;
@@ -44,23 +40,33 @@
 }
 
 .hud-top-content {
-  border-radius: 12px 12px 0 0;
   padding: 28px 2vw;
-  background-color: $primary-color;
+}
+.flex-button{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 28px 2vw;
 }
 .hud-title {
-  color: #fff;
-  font-size: 32px;
-  margin-top: 24px;
+  color: $primary-color;
+  font-size: 46px;
+  font-weight: 400;
 }
 .hud-subtitle {
   margin-top: 8px;
-  color: #fff;
-  font-size: 18px;
+  color: #646464;
+  font-size: 20px;
 }
 .hud-flex {
   gap: 32px;
   padding: 28px 2vw;
   display: flex;
   flex-wrap: wrap;
+}
+.hud-text{
+  font-size: 20px;
+}
+hr{
+  margin: 32px 0;
 }

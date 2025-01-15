@@ -1,6 +1,7 @@
 // Composant
 import { useState } from "react";
 import BackBtn from "../BackBtn/BackBtn";
+import Button from "../Button/Button";
 import Choice from "../Choice/Choice";
 import Select from "../Select/Select";
 import Color from "../Color/Color";
@@ -8,7 +9,7 @@ import Color from "../Color/Color";
 // Style
 import "./hud.scss";
 
-export default function Hud({ title, subtitle, addModel, whichSurface }) {
+export default function Hud({ title, subtitle, addModel, whichSurface, text }) {
   // État local pour gérer "select" ou "choice" et la catégorie active
   const [state, setState] = useState("select");
   const [activeCategory, setActiveCategory] = useState(null);
@@ -23,9 +24,9 @@ export default function Hud({ title, subtitle, addModel, whichSurface }) {
   // Mapping des composants dynamiques pour l'état choice
   const componentMapping = {
     texture: [
-      { label: "Texture", path: "./img/choice/texture.svg", color: "black" },
-      { label: "Texture", path: "./img/choice/texture.svg", color: "red" },
-      { label: "Texture", path: "./img/choice/texture.svg", color: "black" },
+      { label: "Texture", path: "./img/button/test-1.png", color: "black" },
+      { label: "Texture", path: "./img/button/test-1.png", color: "red" },
+      { label: "Texture", path: "./img/button/test-1.png", color: "black" },
     ],
     surface: [
       { label: "Surface", path: "./img/choice/surface.svg", color: "blue" },
@@ -42,15 +43,15 @@ export default function Hud({ title, subtitle, addModel, whichSurface }) {
   return (
     <>
       <div
-        className={`hud-container instant ${
-          whichSurface !== null ? "visible" : "hide"
-        } `}
+        className={`hud-container instant ${whichSurface !== null ? "visible" : "hide"
+          } `}
       >
         <div className="hud-top-content">
-          <BackBtn onClick={() => setState("select")} />
-
+        <BackBtn onClick={() => setState("select")}/>
           <h2 className="hud-title">{title}</h2>
           <p className="hud-subtitle">{subtitle}</p>
+          <hr />
+          <p className="hud-text">{text}</p>
         </div>
         <div className="hud-flex">
           {state === "select" ? (
@@ -95,6 +96,9 @@ export default function Hud({ title, subtitle, addModel, whichSurface }) {
               />
             ))
           )}
+        </div>
+        <div className="flex-button">
+          <Button onClick={() => setState("select")} label={"Précédent"} />
         </div>
       </div>
     </>

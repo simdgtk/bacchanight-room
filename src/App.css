@@ -1,7 +1,14 @@
+
+@font-face {
+    font-family: 'Actor';
+    src: url(/public/font/actor-regular.woff2);
+    font-weight: 400;
+  }
+  
 * {
     margin: 0;
     padding: 0;
-    font-family: helvetica, sans-serif;
+    font-family: 'Actor', sans-serif;
 }
 
 

@@ -1,6 +1,7 @@
 // Style
 import "./color.scss";
-// test
+
+// Test
 export default function Choice({
   color,
   positionX,
@@ -18,7 +19,10 @@ export default function Choice({
           addModel(color, positionX, positionY, positionZ);
         }}
       >
-        <div className="circle"></div>
+        <div
+          className="color-container"
+          style={{ backgroundColor: color }} // Ajout de la couleur dynamique
+        ></div>
         <p className="label-color">{label}</p>
       </button>
     </>

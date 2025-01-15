@@ -73,8 +73,9 @@ export default function Index() {
       <Hud
         title={surfaces.uiTitle[whichSurface]}
         subtitle={
-          "Lorem ipsum dolor sit amet consectetur. Lacus posuere auctor velit integer platea fusce."
+          "(Couleurs)"
         }
+        text={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam non, assumenda accusantium itaque autem quisquam voluptate voluptatem sint at tenetur facere! Esse accusantium, nobis inventore ipsa modi optio reprehenderit non."}
         addModel={addModel}
         whichSurface={whichSurface}
       />

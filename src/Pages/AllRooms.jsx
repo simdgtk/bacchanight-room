@@ -55,6 +55,10 @@ export default function AllRooms() {
         {`${arrayRooms.length} salle${arrayRooms.length > 1 ? "s" : ""}`} déjà
         faite{arrayRooms.length > 1 ? "s" : ""}
       </h1>
+      <h3>
+        Le musée collaboratif est fermé, voici un montage de l&apos;ensemble des
+        salles réalisées par les visiteurs de la Bacchanight du 25 Mars 2025
+      </h3>
       <div className="grid-container">
         <div className="grid-container__images">
           {/* Parcourir arrayRooms et afficher les images */}
@@ -78,6 +82,7 @@ export default function AllRooms() {
           <Button
             label={"Ajouter ma pièce"}
             onClick={() => (window.location.href = "/")}
+            disabled
           />
           <a href="/mentions-legales">mentions légales</a>
         </div>

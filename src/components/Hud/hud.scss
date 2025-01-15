@@ -5,6 +5,10 @@
   height: 100dvh;
   width: 30dvw;
   overflow-y: scroll;
+
+  /* Compatibilité avec Firefox */
+  scrollbar-width: thin; /* Réduit la largeur */
+  scrollbar-color: $primary-color #fff; /* Barre et piste */
 }
 
 .hud-top-content {

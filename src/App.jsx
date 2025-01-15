@@ -8,11 +8,12 @@ import {
 
 // Custom import
 import Index from "./Pages/Index.jsx";
-import Legal from "./Pages/Legal.jsx";
+import Legals from "./Pages/Legals.jsx";
 import AllRooms from "./Pages/AllRooms.jsx";
 
 // Feuilles de style
 import "./App.css";
+import "./styles/main.scss";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/mentions-legales" element={<Legal />} />
+          <Route path="/mentions-legales" element={<Legals />} />
           <Route path="/les-salles" element={<AllRooms />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

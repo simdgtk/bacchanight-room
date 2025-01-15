@@ -1,23 +1,30 @@
 // Style
 import "./color.scss";
-// test
+
 export default function Color({
+  color,
+  positionX,
+  positionY,
+  positionZ,
+  addModel,
   label,
   path,
   whichSurface,
-  color,
   changeColor,
 }) {
   return (
     <>
       <button
-        className="choice"
+        className="color"
         onClick={() => {
           changeColor(color, whichSurface);
         }}
       >
-        <img src={path} width={40} alt={label} />
-        <p className="label-choice">{label}</p>
+        <div
+          className="color-container"
+          style={{ backgroundColor: color }} // Ajout de la couleur dynamique
+        ></div>
+        <p className="label-color">{label}</p>
       </button>
     </>
   );

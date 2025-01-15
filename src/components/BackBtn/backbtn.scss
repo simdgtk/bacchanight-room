@@ -1,18 +1,14 @@
 @import '../../styles/base/variables';
 
 .backbtn{
-  width: 60px;
-  height: 60px;
-  background-color: #fff;
-  border-radius: 100%;
+  background: none;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  &:hover{
-    background-color: #f0f0f0;
-  }
-  &:active{
-    background-color: #ecebeb;
-  }
+  padding: 24px 0;
+}
+.backbtn:hover svg path{
+    fill: #404040;
 }

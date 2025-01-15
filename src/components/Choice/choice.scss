@@ -4,10 +4,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 24px;
-  border: 4px solid #E1E7F1;
-  border-radius: 24px;
+  justify-content: space-between;
+  border: 1px solid #000;
   padding: 8px 16px;
   user-select: none;
   cursor: pointer;
@@ -22,9 +20,12 @@
     background-color: #ecebeb;
   }
 }
+.choice img{
+  aspect-ratio: 1/1;
+  width: 80%;
+}
 
 .label-choice{
   font-size: 18px;
-  font-weight: 600;
   color: $primary-color;
 }

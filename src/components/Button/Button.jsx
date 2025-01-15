@@ -1,9 +1,9 @@
 // Style
 import "./button.scss";
-export default function Button({ label }) {
+export default function BackBtn({ onClick, label }) {
   return (
     <>
-      <button className="button">{label}</button>
+      <button className="button" onClick={onClick}>{label}</button>
     </>
   );
 }

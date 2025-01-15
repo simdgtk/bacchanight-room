@@ -9,6 +9,10 @@
     border-bottom: 2px solid $primary-color;
     padding-bottom: 24px;
     width: fit-content;
+
+    @media screen and (max-width: 850px) {
+      margin-left: 24px;
+    }
   }
 
   h2 {
@@ -23,6 +27,10 @@
   .content {
     margin-top: 48px;
     padding-bottom: 24px;
+
+    @media screen and (max-width: 850px) {
+      padding: 0 24px 24px 24px;
+    }
 
     &__section {
       margin-bottom: 64px;

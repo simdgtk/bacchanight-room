@@ -31,7 +31,9 @@ export default function Experience({
 
   const resetCamera = () => {
     if (orbitControls.current) {
-      orbitControls.current.zoom0 = 60;
+      orbitControls.current.zoom0 = 40;
+      orbitControls.current.getPolarAngle = Math.PI / 2 - 0.65;
+      console.log(orbitControls.current);
       orbitControls.current.reset();
     }
     setIsCameraReset(false);

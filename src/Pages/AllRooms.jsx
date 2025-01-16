@@ -1,4 +1,3 @@
-import salleImage from "../assets/salle.png";
 import "../styles/pages/_all-rooms.scss";
 import React, { useEffect, useState, useRef } from "react";
 import Button from "../components/Button/Button";
@@ -7,6 +6,7 @@ export default function AllRooms() {
   const [arrayRooms, setArrayRooms] = useState([]);
   const space = useRef(9);
   const spaceAfter = useRef(4);
+  const [getServerData, setGetServerData] = useState(true);
 
   useEffect(() => {
     if (window.innerWidth < 1220) {
@@ -28,7 +28,11 @@ export default function AllRooms() {
           console.error("Les données reçues ne sont pas un tableau.");
         }
       })
-      .catch((err) => console.error("Erreur lors du fetch :", err));
+      .catch((err) => {
+        console.error("Erreur lors du fetch :", err);
+        setGetServerData(false);
+        
+      });
   }, []);
 
   useEffect(() => {
@@ -55,10 +59,13 @@ export default function AllRooms() {
         {`${arrayRooms.length} salle${arrayRooms.length > 1 ? "s" : ""}`} déjà
         faite{arrayRooms.length > 1 ? "s" : ""}
       </h1>
-      <h3>
-        Le musée collaboratif est fermé, voici un montage de l&apos;ensemble des
-        salles réalisées par les visiteurs de la Bacchanight du 25 Mars 2025
-      </h3>
+      {!getServerData && (
+        <h3>
+          Le musée collaboratif est maintenant fermé, voici un montage de
+          l&apos;ensemble des salles réalisées par les visiteurs de la
+          Bacchanight du 25 Mars 2025
+        </h3>
+      )}
       <div className="grid-container">
         <div className="grid-container__images">
           {/* Parcourir arrayRooms et afficher les images */}
@@ -82,9 +89,9 @@ export default function AllRooms() {
           <Button
             label={"Ajouter ma pièce"}
             onClick={() => (window.location.href = "/")}
-            disabled
+            disabled={!getServerData}
           />
-          <a href="/mentions-legales">mentions légales</a>
+          <a href="/mentions-legales">Mentions légales</a>
         </div>
       </div>
     </div>

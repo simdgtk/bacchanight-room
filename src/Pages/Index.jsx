@@ -8,6 +8,8 @@ import Hud from "../components/Hud/Hud.jsx";
 import { surfaces } from "../Experience/Utils/surface.jsx";
 
 import "../styles/pages/_index.scss";
+import CanvasToImg from "../components/CanvasToImg.jsx";
+import Button from "../components/Button/Button.jsx";
 
 export default function Index() {
   const [models, setModels] = useState([]);
@@ -80,10 +82,10 @@ export default function Index() {
 
       <Canvas
         camera={{
-          position: [-10, 10, 10],
+          position: [-10, 20, 10],
           near: 0.01,
           far: 100,
-          zoom: 60,
+          zoom: 40,
         }}
         style={{ width: "70vw" }}
         orthographic={true}
@@ -109,16 +111,14 @@ export default function Index() {
         />
       </Canvas>
 
-      <div className="test">
-        <button
-          onClick={() => {
-            setIsCameraReset(true);
-          }}
-        >
-          Reset Camera
-        </button>
+      <div
+        className=""
+        onClick={() => {
+          setIsCameraReset(true);
+        }}
+      >
+        <CanvasToImg glRef={glRef} />
       </div>
-
       <div className="legals-link">
         <a href="/mentions-legales">Mentions légales</a>
       </div>

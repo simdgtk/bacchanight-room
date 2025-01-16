@@ -70,7 +70,7 @@ export default function Room({
 
       {/* Floor */}
       <mesh
-        position={[0, -surfaceWeight / 2, 0]}
+        position={[surfaceWeight / 2, -surfaceWeight / 2, -surfaceWeight / 2]}
         rotation={[-Math.PI / 2, 0, 0]}
         onPointerUp={() => {
           if (whichSurface !== "floor") {
@@ -82,8 +82,8 @@ export default function Room({
       >
         <boxGeometry
           args={[
-            gridSize + surfaceWeight,
-            gridSize + surfaceWeight,
+            gridSize + surfaceWeight + 0.01,
+            gridSize + surfaceWeight + 0.01,
             surfaceWeight,
           ]}
         />
@@ -93,7 +93,7 @@ export default function Room({
 
       <gridHelper
         args={[gridSize, gridDivision, 0x000000, "white"]}
-        position={[-0.1, 0.11, 0.1]}
+        position={[0, 0, 0]}
         visible={whichSurface === "floor" ? true : false}
       />
     </>

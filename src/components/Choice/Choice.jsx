@@ -4,37 +4,51 @@ import "./choice.scss";
 export default function Choice({
   id,
   position,
+  rotation,
   label,
   uiPath,
   modelPath,
   addModel,
   whichSurface,
   name,
+  texture,
+  orientation,
+  sizes,
 }) {
-  // switch (whichSurface) {
-  //   case "leftWall":
-  //     position[0] += -0.1;
-  //     position[1] += 16 / 4.2 / 2 + 0.1;
-  //     position[2] += -4.2 / 2 + 0.1 + 0.1 + 0.25;
-  //     break;
-  //   case "rightWall":
-  //     position[0] += 2 - 0.1 - 0.25;
-  //     position[1] += 16 / 4.2 / 2 + 0.1;
-  //     position[2] += 0;
-  //     break;
-  //   case "floor":
-  //     position[0] += 0;
-  //     position[1] += 0;
-  //     position[2] += 0;
-  //     break;
-  // }
+  switch (whichSurface) {
+    case "leftWall":
+      position[0] += 0;
+      position[1] += 2;
+      position[2] += -2 + 0.1;
+      break;
+    case "rightWall":
+      position[0] += 2 - 0.1;
+      position[1] += 2;
+      position[2] += 0;
+      rotation[1] = -Math.PI / 2;
+      break;
+    case "floor":
+      position[0] += 0;
+      position[1] += 0;
+      position[2] += 0;
+      break;
+  }
 
   return (
     <>
       <button
         className="choice"
         onClick={() => {
-          addModel(id, modelPath, name);
+          addModel(
+            id,
+            modelPath,
+            name,
+            position,
+            rotation,
+            texture,
+            orientation,
+            sizes
+          );
         }}
       >
         <img src={uiPath} width={40} />

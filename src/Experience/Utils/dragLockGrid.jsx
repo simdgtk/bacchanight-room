@@ -1,15 +1,21 @@
-export const dragLockGrid = (localMatrix, gridSize, cellSize, whichSurface) => {
+export const dragLockGrid = (
+  localMatrix,
+  gridSize,
+  cellSize,
+  whichSurface,
+  sizes
+) => {
   const clampedX = Math.max(
-    -gridSize / 2 + 0.15,
-    Math.min(gridSize / 2 - 0.351, localMatrix.elements[12])
+    -gridSize / 2 + sizes[0],
+    Math.min(gridSize / 2 - sizes[0], localMatrix.elements[12])
   );
   const clampedY = Math.max(
-    -gridSize / 2 + 0.36,
-    Math.min(gridSize / 2 - 0.15, localMatrix.elements[13])
+    -gridSize / 2 + sizes[1],
+    Math.min(gridSize / 2 - sizes[1], localMatrix.elements[13])
   );
   const clampedZ = Math.max(
-    -gridSize / 2 + 0.36,
-    Math.min(gridSize / 2 - 0.15, localMatrix.elements[14])
+    -gridSize / 2 + sizes[2],
+    Math.min(gridSize / 2 - sizes[2], localMatrix.elements[14])
   );
 
   localMatrix.elements[12] =

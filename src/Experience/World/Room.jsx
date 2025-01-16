@@ -6,6 +6,7 @@ export default function Room({
   leftWallColor,
   rightWallColor,
   floorColor,
+  hide = false,
 }) {
   const surfaceWeight = 0.2;
   return (
@@ -35,12 +36,14 @@ export default function Room({
         <meshBasicMaterial color={leftWallColor} />
       </mesh>
 
-      <gridHelper
-        args={[gridSize, gridDivision, 0x000, "white"]}
-        position={[0, gridSize / 2, -gridSize / 2]}
-        rotation={[Math.PI / 2, 0, 0]}
-        visible={whichSurface === "leftWall" ? true : false}
-      />
+      {!hide && (
+        <gridHelper
+          args={[gridSize, gridDivision, 0x000, "white"]}
+          position={[0, gridSize / 2, -gridSize / 2]}
+          rotation={[Math.PI / 2, 0, 0]}
+          visible={whichSurface === "leftWall" ? true : false}
+        />
+      )}
 
       {/* Right Wall  */}
       <mesh
@@ -60,13 +63,14 @@ export default function Room({
 
         <meshBasicMaterial color={rightWallColor} />
       </mesh>
-
-      <gridHelper
-        args={[gridSize, gridDivision, 0x000, "white"]}
-        position={[gridSize / 2, gridSize / 2, 0]}
-        rotation={[0, 0, Math.PI / 2]}
-        visible={whichSurface === "rightWall" ? true : false}
-      />
+      {!hide && (
+        <gridHelper
+          args={[gridSize, gridDivision, 0x000, "white"]}
+          position={[gridSize / 2, gridSize / 2, 0]}
+          rotation={[0, 0, Math.PI / 2]}
+          visible={whichSurface === "rightWall" ? true : false}
+        />
+      )}
 
       {/* Floor */}
       <mesh
@@ -91,11 +95,13 @@ export default function Room({
         <meshBasicMaterial color={floorColor} />
       </mesh>
 
-      <gridHelper
-        args={[gridSize, gridDivision, 0x000000, "white"]}
-        position={[0, 0, 0]}
-        visible={whichSurface === "floor" ? true : false}
-      />
+      {!hide && (
+        <gridHelper
+          args={[gridSize, gridDivision, 0x000000, "white"]}
+          position={[0, 0, 0]}
+          visible={whichSurface === "floor" ? true : false}
+        />
+      )}
     </>
   );
 }

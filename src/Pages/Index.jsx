@@ -83,6 +83,9 @@ export default function Index() {
     }
   };
 
+  // hidding grids
+  const [hide, setHide] = useState(false);
+
   return (
     <>
       <Hud
@@ -122,6 +125,7 @@ export default function Index() {
           floorColor={floorColor}
           removeModel={removeModel}
           replaceModel={replaceModel}
+          hide={hide}
         />
       </Canvas>
 
@@ -129,6 +133,7 @@ export default function Index() {
         className=""
         onClick={() => {
           setIsCameraReset(true);
+          setHide(true);
         }}
       >
         <CanvasToImg glRef={glRef} />

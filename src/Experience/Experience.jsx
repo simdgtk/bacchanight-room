@@ -23,6 +23,7 @@ export default function Experience({
   floorColor,
   removeModel,
   replaceModel,
+  hide = false
 }) {
   const gridSize = 8;
   const gridDivision = 8;
@@ -71,6 +72,7 @@ export default function Experience({
           leftWallColor={leftWallColor}
           rightWallColor={rightWallColor}
           floorColor={floorColor}
+          hide={hide}
         />
 
         {/* Objects */}

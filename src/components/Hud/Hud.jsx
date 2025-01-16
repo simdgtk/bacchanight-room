@@ -83,6 +83,7 @@ export default function Hud({
                 <Select
                   key={index}
                   label={option.label}
+                  uiPath={option.uiPath}
                   onClick={() => {
                     setState("choice");
                     setActiveCategory(option.category);
@@ -95,6 +96,7 @@ export default function Hud({
                   key={index}
                   label={config.label}
                   color={config.color}
+                  uiPath={config.uiPath}
                   whichSurface={whichSurface}
                   changeColor={changeColor}
                 />

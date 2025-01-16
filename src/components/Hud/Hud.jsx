@@ -1,9 +1,11 @@
+
 import { useState, useEffect } from "react";
 import BackBtn from "../BackBtn/BackBtn";
 import Button from "../Button/Button";
 import Choice from "../Choice/Choice";
 import Select from "../Select/Select";
 import Color from "../Color/Color";
+
 
 // Style
 import "./hud.scss";
@@ -25,12 +27,20 @@ export default function Hud({
   }, [whichSurface]);
 
   const selectOptions = [
-    { label: "Couleurs", category: "color" },
-    { label: "Textures", category: "texture" },
-    { label: "Tableaux", category: "tableau" },
-    { label: "Statues", category: "statue" },
-    { label: "Mobilier", category: "furniture" },
-    { label: "Décorations", category: "decoration" },
+    { label: "Couleurs", category: "color", uiPath: "./img/button/test.jpg" },
+    { label: "Textures", category: "texture", uiPath: "./img/button/test.jpg" },
+    { label: "Tableaux", category: "tableau", uiPath: "./img/button/test.jpg" },
+    { label: "Statues", category: "statue", uiPath: "./img/button/test.jpg" },
+    {
+      label: "Mobilier",
+      category: "furniture",
+      uiPath: "./img/button/test.jpg",
+    },
+    {
+      label: "Décorations",
+      category: "decoration",
+      uiPath: "./img/button/test.jpg",
+    },
   ];
 
   const componentMapping = {
@@ -42,25 +52,57 @@ export default function Hud({
       { label: "Jaune", color: "yellow" },
     ],
     texture: [
-      { label: "Texture", path: "./img/button/test-1.png", color: "black" },
-      { label: "Texture", path: "./img/button/test-1.png", color: "red" },
-      { label: "Texture", path: "./img/button/test-1.png", color: "black" },
+      { label: "Texture", uiPath: "./img/button/test-1.png", modelPath: "" },
+      { label: "Texture", uiPath: "./img/button/test-1.png", modelPath: "" },
+      { label: "Texture", uiPath: "./img/button/test-1.png", modelPath: "" },
     ],
     tableau: [
-      { label: "Tableau", path: "./img/choice/tableau.svg", color: "blue" },
-      { label: "Tableau", path: "./img/choice/tableau.svg", color: "green" },
+      {
+        label: "Tableau",
+        uiPath: "./img/choice/texture.svg",
+        modelPath: "/src/assets/walls/paintings/tableau-test.glb",
+      },
+      {
+        label: "Tableau",
+        uiPath: "./img/choice/texture.svg",
+        modelPath: "/src/assets/walls/paintings/tableau-test.glb",
+      },
     ],
     statue: [
-      { label: "Statue", path: "./img/choice/tableau.svg", color: "blue" },
-      { label: "Statue", path: "./img/choice/tableau.svg", color: "green" },
+      {
+        label: "Statue",
+        uiPath: "./img/choice/texture.svg",
+        modelPath: "/src/assets/floor/statues/statue-test.glb",
+      },
+      {
+        label: "Statue",
+        uiPath: "./img/choice/texture.svg",
+        modelPath: "/src/assets/floor/statues/statue-test.glb",
+      },
     ],
     furniture: [
-      { label: "Sofa", path: "./img/choice/tableau.svg", color: "blue" },
-      { label: "Sofa", path: "./img/choice/tableau.svg", color: "green" },
+      {
+        label: "Sofa",
+        uiPath: "./img/choice/texture.svg",
+        modelPath: "/src/assets/floor/furnitures/chair-test.glb",
+      },
+      {
+        label: "Sofa",
+        uiPath: "./img/choice/texture.svg",
+        modelPath: "/src/assets/floor/furnitures/chair-test.glb",
+      },
     ],
     decoration: [
-      { label: "Plante", path: "./img/choice/tableau.svg", color: "blue" },
-      { label: "Plante", path: "./img/choice/tableau.svg", color: "green" },
+      {
+        label: "Plante",
+        uiPath: "./img/choice/texture.svg",
+        modelPath: "/src/assets/floor/decorations/decoration-test.glb",
+      },
+      {
+        label: "Plante",
+        uiPath: "./img/choice/texture.svg",
+        modelPath: "/src/assets/floor/decorations/decoration-test.glb",
+      },
     ],
   };
 

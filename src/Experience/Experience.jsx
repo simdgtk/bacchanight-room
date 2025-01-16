@@ -1,5 +1,5 @@
 // Dependencies
-import { DragControls, OrbitControls } from "@react-three/drei";
+import { DragControls, OrbitControls, useGLTF } from "@react-three/drei";
 import { useRef, useEffect } from "react";
 
 // World
@@ -50,11 +50,11 @@ export default function Experience({
   }, [isCameraReset]);
 
   const updateSurfaceOnDrag = (e) => {
-    if (e.object.name.includes("floor")) {
+    if (e.object.parent.name.includes("floor")) {
       handleSetWhichSurface("floor");
-    } else if (e.object.name.includes("leftWall")) {
+    } else if (e.object.parent.name.includes("leftWall")) {
       handleSetWhichSurface("leftWall");
-    } else if (e.object.name.includes("rightWall")) {
+    } else if (e.object.parent.name.includes("rightWall")) {
       handleSetWhichSurface("rightWall");
     }
   };
@@ -68,6 +68,9 @@ export default function Experience({
         {...orbitControlsSetup}
         // Line Breaks
       />
+
+      <ambientLight intensity={0.5} color={0xffffff} />
+
       <group position={[0, -1.9, 0]}>
         <Room
           whichSurface={whichSurface}
@@ -79,30 +82,45 @@ export default function Experience({
         />
 
         {/* Objects */}
-        {models.map((model) => (
-          <DragControls
-            key={model.id}
-            axisLock={surfaces.axis[whichSurface]}
-            onDrag={(localMatrix) => {
-              dragLockGrid(localMatrix, gridSize, cellSize, whichSurface);
-            }}
-          >
-            <mesh
-              position={[model.positionX, model.positionY, model.positionZ]}
-              name={model.name}
-              onPointerDown={updateSurfaceOnDrag}
-              onDoubleClick={() => {
-                // removeModel(model.id);
-                const newColor = "#ff00ff";
-                replaceModel(model.id, newColor);
+        {models.map((model, index) => {
+          const gltf = useGLTF(model.modelPath);
+          return (
+            <DragControls
+              key={index}
+              axisLock={surfaces.axis[whichSurface]}
+              onDrag={(localMatrix) => {
+                dragLockGrid(localMatrix, gridSize, cellSize, whichSurface);
               }}
             >
-              <boxGeometry args={[0.5, 0.5, 0.5]} />
-              <meshBasicMaterial color={model.color} />
-            </mesh>
-          </DragControls>
-        ))}
+              <group
+                onPointerDown={(e) => {
+                  updateSurfaceOnDrag(e);
+                }}
+              >
+                <primitive
+                  name={model.name}
+                  object={gltf.scene}
+                  position={model.position}
+                />
+              </group>
+            </DragControls>
+          );
+        })}
       </group>
     </>
   );
 }
+
+/* <mesh
+              position={[model.positionX, model.positionY, model.positionZ]}
+              name={model.name}
+              onPointerDown={updateSurfaceOnDrag}
+              // onDoubleClick={() => {
+              //   // removeModel(model.id);
+              //   const newColor = "#ff00ff";
+              //   replaceModel(model.id, newColor);
+              // }}
+            >
+              <boxGeometry args={[0.5, 0.5, 0.5]} />
+              <meshBasicMaterial color={model.color} />
+            </mesh> */

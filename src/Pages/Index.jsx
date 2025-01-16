@@ -75,6 +75,7 @@ export default function Index() {
         addModel={addModel}
         changeColor={changeColor}
         whichSurface={whichSurface}
+        handleSetWhichSurface={handleSetWhichSurface}
       />
 
       <Canvas
@@ -119,7 +120,7 @@ export default function Index() {
       </div>
 
       <div className="legals-link">
-        <a href="/mentions-legales">mentions légales</a>
+        <a href="/mentions-legales">Mentions légales</a>
       </div>
     </>
   );

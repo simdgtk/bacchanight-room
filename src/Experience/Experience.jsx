@@ -62,9 +62,20 @@ export default function Experience({
         {...orbitControlsSetup}
         // Line Breaks
       />
-
-      <ambientLight intensity={0.5} color={0xffffff} />
-
+      <ambientLight intensity={1} /> {/* Lumière générale */}
+      <directionalLight
+        position={[5, 5, 5]}
+        intensity={1}
+        castShadow
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
+      />
+      <pointLight position={[-5, 5, -5]} intensity={0.8} />
+      <OrbitControls ref={orbitControls} makeDefault />
+      <Painting
+        orientation="portrait"
+        texture="/src/assets/walls/paintings/pay-picture6.jpg"
+      />
       <group position={[0, -3.9, 0]}>
         <Room
           whichSurface={whichSurface}

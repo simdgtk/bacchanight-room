@@ -71,11 +71,6 @@ export default function Experience({
         shadow-mapSize-height={1024}
       />
       <pointLight position={[-5, 5, -5]} intensity={0.8} />
-      <OrbitControls ref={orbitControls} makeDefault />
-      <Painting
-        orientation="portrait"
-        texture="/src/assets/walls/paintings/pay-picture6.jpg"
-      />
       <group position={[0, -3.9, 0]}>
         <Room
           whichSurface={whichSurface}

@@ -1,6 +1,7 @@
 import salleImage from "../assets/salle.png";
 import "../styles/pages/_all-rooms.scss";
 import React, { useEffect, useState, useRef } from "react";
+import Button from "../components/Button/Button";
 
 export default function AllRooms() {
   const [arrayRooms, setArrayRooms] = useState([]);
@@ -50,10 +51,14 @@ export default function AllRooms() {
   return (
     <div className="rooms">
       <h1>
-        Le musée collaboratif :{" "}
+        Votre musée collaboratif :{" "}
         {`${arrayRooms.length} salle${arrayRooms.length > 1 ? "s" : ""}`} déjà
         faite{arrayRooms.length > 1 ? "s" : ""}
       </h1>
+      <h3>
+        Le musée collaboratif est fermé, voici un montage de l&apos;ensemble des
+        salles réalisées par les visiteurs de la Bacchanight du 25 Mars 2025
+      </h3>
       <div className="grid-container">
         <div className="grid-container__images">
           {/* Parcourir arrayRooms et afficher les images */}
@@ -70,6 +75,16 @@ export default function AllRooms() {
               )}
             </React.Fragment>
           ))}
+        </div>
+      </div>
+      <div className="footer">
+        <div className="links">
+          <Button
+            label={"Ajouter ma pièce"}
+            onClick={() => (window.location.href = "/")}
+            disabled
+          />
+          <a href="/mentions-legales">mentions légales</a>
         </div>
       </div>
     </div>

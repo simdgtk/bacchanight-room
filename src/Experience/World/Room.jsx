@@ -4,6 +4,9 @@ export default function Room({
   whichSurface,
   handleSetWhichSurface,
   gridSize,
+  leftWallColor,
+  rightWallColor,
+  floorColor,
 }) {
   // Grid References
   const leftWallGrid = useRef();
@@ -12,19 +15,19 @@ export default function Room({
 
   return (
     <>
-      {/* Left Wall  */}
       <mesh
         position={[-0.1, 16 / 4.2 / 2 + 0.1, -4.2 / 2 + 0.1]}
-        onClick={() => {
+        name="mur gauche"
+        onPointerUp={() => {
           if (whichSurface !== "leftWall") {
             handleSetWhichSurface("leftWall");
-          } else if (whichSurface) {
-            handleSetWhichSurface(null);
+          } else {
+            handleSetWhichSurface("");
           }
         }}
       >
         <boxGeometry args={[4, 16 / 4.2, 0.2]} />
-        <meshBasicMaterial color={"blue"} />
+        <meshBasicMaterial color={leftWallColor} />
       </mesh>
 
       <gridHelper
@@ -39,16 +42,16 @@ export default function Room({
       <mesh
         position={[2, 16 / 4.2 / 2 + 0.1, 0]}
         rotation={[0, Math.PI / 2, 0]}
-        onClick={() => {
+        onPointerUp={() => {
           if (whichSurface !== "rightWall") {
             handleSetWhichSurface("rightWall");
           } else if (whichSurface) {
-            handleSetWhichSurface(null);
+            handleSetWhichSurface("");
           }
         }}
       >
         <boxGeometry args={[4.2, 16 / 4.2, 0.2]} />
-        <meshBasicMaterial color={"red"} />
+        <meshBasicMaterial color={rightWallColor} />
       </mesh>
 
       <gridHelper
@@ -63,16 +66,16 @@ export default function Room({
       <mesh
         position={[0, 0, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
-        onClick={() => {
+        onPointerUp={() => {
           if (whichSurface !== "floor") {
             handleSetWhichSurface("floor");
           } else if (whichSurface) {
-            handleSetWhichSurface(null);
+            handleSetWhichSurface("");
           }
         }}
       >
         <boxGeometry args={[4.2, 4.2, 0.2]} />
-        <meshBasicMaterial color={"#beb8da"} />
+        <meshBasicMaterial color={floorColor} />
       </mesh>
 
       <gridHelper

@@ -8,6 +8,7 @@ import { componentMapping } from "../../Experience/Utils/sources.jsx";
 
 // Style
 import "./hud.scss";
+import { surfaces } from "../../Experience/Utils/surface.jsx";
 
 export default function Hud({
   title,
@@ -26,17 +27,39 @@ export default function Hud({
   }, [whichSurface]);
 
   const selectOptions = [
-    { label: "Couleurs", category: "color", uiPath: "./img/button/test.jpg" },
-    { label: "Textures", category: "texture", uiPath: "./img/button/test.jpg" },
-    { label: "Tableaux", category: "tableau", uiPath: "./img/button/test.jpg" },
-    { label: "Statues", category: "statue", uiPath: "./img/button/test.jpg" },
+    {
+      label: "Couleurs",
+      surfaces: "all",
+      category: "color",
+      uiPath: "./img/button/test.jpg",
+    },
+    {
+      label: "Textures",
+      surfaces: "all",
+      category: "texture",
+      uiPath: "./img/button/test.jpg",
+    },
+    {
+      label: "Tableaux",
+      surfaces: "leftWall & rightWall",
+      category: "tableau",
+      uiPath: "./img/button/test.jpg",
+    },
+    {
+      label: "Statues",
+      surfaces: "floor",
+      category: "statue",
+      uiPath: "./img/button/test.jpg",
+    },
     {
       label: "Mobilier",
+      surfaces: "floor",
       category: "furniture",
       uiPath: "./img/button/test.jpg",
     },
     {
       label: "Décorations",
+      surfaces: "floor",
       category: "decoration",
       uiPath: "./img/button/test.jpg",
     },
@@ -79,17 +102,23 @@ export default function Hud({
       {whichSurface !== "" && (
         <div className="hud-flex">
           {state === "select"
-            ? selectOptions.map((option, index) => (
-                <Select
-                  key={index}
-                  label={option.label}
-                  uiPath={option.uiPath}
-                  onClick={() => {
-                    setState("choice");
-                    setActiveCategory(option.category);
-                  }}
-                />
-              ))
+            ? selectOptions
+                .filter(
+                  (option) =>
+                    option.surfaces.includes(whichSurface) ||
+                    option.surfaces === "all"
+                )
+                .map((option, index) => (
+                  <Select
+                    key={index}
+                    label={option.label}
+                    uiPath={option.uiPath}
+                    onClick={() => {
+                      setState("choice");
+                      setActiveCategory(option.category);
+                    }}
+                  />
+                ))
             : activeCategory === "color"
             ? componentsToRender.map((config, index) => (
                 <Color

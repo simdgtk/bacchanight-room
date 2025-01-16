@@ -1,4 +1,4 @@
-@import '../../styles/base/variables';
+@import "../../styles/base/variables";
 
 .button {
   border: none;
@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   background-color: $primary-color;
-  color: #FFF;
+  color: #fff;
   padding: 20px 42px;
   width: auto;
   font-size: 18px;

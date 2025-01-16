@@ -34,7 +34,13 @@ export default function CanvasToImg({ glRef }) {
 
   return (
     <button
-      style={{ zIndex: 3, position: "fixed", top: "10px", right: "10px" }}
+      style={{
+        zIndex: 3,
+        position: "fixed",
+        top: "10px",
+        right: "10px",
+        fontSize: "16px",
+      }}
       onClick={download}
       className={isDownloading ? "disabled" : ""}
     >

@@ -21,8 +21,6 @@ export default function Room({
         onPointerUp={() => {
           if (whichSurface !== "leftWall") {
             handleSetWhichSurface("leftWall");
-          } else {
-            handleSetWhichSurface("");
           }
         }}
       >
@@ -52,8 +50,6 @@ export default function Room({
         onPointerUp={() => {
           if (whichSurface !== "rightWall") {
             handleSetWhichSurface("rightWall");
-          } else if (whichSurface) {
-            handleSetWhichSurface("");
           }
         }}
       >
@@ -79,8 +75,6 @@ export default function Room({
         onPointerUp={() => {
           if (whichSurface !== "floor") {
             handleSetWhichSurface("floor");
-          } else if (whichSurface) {
-            handleSetWhichSurface("");
           }
         }}
       >

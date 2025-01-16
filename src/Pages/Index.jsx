@@ -17,12 +17,9 @@ export default function Index() {
   const [isCameraReset, setIsCameraReset] = useState(false);
 
   // Wall Color
-  // const [leftWallColor, setLeftWallColor] = useState("#fefefe");
-  // const [rightWallColor, setRightWallColor] = useState("#eeeeee");
-  // const [floorColor, setFloorColor] = useState("#cccccc");
-  const [leftWallColor, setLeftWallColor] = useState("#ff00ff");
-  const [rightWallColor, setRightWallColor] = useState("#00ffff");
-  const [floorColor, setFloorColor] = useState("#ffff00");
+  const [leftWallColor, setLeftWallColor] = useState("#fefefe");
+  const [rightWallColor, setRightWallColor] = useState("#eeeeee");
+  const [floorColor, setFloorColor] = useState("#cccccc");
 
   const glRef = useRef(null);
 

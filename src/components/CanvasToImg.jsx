@@ -1,8 +1,12 @@
 import "../styles/components/_button.scss";
 import { useState } from "react";
-export default function CanvasToImg({ glRef }) {
+export default function CanvasToImg({ glRef, ended = false }) {
   const [isDownloading, setIsDownloading] = useState(false);
   function download() {
+    if (ended) {
+      window.location.href = "/les-salles";
+      return;
+    }
     setIsDownloading(true);
     if (glRef.current) {
       // canvas to webp
@@ -44,7 +48,9 @@ export default function CanvasToImg({ glRef }) {
       onClick={download}
       className={isDownloading ? "disabled" : ""}
     >
-      Ajouter au musée collaboratif
+      {ended
+        ? "Voir la fresque collaborative"
+        : "Ajouter au musée collaboratif"}
     </button>
   );
 }

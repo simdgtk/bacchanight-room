@@ -4,6 +4,7 @@ import Button from "../Button/Button.jsx";
 import Choice from "../Choice/Choice.jsx";
 import Select from "../Select/Select.jsx";
 import Color from "../Color/Color.jsx";
+import { componentMapping } from "../../Experience/Utils/sources.jsx";
 
 // Style
 import "./hud.scss";
@@ -40,69 +41,6 @@ export default function Hud({
       uiPath: "./img/button/test.jpg",
     },
   ];
-
-  const componentMapping = {
-    color: [
-      { label: "Rouge", color: "red" },
-      { label: "Bleu", color: "blue" },
-      { label: "Noir", color: "black" },
-      { label: "Blanc", color: "white" },
-      { label: "Jaune", color: "yellow" },
-    ],
-    texture: [
-      { label: "Texture", uiPath: "./img/button/test-1.png", modelPath: "" },
-      { label: "Texture", uiPath: "./img/button/test-1.png", modelPath: "" },
-      { label: "Texture", uiPath: "./img/button/test-1.png", modelPath: "" },
-    ],
-    tableau: [
-      {
-        label: "Tableau",
-        uiPath: "./img/choice/texture.svg",
-        modelPath: "/src/assets/walls/paintings/tableau-test.glb",
-      },
-      {
-        label: "Tableau",
-        uiPath: "./img/choice/texture.svg",
-        modelPath: "/src/assets/walls/paintings/tableau-test.glb",
-      },
-    ],
-    statue: [
-      {
-        label: "Statue",
-        uiPath: "./img/choice/texture.svg",
-        modelPath: "/src/assets/floor/statues/statue-test.glb",
-      },
-      {
-        label: "Statue",
-        uiPath: "./img/choice/texture.svg",
-        modelPath: "/src/assets/floor/statues/statue-test.glb",
-      },
-    ],
-    furniture: [
-      {
-        label: "Sofa",
-        uiPath: "./img/choice/texture.svg",
-        modelPath: "/src/assets/floor/furnitures/chair-test.glb",
-      },
-      {
-        label: "Sofa",
-        uiPath: "./img/choice/texture.svg",
-        modelPath: "/src/assets/floor/furnitures/chair-test.glb",
-      },
-    ],
-    decoration: [
-      {
-        label: "Plante",
-        uiPath: "./img/choice/texture.svg",
-        modelPath: "/src/assets/floor/decorations/decoration-test.glb",
-      },
-      {
-        label: "Plante",
-        uiPath: "./img/choice/texture.svg",
-        modelPath: "/src/assets/floor/decorations/decoration-test.glb",
-      },
-    ],
-  };
 
   const componentsToRender = componentMapping[activeCategory] || [];
   const activeCategoryLabel =
@@ -145,6 +83,7 @@ export default function Hud({
                 <Select
                   key={index}
                   label={option.label}
+                  uiPath={option.uiPath}
                   onClick={() => {
                     setState("choice");
                     setActiveCategory(option.category);
@@ -157,6 +96,7 @@ export default function Hud({
                   key={index}
                   label={config.label}
                   color={config.color}
+                  uiPath={config.uiPath}
                   whichSurface={whichSurface}
                   changeColor={changeColor}
                 />
@@ -171,6 +111,11 @@ export default function Hud({
                   color={config.color}
                   whichSurface={whichSurface}
                   name={whichSurface}
+                  position={[0, 0, 0]}
+                  rotation={[0, 0, 0]}
+                  sizes={config.sizes}
+                  texture={config.texture}
+                  orientation={config.orientation}
                 />
               ))}
         </div>

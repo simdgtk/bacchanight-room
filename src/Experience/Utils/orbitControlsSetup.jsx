@@ -5,8 +5,7 @@ export const orbitControlsSetup = {
   minAzimuthAngle: Math.PI * 1.5 + 0.3,
   maxAzimuthAngle: Math.PI * 2 - 0.3,
   minZoom: 40,
-  maxZoom: 180,
+  maxZoom: 100,
   rotateSpeed: 0.15,
   enablePan: false,
-  
 };

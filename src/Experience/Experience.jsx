@@ -4,11 +4,13 @@ import { useRef, useEffect } from "react";
 
 // World
 import Room from "./World/Room";
+import Painting from "../components/Painting";
 
 // Utils
 import { surfaces } from "./Utils/surface";
 import { orbitControlsSetup } from "./Utils/orbitControlsSetup";
 import { dragLockGrid } from "./Utils/dragLockGrid";
+import { updateSurfaceOnDrag } from "./Utils/updateSurfaceOnDrag";
 
 export default function Experience({
   models,
@@ -45,16 +47,6 @@ export default function Experience({
     }
   }, [isCameraReset]);
 
-  const updateSurfaceOnDrag = (e) => {
-    if (e.object.parent.name.includes("floor")) {
-      handleSetWhichSurface("floor");
-    } else if (e.object.parent.name.includes("leftWall")) {
-      handleSetWhichSurface("leftWall");
-    } else if (e.object.parent.name.includes("rightWall")) {
-      handleSetWhichSurface("rightWall");
-    }
-  };
-
   return (
     <>
       {/* Controls */}
@@ -64,15 +56,12 @@ export default function Experience({
         {...orbitControlsSetup}
         // Line Breaks
       />
-      <ambientLight intensity={1} /> {/* Lumière générale */}
-      <directionalLight
-        position={[5, 5, 5]}
-        intensity={1}
-        castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
-      />
-      <pointLight position={[-5, 5, -5]} intensity={0.8} />
+
+      {/* Ligths */}
+      <ambientLight intensity={2} />
+      <directionalLight position={[5, 5, 5]} intensity={1} />
+
+      {/* World */}
       <group position={[0, -3.9, 0]}>
         <Room
           whichSurface={whichSurface}
@@ -92,25 +81,45 @@ export default function Experience({
               key={index}
               axisLock={surfaces.axis[whichSurface]}
               onDrag={(localMatrix) => {
-                dragLockGrid(localMatrix, gridSize, cellSize, whichSurface);
+                dragLockGrid(
+                  localMatrix,
+                  gridSize,
+                  cellSize,
+                  whichSurface,
+                  model.sizes
+                );
               }}
             >
-              <group
-                onPointerDown={(e) => {
-                  updateSurfaceOnDrag(e);
-                }}
-              >
-                <primitive
-                  object={gltf.scene}
-                  // name={model.name}
-                  // position={[0, 0, 0]}
-                />
-              </group>
+              {model.texture && (
+                <group
+                  onPointerDown={(e) => {
+                    updateSurfaceOnDrag(e, handleSetWhichSurface);
+                  }}
+                  position={model.position}
+                  rotation={model.rotation}
+                >
+                  <Painting texture={model.texture} name={model.name} />
+                </group>
+              )}
+              {!model.texture && (
+                <group
+                  name={model.name}
+                  onPointerDown={(e) => {
+                    updateSurfaceOnDrag(e, handleSetWhichSurface);
+                  }}
+                >
+                  <primitive
+                    object={gltf.scene}
+                    name={model.name}
+                    position={model.position}
+                    rotation={model.rotation}
+                  />
+                </group>
+              )}
             </DragControls>
           );
         })}
       </group>
-      {/* <axesHelper args={[100]} position={[0, 0, 0]} /> */}
     </>
   );
 }

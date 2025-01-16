@@ -44,7 +44,16 @@ export default function Index() {
     });
   };
 
-  const addModel = (id, modelPath, name) => {
+  const addModel = (
+    id,
+    modelPath,
+    name,
+    position,
+    rotation,
+    texture,
+    orientation,
+    sizes
+  ) => {
     if (whichSurface !== "") {
       setModels((prevModels) => [
         ...prevModels,
@@ -52,6 +61,11 @@ export default function Index() {
           id: id,
           modelPath: modelPath,
           name: name,
+          position: position,
+          rotation: rotation,
+          texture: texture,
+          orientation: orientation,
+          sizes: sizes,
         },
       ]);
     }

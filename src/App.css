@@ -1,10 +1,9 @@
-
 @font-face {
     font-family: 'Actor';
     src: url(/public/font/actor-regular.woff2);
     font-weight: 400;
-  }
-  
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -24,7 +23,7 @@ body,
 }
 
 canvas {
-    background-color: #E1E7F1;
+    background-color: #f1f1f1;
     width: 70dvw;
 }
 

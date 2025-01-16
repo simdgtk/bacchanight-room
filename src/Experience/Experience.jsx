@@ -22,22 +22,16 @@ export default function Experience({
   removeModel,
   replaceModel,
 }) {
-  const gridSize =
-    whichSurface === "floor"
-      ? 4
-      : whichSurface === "leftWall"
-      ? 16 / 4.2
-      : whichSurface === "rightWall"
-      ? 16 / 4.2
-      : undefined;
-  const cellSize = gridSize / 8;
+  const gridSize = 8;
+  const gridDivision = 8;
+  const cellSize = gridSize / gridDivision;
 
   // Controls References
   const orbitControls = useRef();
 
   const resetCamera = () => {
     if (orbitControls.current) {
-      orbitControls.current.zoom0 = 137.5;
+      orbitControls.current.zoom0 = 60;
       orbitControls.current.reset();
     }
     setIsCameraReset(false);
@@ -71,11 +65,12 @@ export default function Experience({
 
       <ambientLight intensity={0.5} color={0xffffff} />
 
-      <group position={[0, -1.9, 0]}>
+      <group position={[0, -3.9, 0]}>
         <Room
           whichSurface={whichSurface}
           handleSetWhichSurface={handleSetWhichSurface}
           gridSize={gridSize}
+          gridDivision={gridDivision}
           leftWallColor={leftWallColor}
           rightWallColor={rightWallColor}
           floorColor={floorColor}
@@ -98,29 +93,16 @@ export default function Experience({
                 }}
               >
                 <primitive
-                  name={model.name}
                   object={gltf.scene}
-                  position={model.position}
+                  // name={model.name}
+                  // position={[0, 0, 0]}
                 />
               </group>
             </DragControls>
           );
         })}
       </group>
+      {/* <axesHelper args={[100]} position={[0, 0, 0]} /> */}
     </>
   );
 }
-
-/* <mesh
-              position={[model.positionX, model.positionY, model.positionZ]}
-              name={model.name}
-              onPointerDown={updateSurfaceOnDrag}
-              // onDoubleClick={() => {
-              //   // removeModel(model.id);
-              //   const newColor = "#ff00ff";
-              //   replaceModel(model.id, newColor);
-              // }}
-            >
-              <boxGeometry args={[0.5, 0.5, 0.5]} />
-              <meshBasicMaterial color={model.color} />
-            </mesh> */

@@ -1,22 +1,21 @@
-import { useRef } from "react";
-
 export default function Room({
   whichSurface,
   handleSetWhichSurface,
   gridSize,
+  gridDivision,
   leftWallColor,
   rightWallColor,
   floorColor,
 }) {
-  // Grid References
-  const leftWallGrid = useRef();
-  const rightWallGrid = useRef();
-  const floorGrid = useRef();
-
+  const surfaceWeight = 0.2;
   return (
     <>
       <mesh
-        position={[-0.1, 16 / 4.2 / 2 + 0.1, -4.2 / 2 + 0.1]}
+        position={[
+          surfaceWeight / 2,
+          gridSize / 2 + 0.001,
+          -gridSize / 2 - surfaceWeight / 2,
+        ]}
         name="mur gauche"
         onPointerUp={() => {
           if (whichSurface !== "leftWall") {
@@ -26,21 +25,26 @@ export default function Room({
           }
         }}
       >
-        <boxGeometry args={[4, 16 / 4.2, 0.2]} />
+        <boxGeometry
+          args={[
+            gridSize + surfaceWeight,
+            gridSize + surfaceWeight / 2,
+            surfaceWeight,
+          ]}
+        />
         <meshBasicMaterial color={leftWallColor} />
       </mesh>
 
       <gridHelper
-        ref={leftWallGrid}
-        args={[gridSize, 8, 0x000, "white"]}
-        position={[-0.1, 16 / 4.2 / 2 + 0.1, -4.2 / 2 + 0.21]}
+        args={[gridSize, gridDivision, 0x000, "white"]}
+        position={[0, gridSize / 2, -gridSize / 2]}
         rotation={[Math.PI / 2, 0, 0]}
         visible={whichSurface === "leftWall" ? true : false}
       />
 
       {/* Right Wall  */}
       <mesh
-        position={[2, 16 / 4.2 / 2 + 0.1, 0]}
+        position={[gridSize / 2 + surfaceWeight / 2, gridSize / 2, 0]}
         rotation={[0, Math.PI / 2, 0]}
         onPointerUp={() => {
           if (whichSurface !== "rightWall") {
@@ -50,21 +54,23 @@ export default function Room({
           }
         }}
       >
-        <boxGeometry args={[4.2, 16 / 4.2, 0.2]} />
+        <boxGeometry
+          args={[gridSize, gridSize + surfaceWeight / 2, surfaceWeight]}
+        />
+
         <meshBasicMaterial color={rightWallColor} />
       </mesh>
 
       <gridHelper
-        ref={rightWallGrid}
-        args={[gridSize, 8, 0x000, "white"]}
-        position={[1.89, 16 / 4.2 / 2 + 0.1, 0.1]}
+        args={[gridSize, gridDivision, 0x000, "white"]}
+        position={[gridSize / 2, gridSize / 2, 0]}
         rotation={[0, 0, Math.PI / 2]}
         visible={whichSurface === "rightWall" ? true : false}
       />
 
       {/* Floor */}
       <mesh
-        position={[0, 0, 0]}
+        position={[0, -surfaceWeight / 2, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
         onPointerUp={() => {
           if (whichSurface !== "floor") {
@@ -74,13 +80,19 @@ export default function Room({
           }
         }}
       >
-        <boxGeometry args={[4.2, 4.2, 0.2]} />
+        <boxGeometry
+          args={[
+            gridSize + surfaceWeight,
+            gridSize + surfaceWeight,
+            surfaceWeight,
+          ]}
+        />
+
         <meshBasicMaterial color={floorColor} />
       </mesh>
 
       <gridHelper
-        ref={floorGrid}
-        args={[gridSize, 8, 0x000000, "white"]}
+        args={[gridSize, gridDivision, 0x000000, "white"]}
         position={[-0.1, 0.11, 0.1]}
         visible={whichSurface === "floor" ? true : false}
       />

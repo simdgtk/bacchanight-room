@@ -1,11 +1,9 @@
-
 import { useState, useEffect } from "react";
-import BackBtn from "../BackBtn/BackBtn";
-import Button from "../Button/Button";
-import Choice from "../Choice/Choice";
-import Select from "../Select/Select";
-import Color from "../Color/Color";
-
+import BackBtn from "../BackBtn/BackBtn.jsx";
+import Button from "../Button/Button.jsx";
+import Choice from "../Choice/Choice.jsx";
+import Select from "../Select/Select.jsx";
+import Color from "../Color/Color.jsx";
 
 // Style
 import "./hud.scss";
@@ -107,14 +105,18 @@ export default function Hud({
   };
 
   const componentsToRender = componentMapping[activeCategory] || [];
-  const activeCategoryLabel = state === "select" 
-  ? "" 
-  : selectOptions.find(option => option.category === activeCategory)?.label;
+  const activeCategoryLabel =
+    state === "select"
+      ? ""
+      : selectOptions.find((option) => option.category === activeCategory)
+          ?.label;
 
   return (
     <div
       className="hud-container"
-      style={whichSurface === "" ? { display: 'flex', alignItems: 'center' } : {}}
+      style={
+        whichSurface === "" ? { display: "flex", alignItems: "center" } : {}
+      }
     >
       <div className="hud-top-content">
         {whichSurface !== "" && (
@@ -140,17 +142,17 @@ export default function Hud({
         <div className="hud-flex">
           {state === "select"
             ? selectOptions.map((option, index) => (
-              <Select
-                key={index}
-                label={option.label}
-                onClick={() => {
-                  setState("choice");
-                  setActiveCategory(option.category);
-                }}
-              />
-            ))
+                <Select
+                  key={index}
+                  label={option.label}
+                  onClick={() => {
+                    setState("choice");
+                    setActiveCategory(option.category);
+                  }}
+                />
+              ))
             : activeCategory === "color"
-              ? componentsToRender.map((config, index) => (
+            ? componentsToRender.map((config, index) => (
                 <Color
                   key={index}
                   label={config.label}
@@ -159,16 +161,14 @@ export default function Hud({
                   changeColor={changeColor}
                 />
               ))
-              : componentsToRender.map((config, index) => (
+            : componentsToRender.map((config, index) => (
                 <Choice
                   key={index}
                   label={config.label}
-                  path={config.path}
+                  uiPath={config.uiPath}
+                  modelPath={config.modelPath}
                   addModel={addModel}
                   color={config.color}
-                  positionX={0}
-                  positionY={0}
-                  positionZ={0}
                   whichSurface={whichSurface}
                   name={whichSurface}
                 />

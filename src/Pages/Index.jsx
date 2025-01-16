@@ -15,9 +15,12 @@ export default function Index() {
   const [isCameraReset, setIsCameraReset] = useState(false);
 
   // Wall Color
-  const [leftWallColor, setLeftWallColor] = useState("#ffffff");
-  const [rightWallColor, setRightWallColor] = useState("#ffffff");
-  const [floorColor, setFloorColor] = useState("#ffffff");
+  // const [leftWallColor, setLeftWallColor] = useState("#fefefe");
+  // const [rightWallColor, setRightWallColor] = useState("#eeeeee");
+  // const [floorColor, setFloorColor] = useState("#cccccc");
+  const [leftWallColor, setLeftWallColor] = useState("#ff00ff");
+  const [rightWallColor, setRightWallColor] = useState("#00ffff");
+  const [floorColor, setFloorColor] = useState("#ffff00");
 
   const glRef = useRef(null);
 
@@ -39,7 +42,7 @@ export default function Index() {
     });
   };
 
-  const addModel = (id, modelPath, name, position) => {
+  const addModel = (id, modelPath, name) => {
     if (whichSurface !== "") {
       setModels((prevModels) => [
         ...prevModels,
@@ -47,7 +50,6 @@ export default function Index() {
           id: id,
           modelPath: modelPath,
           name: name,
-          position: position,
         },
       ]);
     }
@@ -81,7 +83,7 @@ export default function Index() {
           position: [-10, 10, 10],
           near: 0.01,
           far: 100,
-          zoom: 103,
+          zoom: 60,
         }}
         style={{ width: "70vw" }}
         orthographic={true}

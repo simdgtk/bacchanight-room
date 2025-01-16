@@ -50,13 +50,11 @@ export default function Experience({
   }, [isCameraReset]);
 
   const updateSurfaceOnDrag = (e) => {
-    console.log("test");
-
-    if (e.object.name.includes("floor")) {
+    if (e.object.parent.name.includes("floor")) {
       handleSetWhichSurface("floor");
-    } else if (e.object.name.includes("leftWall")) {
+    } else if (e.object.parent.name.includes("leftWall")) {
       handleSetWhichSurface("leftWall");
-    } else if (e.object.name.includes("rightWall")) {
+    } else if (e.object.parent.name.includes("rightWall")) {
       handleSetWhichSurface("rightWall");
     }
   };
@@ -96,15 +94,13 @@ export default function Experience({
             >
               <group
                 onPointerDown={(e) => {
-                  console.log(e);
-
                   updateSurfaceOnDrag(e);
                 }}
               >
                 <primitive
                   name={model.name}
                   object={gltf.scene}
-                  position={[0, 0, 0]}
+                  position={model.position}
                 />
               </group>
             </DragControls>

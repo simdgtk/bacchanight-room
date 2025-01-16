@@ -1,10 +1,10 @@
-// Composant
+// Components
 import { useState } from "react";
-import BackBtn from "../BackBtn/BackBtn";
-import Button from "../Button/Button";
-import Choice from "../Choice/Choice";
-import Select from "../Select/Select";
-import Color from "../Color/Color";
+import BackBtn from "../BackBtn/BackBtn.jsx";
+import Button from "../Button/Button.jsx";
+import Choice from "../Choice/Choice.jsx";
+import Select from "../Select/Select.jsx";
+import Color from "../Color/Color.jsx";
 
 // Style
 import "./hud.scss";
@@ -152,11 +152,9 @@ export default function Hud({
                     modelPath={config.modelPath}
                     uiPath={config.uiPath}
                     addModel={addModel}
-                    // positionX={0}
-                    // positionY={0}
-                    // positionZ={0}
                     whichSurface={whichSurface}
                     name={whichSurface}
+                    position={[0, 0, 0]}
                   />
                 ))}
           </div>

@@ -3,9 +3,7 @@ import "./choice.scss";
 
 export default function Choice({
   id,
-  positionX,
-  positionY,
-  positionZ,
+  position,
   label,
   uiPath,
   modelPath,
@@ -15,19 +13,19 @@ export default function Choice({
 }) {
   switch (whichSurface) {
     case "leftWall":
-      positionX += -0.1;
-      positionY += 16 / 4.2 / 2 + 0.1;
-      positionZ += -4.2 / 2 + 0.1 + 0.1 + 0.25;
+      position[0] += -0.1;
+      position[1] += 16 / 4.2 / 2 + 0.1;
+      position[2] += -4.2 / 2 + 0.1 + 0.1 + 0.25;
       break;
     case "rightWall":
-      positionX += 2 - 0.1 - 0.25;
-      positionY += 16 / 4.2 / 2 + 0.1;
-      positionZ += 0;
+      position[0] += 2 - 0.1 - 0.25;
+      position[1] += 16 / 4.2 / 2 + 0.1;
+      position[2] += 0;
       break;
     case "floor":
-      positionX += 0;
-      positionY += 0 + 0.1 + 0.25;
-      positionZ += 0;
+      position[0] += 0;
+      position[1] += 0;
+      position[2] += 0;
       break;
   }
 
@@ -36,7 +34,7 @@ export default function Choice({
       <button
         className="choice"
         onClick={() => {
-          addModel(id, modelPath, name);
+          addModel(id, modelPath, name, position);
         }}
       >
         <img src={uiPath} width={40} />

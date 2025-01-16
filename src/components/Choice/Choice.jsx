@@ -3,15 +3,15 @@ import "./choice.scss";
 
 export default function Choice({
   id,
-  color,
   positionX,
   positionY,
   positionZ,
-  name,
-  addModel,
-  path,
-  whichSurface,
   label,
+  uiPath,
+  modelPath,
+  addModel,
+  whichSurface,
+  name,
 }) {
   switch (whichSurface) {
     case "leftWall":
@@ -36,10 +36,10 @@ export default function Choice({
       <button
         className="choice"
         onClick={() => {
-          addModel(id, color, positionX, positionY, positionZ, name);
+          addModel(id, modelPath, name);
         }}
       >
-        <img src={path} width={40} />
+        <img src={uiPath} width={40} />
         <p className="label-choice">{label}</p>
       </button>
     </>

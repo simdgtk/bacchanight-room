@@ -15,9 +15,9 @@ export default function Index() {
   const [isCameraReset, setIsCameraReset] = useState(false);
 
   // Wall Color
-  const [leftWallColor, setLeftWallColor] = useState("#ffff00");
-  const [rightWallColor, setRightWallColor] = useState("#ff00ff");
-  const [floorColor, setFloorColor] = useState("#00ffff");
+  const [leftWallColor, setLeftWallColor] = useState("#ffffff");
+  const [rightWallColor, setRightWallColor] = useState("#ffffff");
+  const [floorColor, setFloorColor] = useState("#ffffff");
 
   const glRef = useRef(null);
 
@@ -39,16 +39,13 @@ export default function Index() {
     });
   };
 
-  const addModel = (id, color, positionX, positionY, positionZ, name) => {
+  const addModel = (id, modelPath, name) => {
     if (whichSurface !== "") {
       setModels((prevModels) => [
         ...prevModels,
         {
           id: id,
-          color: color,
-          positionX: positionX,
-          positionY: positionY,
-          positionZ: positionZ,
+          modelPath: modelPath,
           name: name,
         },
       ]);

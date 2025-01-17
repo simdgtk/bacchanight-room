@@ -119,8 +119,7 @@ export default function Experience({
                   onPointerDown={(e) => {
                     updateSurfaceOnDrag(e, handleSetWhichSurface);
                   }}
-                  onDoubleClick={(e) => {
-                    e.stopPropagation();
+                  onDoubleClick={() => {
                     removeModel(model.id);
                   }}
                   position={model.position}
@@ -156,8 +155,7 @@ export default function Experience({
                         left: "50%",
                         transform: "translateX(-50%)",
                       }}
-                      onClick={(e) => {
-                        e.stopPropagation();
+                      onClick={() => {
                         removeModel(model.id);
                       }}
                     >

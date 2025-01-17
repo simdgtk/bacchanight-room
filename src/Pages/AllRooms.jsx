@@ -1,6 +1,20 @@
 import "../styles/pages/_all-rooms.scss";
 import React, { useEffect, useState, useRef } from "react";
 import Button from "../components/Button/Button";
+import ModalSalle from "../components/ModalSalle/ModalSalle";
+
+import room0 from "../assets/temporary-rooms/room0.png";
+import room1 from "../assets/temporary-rooms/room1.png";
+import room2 from "../assets/temporary-rooms/room2.png";
+import room3 from "../assets/temporary-rooms/room3.png";
+import room4 from "../assets/temporary-rooms/room4.png";
+import room5 from "../assets/temporary-rooms/room5.png";
+import room6 from "../assets/temporary-rooms/room6.png";
+import room8 from "../assets/temporary-rooms/room8.png";
+import room9 from "../assets/temporary-rooms/room9.png";
+import room10 from "../assets/temporary-rooms/room10.png";
+import room11 from "../assets/temporary-rooms/room11.png";
+import { contain } from "three/src/extras/TextureUtils.js";
 
 export default function AllRooms({ ended = false }) {
   const [arrayRooms, setArrayRooms] = useState([]);
@@ -10,12 +24,27 @@ export default function AllRooms({ ended = false }) {
   const [getServerData, setGetServerData] = useState(true);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const container = useRef(null);
+  const tempRooms = [
+    room0,
+    room1,
+    room2,
+    room3,
+    room4,
+    room5,
+    room6,
+    room8,
+    room9,
+    room10,
+    room11,
+  ];
+  const extendedTempRooms = Array.from(
+    { length: tempRooms.length * 4 },
+    (_, i) => {
+      return tempRooms[i % tempRooms.length];
+    }
+  );
 
   useEffect(() => {
-    // if (window.innerWidth < 1220) {
-    //   space.current = 5;
-    //   spaceAfter.current = 2;
-    // }
     if (window.innerWidth < 920) {
       setIsSmallScreen(true);
       space.current = 3;
@@ -24,38 +53,50 @@ export default function AllRooms({ ended = false }) {
 
     // Récupération des données depuis l'API
     fetch("http://localhost:3000/all/")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Erreur de réponse du serveur");
+        }
+        return res.json();
+      })
       .then((json) => {
         if (Array.isArray(json)) {
           setArrayRooms(json);
         } else {
           console.error("Les données reçues ne sont pas un tableau.");
+          setGetServerData(false);
+          setArrayRooms(tempRooms); // Fallback aux images locales
         }
       })
       .catch((err) => {
         console.error("Erreur lors du fetch :", err);
         setGetServerData(false);
+        setArrayRooms(tempRooms); // Fallback aux images locales
+        container.current.style.height = "100vh";
+        container.current.style.overflow = "hidden";
       });
   }, []);
-  useEffect(() => {
-    const interval = setInterval(() => {
-      console.clear();
-      fetch("http://localhost:3000/all/")
-        .then((res) => res.json())
-        .then((json) => {
-          if (Array.isArray(json)) {
-            setArrayRooms(json);
-          } else {
-            console.error("Les données reçues ne sont pas un tableau.");
-          }
-        })
-        .catch((err) => console.error("Erreur lors du fetch :", err));
-    }, 2000);
 
-    // crop le contenu de la page
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     fetch("http://localhost:3000/all/")
+  //       .then((res) => res.json())
+  //       .then((json) => {
+  //         if (Array.isArray(json)) {
+  //           setArrayRooms(json);
+  //         } else {
+  //           console.error("Les données reçues ne sont pas un tableau.");
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.error("Erreur lors du fetch :", err), setArrayRooms(null);
+  //       });
+  //   }, 2000);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   // crop le contenu de la page
+
+  //   return () => clearInterval(interval);
+  // }, []);
   // TODO
   // useEffect(() => {
   //   console.clear();
@@ -83,22 +124,29 @@ export default function AllRooms({ ended = false }) {
     <div className="container">
       <div className="cropped-container" ref={container}>
         <div className="rooms">
-          {!getServerData && (
+          {/* {!getServerData && (
             <h3>
               Le musée collaboratif est maintenant fermé, voici un montage de
               l&apos;ensemble des salles réalisées par les visiteurs de la
               Bacchanight du 25 Mars 2025
             </h3>
-          )}
+          )} */}
           <div className="grid-container">
             <div className="grid-container__images">
-              {/* Parcourir arrayRooms et afficher les images */}
-              {[...arrayRooms].reverse().map((room, index) => (
+              {(arrayRooms !== null
+                ? [...arrayRooms].reverse()
+                : extendedTempRooms
+              ).map((room, index) => (
                 <React.Fragment key={index}>
                   <div className="grid-container__images__img-container">
                     <img
-                      src={`http://localhost:3000/uploads/${room}`}
+                      src={
+                        arrayRooms !== null && getServerData
+                          ? `http://localhost:3000/uploads/${room}` // Données du serveur
+                          : room // Images locales
+                      }
                       alt={`Salle ${index + 1}`}
+                      loading="lazy"
                     />
                   </div>
                   {index % space.current === spaceAfter.current && (
@@ -112,13 +160,20 @@ export default function AllRooms({ ended = false }) {
             <>
               <div className="grid-container--absolute absolute--small--left">
                 <div className="grid-container__images">
-                  {/* Parcourir arrayRooms et afficher les images */}
-                  {[...arrayRooms].reverse().map((room, index) => (
+                  {(arrayRooms !== null
+                    ? [...arrayRooms].reverse()
+                    : extendedTempRooms
+                  ).map((room, index) => (
                     <React.Fragment key={index}>
                       <div className="grid-container__images__img-container">
                         <img
-                          src={`http://localhost:3000/uploads/${room}`}
+                          src={
+                            arrayRooms !== null && getServerData
+                              ? `http://localhost:3000/uploads/${room}` // Données du serveur
+                              : room // Images locales
+                          }
                           alt={`Salle ${index + 1}`}
+                          loading="lazy"
                         />
                       </div>
                       {index % space.current === spaceAfter.current && (
@@ -130,13 +185,20 @@ export default function AllRooms({ ended = false }) {
               </div>
               <div className="grid-container--absolute absolute--small--right">
                 <div className="grid-container__images">
-                  {/* Parcourir arrayRooms et afficher les images */}
-                  {[...arrayRooms].reverse().map((room, index) => (
+                  {(arrayRooms !== null
+                    ? [...arrayRooms].reverse()
+                    : extendedTempRooms
+                  ).map((room, index) => (
                     <React.Fragment key={index}>
                       <div className="grid-container__images__img-container">
                         <img
-                          src={`http://localhost:3000/uploads/${room}`}
+                          src={
+                            arrayRooms !== null && getServerData
+                              ? `http://localhost:3000/uploads/${room}` // Données du serveur
+                              : room // Images locales
+                          }
                           alt={`Salle ${index + 1}`}
+                          loading="lazy"
                         />
                       </div>
                       {index % space.current === spaceAfter.current && (
@@ -152,15 +214,20 @@ export default function AllRooms({ ended = false }) {
             <>
               <div className="grid-container--absolute absolute--right">
                 <div className="grid-container__images">
-                  {/* Parcourir arrayRooms et afficher les images */}
-                  {fisherYatesShuffle(
-                    [...arrayRooms].map((room, index) => room)
+                  {(arrayRooms !== null
+                    ? [...arrayRooms].reverse()
+                    : extendedTempRooms
                   ).map((room, index) => (
                     <React.Fragment key={index}>
                       <div className="grid-container__images__img-container">
                         <img
-                          src={`http://localhost:3000/uploads/${room}`}
+                          src={
+                            arrayRooms !== null && getServerData
+                              ? `http://localhost:3000/uploads/${room}` // Données du serveur
+                              : room // Images locales
+                          }
                           alt={`Salle ${index + 1}`}
+                          loading="lazy"
                         />
                       </div>
                       {index % space.current === spaceAfter.current && (
@@ -172,13 +239,20 @@ export default function AllRooms({ ended = false }) {
               </div>
               <div className="grid-container--absolute absolute--left">
                 <div className="grid-container__images">
-                  {/* Parcourir arrayRooms et afficher les images */}
-                  {[...arrayRooms].reverse().map((room, index) => (
+                  {(arrayRooms !== null
+                    ? [...arrayRooms].reverse()
+                    : extendedTempRooms
+                  ).map((room, index) => (
                     <React.Fragment key={index}>
                       <div className="grid-container__images__img-container">
                         <img
-                          src={`http://localhost:3000/uploads/${room}`}
+                          src={
+                            arrayRooms !== null && getServerData
+                              ? `http://localhost:3000/uploads/${room}` // Données du serveur
+                              : room // Images locales
+                          }
                           alt={`Salle ${index + 1}`}
+                          loading="lazy"
                         />
                       </div>
                       {index % space.current === spaceAfter.current && (
@@ -190,49 +264,58 @@ export default function AllRooms({ ended = false }) {
               </div>
               <div className="grid-container--absolute absolute--top-left">
                 <div className="grid-container__images">
-                  {/* Parcourir arrayRooms et afficher les images */}
-                  {[...arrayRooms]
-                    .reverse()
-                    .slice(0, 12)
-                    .map((room, index) => (
-                      <React.Fragment key={index}>
-                        <div className="grid-container__images__img-container">
-                          <img
-                            src={`http://localhost:3000/uploads/${room}`}
-                            alt={`Salle ${index + 1}`}
-                          />
-                        </div>
-                        {index % space.current === spaceAfter.current && (
-                          <div className="space-sm"></div>
-                        )}
-                      </React.Fragment>
-                    ))}
+                  {(arrayRooms !== null
+                    ? [...arrayRooms].reverse()
+                    : extendedTempRooms
+                  ).map((room, index) => (
+                    <React.Fragment key={index}>
+                      <div className="grid-container__images__img-container">
+                        <img
+                          src={
+                            arrayRooms !== null && getServerData
+                              ? `http://localhost:3000/uploads/${room}` // Données du serveur
+                              : room // Images locales
+                          }
+                          alt={`Salle ${index + 1}`}
+                          loading="lazy"
+                        />
+                      </div>
+                      {index % space.current === spaceAfter.current && (
+                        <div className="space-sm"></div>
+                      )}
+                    </React.Fragment>
+                  ))}
                 </div>
               </div>
               <div className="grid-container--absolute absolute--top-right">
                 <div className="grid-container__images">
-                  {/* Parcourir arrayRooms et afficher les images */}
-                  {[...arrayRooms]
-                    .reverse()
-                    .slice(0, 12)
-                    .map((room, index) => (
-                      <React.Fragment key={index}>
-                        <div className="grid-container__images__img-container">
-                          <img
-                            src={`http://localhost:3000/uploads/${room}`}
-                            alt={`Salle ${index + 1}`}
-                          />
-                        </div>
-                        {index % space.current === spaceAfter.current && (
-                          <div className="space-sm"></div>
-                        )}
-                      </React.Fragment>
-                    ))}
+                  {(arrayRooms !== null
+                    ? [...arrayRooms].reverse()
+                    : extendedTempRooms
+                  ).map((room, index) => (
+                    <React.Fragment key={index}>
+                      <div className="grid-container__images__img-container">
+                        <img
+                          src={
+                            arrayRooms !== null && getServerData
+                              ? `http://localhost:3000/uploads/${room}` // Données du serveur
+                              : room // Images locales
+                          }
+                          alt={`Salle ${index + 1}`}
+                          loading="lazy"
+                        />
+                      </div>
+                      {index % space.current === spaceAfter.current && (
+                        <div className="space-sm"></div>
+                      )}
+                    </React.Fragment>
+                  ))}
                 </div>
               </div>
             </>
           )}
         </div>
+        <ModalSalle />
         {ended && (
           <div className="footer">
             <div className="links">

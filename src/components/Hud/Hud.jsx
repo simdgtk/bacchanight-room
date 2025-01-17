@@ -91,7 +91,7 @@ export default function Hud({
             }}
           />
         )}
-
+        {whichSurface === "" && (<img src="/public/img/logo.svg" alt="Logo Virtu'Aile" className="logo"></img>)}
         <h2 className="hud-title">{title}</h2>
         {activeCategoryLabel && (
           <p className="hud-subtitle">({activeCategoryLabel})</p>

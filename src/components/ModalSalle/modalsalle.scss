@@ -1,9 +1,12 @@
 @import "../../styles/base/variables";
 
-.modale-salle{
-  width: 22vw;
-  padding: 52px 32px;
+.modale-salle {
+  max-width: 280px;
+  padding: 32px 16px;
   background-color: #FFF;
+  border: 1px solid black;
+  border-bottom: none;
+  border-left: none;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -11,16 +14,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 48px;
-  img{
-    width: 18vw;
+  gap: 20px;
+
+  img {
+    width: 10vw;
   }
-  a{
+
+  a {
     text-align: center;
     line-height: 150%;
   }
 }
-.title-modal{
-  font-size: 28px;
+
+.title-modal {
+  font-size: 22px;
   text-align: center;
 }

@@ -30,7 +30,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture1.jpg",
       orientation: "paysage",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "Tableau pay",
@@ -38,7 +38,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture2.jpg",
       orientation: "paysage",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "Tableau pay pay",
@@ -46,7 +46,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture4.jpg",
       orientation: "paysage",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "Tableau pay",
@@ -54,7 +54,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture5.jpg",
       orientation: "paysage",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "Tableau pay",
@@ -62,7 +62,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture6.jpg",
       orientation: "paysage",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "Tableau pay",
@@ -70,7 +70,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture9.jpg",
       orientation: "paysage",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "Tableau pay",
@@ -78,7 +78,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture10.jpg",
       orientation: "paysage",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "Tableau pay",
@@ -86,7 +86,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture11.jpg",
       orientation: "paysage",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "Tableau por",
@@ -94,7 +94,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/por-picture3.jpg",
       orientation: "portrait",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "Tableau por",
@@ -102,7 +102,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/por-picture7.jpg",
       orientation: "portrait",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "Tableau por",
@@ -110,7 +110,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/por-picture8.jpg",
       orientation: "portrait",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
   ],
   statue: [

@@ -35,6 +35,15 @@ export default function Room({
         <meshStandardMaterial color={leftWallColor} />
       </mesh>
 
+      {!hide && (
+        <gridHelper
+          args={[gridSize, gridDivision, 0x000, "white"]}
+          position={[0, gridSize / 2, -gridSize / 2]}
+          rotation={[Math.PI / 2, 0, 0]}
+          visible={whichSurface === "leftWall" ? true : false}
+        />
+      )}
+
       {/* Right Wall  */}
       <mesh
         position={[gridSize / 2 + surfaceWeight / 2, gridSize / 2, 0]}
@@ -52,6 +61,14 @@ export default function Room({
 
         <meshStandardMaterial color={rightWallColor} />
       </mesh>
+      {!hide && (
+        <gridHelper
+          args={[gridSize, gridDivision, 0x000, "white"]}
+          position={[gridSize / 2, gridSize / 2, 0]}
+          rotation={[0, 0, Math.PI / 2]}
+          visible={whichSurface === "rightWall" ? true : false}
+        />
+      )}
 
       {/* Floor */}
       <mesh
@@ -74,6 +91,14 @@ export default function Room({
 
         <meshStandardMaterial color={floorColor} />
       </mesh>
+
+      {!hide && (
+        <gridHelper
+          args={[gridSize, gridDivision, 0x000000, "white"]}
+          position={[0, 0, 0]}
+          visible={whichSurface === "floor" ? true : false}
+        />
+      )}
     </>
   );
 }

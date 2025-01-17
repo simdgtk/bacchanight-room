@@ -1,6 +1,12 @@
 // Dependencies
-import { DragControls, OrbitControls, useGLTF } from "@react-three/drei";
+import {
+  DragControls,
+  OrbitControls,
+  useGLTF,
+  useHelper,
+} from "@react-three/drei";
 import { useRef, useEffect } from "react";
+import { DirectionalLightHelper } from "three";
 
 // World
 import Room from "./World/Room";
@@ -23,7 +29,7 @@ export default function Experience({
   floorColor,
   removeModel,
   replaceModel,
-  hide = false
+  hide = false,
 }) {
   const gridSize = 8;
   const gridDivision = 8;
@@ -31,6 +37,9 @@ export default function Experience({
 
   // Controls References
   const orbitControls = useRef();
+  const dirLight = useRef();
+
+  useHelper(dirLight, DirectionalLightHelper, 3, "red");
 
   const resetCamera = () => {
     if (orbitControls.current) {
@@ -59,8 +68,14 @@ export default function Experience({
       />
 
       {/* Ligths */}
-      <ambientLight intensity={2} />
-      <directionalLight position={[5, 5, 5]} intensity={1} />
+      <ambientLight intensity={3} />
+      <directionalLight
+        ref={dirLight}
+        position={[-10, 2, 10]}
+        scale={[1.5, 1.5, 1.5]}
+        intensity={1.5}
+        castShadow
+      />
 
       {/* World */}
       <group position={[0, -3.9, 0]}>
@@ -100,7 +115,11 @@ export default function Experience({
                   position={model.position}
                   rotation={model.rotation}
                 >
-                  <Painting texture={model.texture} name={model.name} />
+                  <Painting
+                    texture={model.texture}
+                    orientation={model.orientation}
+                    name={model.name}
+                  />
                 </group>
               )}
               {!model.texture && (
@@ -115,6 +134,7 @@ export default function Experience({
                     name={model.name}
                     position={model.position}
                     rotation={model.rotation}
+                    castShadow
                   />
                 </group>
               )}
@@ -125,3 +145,6 @@ export default function Experience({
     </>
   );
 }
+
+useGLTF.preload("/src/assets/walls/paintings/picture1.glb");
+useGLTF.preload("/src/assets/walls/paintings/picture2.glb");

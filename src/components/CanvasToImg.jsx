@@ -46,7 +46,7 @@ export default function CanvasToImg({ glRef, ended = false }) {
         fontSize: "16px",
       }}
       onClick={download}
-      className={isDownloading ? "disabled" : ""}
+      className={`${isDownloading ? "disabled" : ""} button-main`}
     >
       {ended
         ? "Voir la fresque collaborative"

@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 
 export default function Painting({
-  orientation = "portrait",
+  orientation = "paysage",
   texture = "/src/assets/walls/paintings/por-picture3.jpg",
   name,
   ...props
 }) {
   const glbFile =
-    orientation === "portrait"
+    orientation == "portrait"
       ? "/src/assets/walls/paintings/picture1.glb"
       : "/src/assets/walls/paintings/picture2.glb";
   const { nodes, materials } = useGLTF(glbFile);
@@ -33,7 +33,7 @@ export default function Painting({
               : materials["Cadre.001"]
           }
         />
-        {/* Plan avec texture */}
+        {/* Plane avec texture */}
         <mesh
           castShadow
           receiveShadow
@@ -50,6 +50,3 @@ export default function Painting({
     </group>
   );
 }
-
-useGLTF.preload("/src/assets/picture1.glb");
-useGLTF.preload("/src/assets/picture2.glb");

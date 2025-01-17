@@ -137,14 +137,13 @@ export default function Hud({
                   uiPath={config.uiPath}
                   modelPath={config.modelPath}
                   addModel={addModel}
-                  color={config.color}
                   whichSurface={whichSurface}
                   name={whichSurface}
                   position={[0, 0, 0]}
                   rotation={[0, 0, 0]}
+                  orientation={config.orientation}
                   sizes={config.sizes}
                   texture={config.texture}
-                  orientation={config.orientation}
                 />
               ))}
         </div>

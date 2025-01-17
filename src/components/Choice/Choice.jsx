@@ -45,9 +45,9 @@ export default function Choice({
             name,
             position,
             rotation,
+            sizes,
             texture,
             orientation,
-            sizes
           );
         }}
       >

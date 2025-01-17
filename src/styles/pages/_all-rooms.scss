@@ -10,6 +10,10 @@
   }
 }
 
+.cropped-container {
+  // overflow: hidden;
+}
+
 .rooms {
   // max-width: 1420px;
   // padding: 0 4rem;
@@ -48,22 +52,22 @@
 }
 
 .absolute--right {
-  transform: translateX(calc(16vw*3));
+  transform: translate(72.1vw, 13.4vw);
   z-index: -1;
 }
 
 .absolute--left {
-  transform: translateX(calc(-16vw*3));
+  transform: translate(-72.1vw, 13.4vw);
   z-index: -1;
 }
 
 .absolute--top-left {
-  transform: translate(-32vw, calc(-16vw * 2 + 5.2vw));
+  transform: translate(-32vw, -26.7vw);
   z-index: -1;
 }
 
 .absolute--top-right {
-  transform: translate(40vw, -13.5vw);
+  transform: translate(40.1vw, -13.3vw);
   z-index: -1;
 }
 
@@ -80,7 +84,6 @@
 .grid-container {
   display: flex;
   justify-content: center;
-  height: 90vh;
 
   @media screen and (max-width: 920px) {
     // width: 100%;

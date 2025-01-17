@@ -47,9 +47,9 @@ export default function Index() {
     name,
     position,
     rotation,
+    sizes,
     texture,
-    orientation,
-    sizes
+    orientation
   ) => {
     if (whichSurface !== "") {
       setModels((prevModels) => [
@@ -60,9 +60,9 @@ export default function Index() {
           name: name,
           position: position,
           rotation: rotation,
+          sizes: sizes,
           texture: texture,
           orientation: orientation,
-          sizes: sizes,
         },
       ]);
     }
@@ -110,6 +110,7 @@ export default function Index() {
         gl={{
           preserveDrawingBuffer: true,
         }}
+        shadows
       >
         <Experience
           isCameraReset={isCameraReset}

@@ -6,7 +6,6 @@ import {
   useHelper,
 } from "@react-three/drei";
 import { useRef, useEffect } from "react";
-import { DirectionalLightHelper } from "three";
 
 // World
 import Room from "./World/Room";
@@ -17,6 +16,7 @@ import { surfaces } from "./Utils/surface";
 import { orbitControlsSetup } from "./Utils/orbitControlsSetup";
 import { dragLockGrid } from "./Utils/dragLockGrid";
 import { updateSurfaceOnDrag } from "./Utils/updateSurfaceOnDrag";
+import state from "./Utils/state";
 
 export default function Experience({
   models,
@@ -37,9 +37,6 @@ export default function Experience({
 
   // Controls References
   const orbitControls = useRef();
-  const dirLight = useRef();
-
-  useHelper(dirLight, DirectionalLightHelper, 3, "red");
 
   const resetCamera = () => {
     if (orbitControls.current) {
@@ -70,7 +67,6 @@ export default function Experience({
       {/* Ligths */}
       <ambientLight intensity={3} />
       <directionalLight
-        ref={dirLight}
         position={[-10, 2, 10]}
         scale={[1.5, 1.5, 1.5]}
         intensity={1.5}
@@ -93,11 +89,24 @@ export default function Experience({
         {/* Objects */}
         {models.map((model, index) => {
           const gltf = useGLTF(model.modelPath);
+          let initialMatrix;
           return (
             <DragControls
               key={index}
               axisLock={surfaces.axis[whichSurface]}
+              onDragStart={(origin) => {
+                initialMatrix = origin;
+                if (state.draggingModelIndex === null) {
+                  state.draggingModelIndex = index;
+                }
+              }}
               onDrag={(localMatrix) => {
+                if (state.draggingModelIndex != index) {
+                  localMatrix.elements[12] = initialMatrix.x;
+                  localMatrix.elements[13] = initialMatrix.y;
+                  localMatrix.elements[14] = initialMatrix.z;
+                  return;
+                }
                 dragLockGrid(
                   localMatrix,
                   gridSize,
@@ -105,6 +114,9 @@ export default function Experience({
                   whichSurface,
                   model.sizes
                 );
+              }}
+              onDragEnd={() => {
+                state.draggingModelIndex = null;
               }}
             >
               {model.texture && (

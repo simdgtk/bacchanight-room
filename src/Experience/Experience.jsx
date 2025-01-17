@@ -124,6 +124,9 @@ export default function Experience({
                   onPointerDown={(e) => {
                     updateSurfaceOnDrag(e, handleSetWhichSurface);
                   }}
+                  onDoubleClick={() => {
+                    removeModel(model.id);
+                  }}
                   position={model.position}
                   rotation={model.rotation}
                 >

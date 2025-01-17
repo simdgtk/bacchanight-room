@@ -14,7 +14,7 @@ export const componentMapping = {
     { label: "Marron crème", color: "#9d7a60" },
     { label: "Bleu nuit d'été", color: "#d5deff" },
     { label: "Bleu clair", color: "#b9e3ff" },
-    { label: "bleu mauve", color: "#6564b7" },
+    { label: "Bleu mauve", color: "#6564b7" },
     { label: "Bleu gris", color: "#718b9c" },
     { label: "Pourpre", color: "#af2f47" },
   ],

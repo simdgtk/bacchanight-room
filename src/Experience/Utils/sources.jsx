@@ -1,10 +1,22 @@
 export const componentMapping = {
   color: [
-    { label: "Rouge", color: "red" },
-    { label: "Bleu", color: "blue" },
-    { label: "Noir", color: "black" },
-    { label: "Blanc", color: "white" },
-    { label: "Jaune", color: "yellow" },
+    { label: "Vert pistache", color: "#d8eca6" },
+    { label: "Gris mauve", color: "#c7c1bf" },
+    { label: "Rouge framboise", color: "#9c494a" },
+    { label: "Rose orange", color: "#ffd5b9" },
+    { label: "Jaune crème", color: "#fff5d5" },
+    { label: "Marron pourpre", color: "#702d1d" },
+    { label: "Blanc", color: "#e7ddd6" },
+    { label: "Beige pâle", color: "#cdb98e" },
+    // Sol
+    { label: "Orange", color: "#ff812c" },
+    { label: "Jaune foncé", color: "#cda449" },
+    { label: "Marron crème", color: "#9d7a60" },
+    { label: "Bleu nuit d'été", color: "#d5deff" },
+    { label: "Bleu clair", color: "#b9e3ff" },
+    { label: "bleu mauve", color: "#6564b7" },
+    { label: "Bleu gris", color: "#718b9c" },
+    { label: "Pourpre", color: "#af2f47" },
   ],
   texture: [
     { label: "Texture", uiPath: "./img/button/test-1.png", modelPath: "" },

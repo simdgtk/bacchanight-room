@@ -9,8 +9,8 @@ export default function Painting({
 }) {
   const glbFile =
     orientation == "portrait"
-      ? "/src/assets/walls/paintings/picture1.glb"
-      : "/src/assets/walls/paintings/picture2.glb";
+      ? "/src/assets/walls/paintings/portrait-cadre.glb"
+      : "/src/assets/walls/paintings/paysage-cadre.glb";
   const { nodes, materials } = useGLTF(glbFile);
   const texturePlane = useTexture(texture);
 

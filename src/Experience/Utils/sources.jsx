@@ -150,7 +150,7 @@ export const componentMapping = {
       label: "Canapé bleu",
       uiPath: "./img/choice/texture.svg",
       modelPath: "/src/assets/floor/furnitures/furniture_1.glb",
-      sizes: [3.75, 1.65, 1.26],
+      sizes: [4.68, 2.06, 1.58],
     },
     {
       label: "Banc rouge",

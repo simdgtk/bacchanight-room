@@ -51,6 +51,14 @@ export default function AllRooms({ ended = false }) {
       spaceAfter.current = 1;
     }
 
+    fetch("https://images-bacchanight.vercel.app/images/room1.webp")
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+
     // Récupération des données depuis l'API
     fetch("http://localhost:3000/all/")
       .then((res) => {
@@ -77,26 +85,26 @@ export default function AllRooms({ ended = false }) {
       });
   }, []);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     fetch("http://localhost:3000/all/")
-  //       .then((res) => res.json())
-  //       .then((json) => {
-  //         if (Array.isArray(json)) {
-  //           setArrayRooms(json);
-  //         } else {
-  //           console.error("Les données reçues ne sont pas un tableau.");
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         console.error("Erreur lors du fetch :", err), setArrayRooms(null);
-  //       });
-  //   }, 2000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetch("http://localhost:3000/all/")
+        .then((res) => res.json())
+        .then((json) => {
+          if (Array.isArray(json)) {
+            setArrayRooms(json);
+          } else {
+            console.error("Les données reçues ne sont pas un tableau.");
+          }
+        })
+        .catch((err) => {
+          console.error("Erreur lors du fetch :", err), setArrayRooms(null);
+        });
+    }, 2000);
 
   //   // crop le contenu de la page
 
-  //   return () => clearInterval(interval);
-  // }, []);
+    return () => clearInterval(interval);
+  }, []);
   // TODO
   // useEffect(() => {
   //   console.clear();
@@ -215,7 +223,7 @@ export default function AllRooms({ ended = false }) {
               <div className="grid-container--absolute absolute--right">
                 <div className="grid-container__images">
                   {(arrayRooms !== null
-                    ? [...arrayRooms].reverse()
+                    ? [...arrayRooms]
                     : extendedTempRooms
                   ).map((room, index) => (
                     <React.Fragment key={index}>

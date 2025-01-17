@@ -9,14 +9,22 @@ export default function Painting({
 }) {
   const glbFile =
     orientation == "portrait"
-      ? "/src/assets/walls/paintings/picture1.glb"
-      : "/src/assets/walls/paintings/picture2.glb";
+      ? "/src/assets/walls/paintings/portrait-cadre.glb"
+      : "/src/assets/walls/paintings/paysage-cadre.glb";
   const { nodes, materials } = useGLTF(glbFile);
   const texturePlane = useTexture(texture);
 
+  const position = orientation === "portrait" ? [0, 0, 0] : [0, 1, 0];
+  const rotationModel =
+    orientation === "portrait" ? [Math.PI, 0, 0] : [Math.PI, 0, 0];
+
   return (
     <group {...props} dispose={null}>
-      <group position={[0, 0, 0]} rotation={[Math.PI, 0, 0]}>
+      <group
+        position={position}
+        rotation={rotationModel}
+        // Line Breaks
+      >
         {/* Cadre */}
         <mesh
           castShadow

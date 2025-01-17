@@ -30,7 +30,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture1.jpg",
       orientation: "paysage",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "La Chasse aux renards",
@@ -38,7 +38,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture2.jpg",
       orientation: "paysage",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "Le Triomphe de Silène",
@@ -46,7 +46,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture4.jpg",
       orientation: "paysage",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "Les Beaux-Arts",
@@ -54,7 +54,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture5.jpg",
       orientation: "paysage",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "Phèdre et Hippolyte",
@@ -62,7 +62,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture6.jpg",
       orientation: "paysage",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "Réception de l'ambassadeur de France, le vicomte d'Andrezel, par le sultan Ahmed III, le 17 octobre 1724, à Constantinople l'audience du Sultan",
@@ -70,7 +70,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture9.jpg",
       orientation: "paysage",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "Réception de l'ambassadeur de France, le vicomte d'Andrezel, par le sultan Ahmed III, le 17 octobre 1724, à Constantinople le dîner offert par le grand vizir Ibrahim Pacha",
@@ -78,7 +78,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture10.jpg",
       orientation: "paysage",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "Une vieille femme défendant son étal de fruits à un jeune chapardeur - Marchande de fruits ou vieille femme gardant ses fruits contre un enfant",
@@ -86,7 +86,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture11.jpg",
       orientation: "paysage",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "La Vision de sainte Catherine de Sienne - Allégorie à la Religion - Allégorie dont le sujet paraît être la Sainte Epine",
@@ -94,7 +94,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/por-picture3.jpg",
       orientation: "portrait",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "Portrait de la princesse Frédérique Louise Wilhelmine d'Orange-Nassau - Frédérique Louise Wilhelmine, princesse d'Orange- Nassau",
@@ -102,7 +102,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/por-picture7.jpg",
       orientation: "portrait",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
     {
       label: "Portraits supposés de Mesdames Tallien et Récamier",
@@ -110,7 +110,7 @@ export const componentMapping = {
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/por-picture8.jpg",
       orientation: "portrait",
-      sizes: [1, 1, 1],
+      sizes: [3, 3, 3],
     },
   ],
   statue: [
@@ -150,7 +150,7 @@ export const componentMapping = {
       label: "Canapé bleu",
       uiPath: "/src/assets/floor/furnitures/furniture_1.png",
       modelPath: "/src/assets/floor/furnitures/furniture_1.glb",
-      sizes: [3.75, 1.65, 1.26],
+      sizes: [4.68, 2.06, 1.58],
     },
     {
       label: "Banc rouge",

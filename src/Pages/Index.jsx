@@ -9,7 +9,6 @@ import { surfaces } from "../Experience/Utils/surface.jsx";
 
 import "../styles/pages/_index.scss";
 import CanvasToImg from "../components/CanvasToImg.jsx";
-import Button from "../components/Button/Button.jsx";
 
 export default function Index() {
   const [models, setModels] = useState([]);

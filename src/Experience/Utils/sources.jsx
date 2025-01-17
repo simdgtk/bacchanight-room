@@ -25,7 +25,8 @@ export const componentMapping = {
   ],
   tableau: [
     {
-      label: "Arrivée et interrogatoire des galériens dans la prison de Gênes - Galériens en prison",
+      label:
+        "Arrivée et interrogatoire des galériens dans la prison de Gênes - Galériens en prison",
       uiPath: "/src/assets/walls/paintings/textures/pay-picture1.jpg",
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture1.jpg",
@@ -65,7 +66,8 @@ export const componentMapping = {
       sizes: [3, 3, 3],
     },
     {
-      label: "Réception de l'ambassadeur de France, le vicomte d'Andrezel, par le sultan Ahmed III, le 17 octobre 1724, à Constantinople l'audience du Sultan",
+      label:
+        "Réception de l'ambassadeur de France, le vicomte d'Andrezel, par le sultan Ahmed III, le 17 octobre 1724, à Constantinople l'audience du Sultan",
       uiPath: "/src/assets/walls/paintings/textures/pay-picture9.jpg",
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture9.jpg",
@@ -73,7 +75,8 @@ export const componentMapping = {
       sizes: [3, 3, 3],
     },
     {
-      label: "Réception de l'ambassadeur de France, le vicomte d'Andrezel, par le sultan Ahmed III, le 17 octobre 1724, à Constantinople le dîner offert par le grand vizir Ibrahim Pacha",
+      label:
+        "Réception de l'ambassadeur de France, le vicomte d'Andrezel, par le sultan Ahmed III, le 17 octobre 1724, à Constantinople le dîner offert par le grand vizir Ibrahim Pacha",
       uiPath: "/src/assets/walls/paintings/textures/pay-picture10.jpg",
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture10.jpg",
@@ -81,7 +84,8 @@ export const componentMapping = {
       sizes: [3, 3, 3],
     },
     {
-      label: "Une vieille femme défendant son étal de fruits à un jeune chapardeur - Marchande de fruits ou vieille femme gardant ses fruits contre un enfant",
+      label:
+        "Une vieille femme défendant son étal de fruits à un jeune chapardeur - Marchande de fruits ou vieille femme gardant ses fruits contre un enfant",
       uiPath: "/src/assets/walls/paintings/textures/pay-picture11.jpg",
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/pay-picture11.jpg",
@@ -89,7 +93,8 @@ export const componentMapping = {
       sizes: [3, 3, 3],
     },
     {
-      label: "La Vision de sainte Catherine de Sienne - Allégorie à la Religion - Allégorie dont le sujet paraît être la Sainte Epine",
+      label:
+        "La Vision de sainte Catherine de Sienne - Allégorie à la Religion - Allégorie dont le sujet paraît être la Sainte Epine",
       uiPath: "/src/assets/walls/paintings/textures/por-picture3.jpg",
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/por-picture3.jpg",
@@ -97,7 +102,8 @@ export const componentMapping = {
       sizes: [3, 3, 3],
     },
     {
-      label: "Portrait de la princesse Frédérique Louise Wilhelmine d'Orange-Nassau - Frédérique Louise Wilhelmine, princesse d'Orange- Nassau",
+      label:
+        "Portrait de la princesse Frédérique Louise Wilhelmine d'Orange-Nassau - Frédérique Louise Wilhelmine, princesse d'Orange- Nassau",
       uiPath: "/src/assets/walls/paintings/textures/por-picture7.jpg",
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
       texture: "/src/assets/walls/paintings/textures/por-picture7.jpg",
@@ -153,7 +159,7 @@ export const componentMapping = {
       sizes: [4.68, 2.06, 1.58],
     },
     {
-      label: "Banc rouge",
+      label: "Banc",
       uiPath: "/src/assets/floor/furnitures/furniture_2.png",
       modelPath: "/src/assets/floor/furnitures/furniture_2.glb",
       sizes: [3, 1.04, 0.711],

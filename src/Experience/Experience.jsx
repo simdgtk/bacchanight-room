@@ -140,6 +140,9 @@ export default function Experience({
                   onPointerDown={(e) => {
                     updateSurfaceOnDrag(e, handleSetWhichSurface);
                   }}
+                  onDoubleClick={() => {
+                    removeModel(model.id);
+                  }}
                 >
                   <primitive
                     object={gltf.scene}

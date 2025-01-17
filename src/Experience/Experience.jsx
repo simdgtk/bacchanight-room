@@ -1,10 +1,5 @@
 // Dependencies
-import {
-  DragControls,
-  OrbitControls,
-  useGLTF,
-  useHelper,
-} from "@react-three/drei";
+import { DragControls, OrbitControls, useGLTF } from "@react-three/drei";
 import { useRef, useEffect } from "react";
 
 // World

@@ -50,7 +50,13 @@ export default function Index() {
     texture,
     orientation
   ) => {
-    if (whichSurface !== "") {
+    let test = 0;
+    models.forEach((model) => {
+      if (id === model.id) {
+        test++;
+      }
+    });
+    if (whichSurface !== "" && test < 1) {
       setModels((prevModels) => [
         ...prevModels,
         {

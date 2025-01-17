@@ -25,6 +25,7 @@ export const componentMapping = {
   ],
   tableau: [
     {
+      id: 0,
       label:
         "Arrivée et interrogatoire des galériens dans la prison de Gênes - Galériens en prison",
       uiPath: "/src/assets/walls/paintings/textures/pay-picture1.jpg",
@@ -34,6 +35,7 @@ export const componentMapping = {
       sizes: [3, 3, 3],
     },
     {
+      id: 1,
       label: "La Chasse aux renards",
       uiPath: "/src/assets/walls/paintings/textures/pay-picture2.jpg",
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
@@ -42,6 +44,7 @@ export const componentMapping = {
       sizes: [3, 3, 3],
     },
     {
+      id: 2,
       label: "Le Triomphe de Silène",
       uiPath: "/src/assets/walls/paintings/textures/pay-picture4.jpg",
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
@@ -50,6 +53,7 @@ export const componentMapping = {
       sizes: [3, 3, 3],
     },
     {
+      id: 3,
       label: "Les Beaux-Arts",
       uiPath: "/src/assets/walls/paintings/textures/pay-picture5.jpg",
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
@@ -58,6 +62,7 @@ export const componentMapping = {
       sizes: [3, 3, 3],
     },
     {
+      id: 4,
       label: "Phèdre et Hippolyte",
       uiPath: "/src/assets/walls/paintings/textures/pay-picture6.jpg",
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
@@ -66,6 +71,7 @@ export const componentMapping = {
       sizes: [3, 3, 3],
     },
     {
+      id: 5,
       label:
         "Réception de l'ambassadeur de France, le vicomte d'Andrezel, par le sultan Ahmed III, le 17 octobre 1724, à Constantinople l'audience du Sultan",
       uiPath: "/src/assets/walls/paintings/textures/pay-picture9.jpg",
@@ -75,6 +81,7 @@ export const componentMapping = {
       sizes: [3, 3, 3],
     },
     {
+      id: 6,
       label:
         "Réception de l'ambassadeur de France, le vicomte d'Andrezel, par le sultan Ahmed III, le 17 octobre 1724, à Constantinople le dîner offert par le grand vizir Ibrahim Pacha",
       uiPath: "/src/assets/walls/paintings/textures/pay-picture10.jpg",
@@ -84,6 +91,7 @@ export const componentMapping = {
       sizes: [3, 3, 3],
     },
     {
+      id: 7,
       label:
         "Une vieille femme défendant son étal de fruits à un jeune chapardeur - Marchande de fruits ou vieille femme gardant ses fruits contre un enfant",
       uiPath: "/src/assets/walls/paintings/textures/pay-picture11.jpg",
@@ -93,6 +101,7 @@ export const componentMapping = {
       sizes: [3, 3, 3],
     },
     {
+      id: 8,
       label:
         "La Vision de sainte Catherine de Sienne - Allégorie à la Religion - Allégorie dont le sujet paraît être la Sainte Epine",
       uiPath: "/src/assets/walls/paintings/textures/por-picture3.jpg",
@@ -102,6 +111,7 @@ export const componentMapping = {
       sizes: [3, 3, 3],
     },
     {
+      id: 9,
       label:
         "Portrait de la princesse Frédérique Louise Wilhelmine d'Orange-Nassau - Frédérique Louise Wilhelmine, princesse d'Orange- Nassau",
       uiPath: "/src/assets/walls/paintings/textures/por-picture7.jpg",
@@ -111,6 +121,7 @@ export const componentMapping = {
       sizes: [3, 3, 3],
     },
     {
+      id: 10,
       label: "Portraits supposés de Mesdames Tallien et Récamier",
       uiPath: "/src/assets/walls/paintings/textures/por-picture8.jpg",
       modelPath: "/src/assets/walls/paintings/tableau-test.glb",
@@ -121,30 +132,35 @@ export const componentMapping = {
   ],
   statue: [
     {
+      id: 11,
       label: "Statue 1",
       uiPath: "/src/assets/floor/statues/statue_1.png",
       modelPath: "/src/assets/floor/statues/statue_1.glb",
       sizes: [0.897, 0.803, 3.17],
     },
     {
+      id: 12,
       label: "Statue 2",
       uiPath: "/src/assets/floor/statues/statue_2.png",
       modelPath: "/src/assets/floor/statues/statue_2.glb",
       sizes: [1.21, 0.719, 3.17],
     },
     {
+      id: 13,
       label: "Statue 3",
       uiPath: "/src/assets/floor/statues/statue_3.png",
       modelPath: "/src/assets/floor/statues/statue_3.glb",
       sizes: [1.98, 1.31, 4.01],
     },
     {
+      id: 14,
       label: "Statue 4",
       uiPath: "/src/assets/floor/statues/statue_4.png",
       modelPath: "/src/assets/floor/statues/statue_4.glb",
       sizes: [1.02, 0.869, 3.16],
     },
     {
+      id: 15,
       label: "Statue 5",
       uiPath: "/src/assets/floor/statues/statue_5.png",
       modelPath: "/src/assets/floor/statues/statue_5.glb",
@@ -153,30 +169,35 @@ export const componentMapping = {
   ],
   furniture: [
     {
+      id: 16,
       label: "Canapé bleu",
       uiPath: "/src/assets/floor/furnitures/furniture_1.png",
       modelPath: "/src/assets/floor/furnitures/furniture_1.glb",
       sizes: [4.68, 2.06, 1.58],
     },
     {
+      id: 17,
       label: "Banc",
       uiPath: "/src/assets/floor/furnitures/furniture_2.png",
       modelPath: "/src/assets/floor/furnitures/furniture_2.glb",
       sizes: [3, 1.04, 0.711],
     },
     {
+      id: 18,
       label: "Chaise",
       uiPath: "/src/assets/floor/furnitures/furniture_3.png",
       modelPath: "/src/assets/floor/furnitures/furniture_3.glb",
       sizes: [0.884, 1.01, 1.5],
     },
     {
+      id: 19,
       label: "Sofa rouge",
       uiPath: "/src/assets/floor/furnitures/furniture_4.png",
       modelPath: "/src/assets/floor/furnitures/furniture_4.glb",
       sizes: [2.43, 2.26, 1.27],
     },
     {
+      id: 20,
       label: "Pouf bleu",
       uiPath: "/src/assets/floor/furnitures/furniture_5.png",
       modelPath: "/src/assets/floor/furnitures/furniture_5.glb",
@@ -185,30 +206,35 @@ export const componentMapping = {
   ],
   decoration: [
     {
+      id: 21,
       label: "Plante 1",
       uiPath: "/src/assets/floor/flowers/plante_1.png",
       modelPath: "/src/assets/floor/flowers/plante_1.glb",
       sizes: [1.44, 1.27, 2],
     },
     {
+      id: 22,
       label: "Plante 2",
       uiPath: "/src/assets/floor/flowers/plante_2.png",
       modelPath: "/src/assets/floor/flowers/plante_2.glb",
       sizes: [1.18, 1.19, 1.98],
     },
     {
+      id: 23,
       label: "Plante 3",
       uiPath: "/src/assets/floor/flowers/plante_3.png",
       modelPath: "/src/assets/floor/flowers/plante_3.glb",
       sizes: [1.68, 1.62, 1.99],
     },
     {
+      id: 24,
       label: "Plante 4",
       uiPath: "/src/assets/floor/flowers/plante_4.png",
       modelPath: "/src/assets/floor/flowers/plante_4.glb",
       sizes: [1.64, 1.6, 2.43],
     },
     {
+      id: 25,
       label: "Plante 5",
       uiPath: "/src/assets/floor/flowers/plante_5.png",
       modelPath: "/src/assets/floor/flowers/plante_5.glb",

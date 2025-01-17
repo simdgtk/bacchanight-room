@@ -1,3 +1,4 @@
+import { useTexture } from "@react-three/drei";
 export default function Room({
   whichSurface,
   handleSetWhichSurface,
@@ -9,6 +10,9 @@ export default function Room({
   hide = false,
 }) {
   const surfaceWeight = 0.2;
+  const gradientAlphaMaterial = useTexture(
+    "/src/Experience/assets/wall gradient 3d.png"
+  );
   return (
     <>
       <mesh
@@ -32,7 +36,10 @@ export default function Room({
             surfaceWeight,
           ]}
         />
-        <meshStandardMaterial color={leftWallColor} />
+        <meshStandardMaterial
+          color={leftWallColor}
+          alphaMap={gradientAlphaMaterial}
+        />
       </mesh>
 
       {!hide && (

@@ -144,7 +144,7 @@ export default function Hud({
                   orientation={config.orientation}
                   sizes={config.sizes}
                   texture={config.texture}
-                  id={index}
+                  id={config.id}
                 />
               ))}
         </div>

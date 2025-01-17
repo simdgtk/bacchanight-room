@@ -1,5 +1,5 @@
 // Dependencies
-import { DragControls, OrbitControls, useGLTF } from "@react-three/drei";
+import { DragControls, OrbitControls, useGLTF, Html } from "@react-three/drei";
 import { useRef, useEffect } from "react";
 
 // World
@@ -82,21 +82,21 @@ export default function Experience({
         />
 
         {/* Objects */}
-        {models.map((model, index) => {
+        {models.map((model) => {
           const gltf = useGLTF(model.modelPath);
           let initialMatrix;
           return (
             <DragControls
-              key={index}
+              key={model.id}
               axisLock={surfaces.axis[whichSurface]}
               onDragStart={(origin) => {
                 initialMatrix = origin;
                 if (state.draggingModelIndex === null) {
-                  state.draggingModelIndex = index;
+                  state.draggingModelIndex = model.id;
                 }
               }}
               onDrag={(localMatrix) => {
-                if (state.draggingModelIndex != index) {
+                if (state.draggingModelIndex != model.id) {
                   localMatrix.elements[12] = initialMatrix.x;
                   localMatrix.elements[13] = initialMatrix.y;
                   localMatrix.elements[14] = initialMatrix.z;
@@ -119,7 +119,8 @@ export default function Experience({
                   onPointerDown={(e) => {
                     updateSurfaceOnDrag(e, handleSetWhichSurface);
                   }}
-                  onDoubleClick={() => {
+                  onDoubleClick={(e) => {
+                    e.stopPropagation();
                     removeModel(model.id);
                   }}
                   position={model.position}
@@ -138,9 +139,6 @@ export default function Experience({
                   onPointerDown={(e) => {
                     updateSurfaceOnDrag(e, handleSetWhichSurface);
                   }}
-                  onDoubleClick={() => {
-                    removeModel(model.id);
-                  }}
                 >
                   <primitive
                     object={gltf.scene}
@@ -149,6 +147,23 @@ export default function Experience({
                     rotation={model.rotation}
                     castShadow
                   />
+                  <Html>
+                    <button
+                      className="button"
+                      style={{
+                        position: "absolute",
+                        bottom: "32px",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                      }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        removeModel(model.id);
+                      }}
+                    >
+                      test
+                    </button>
+                  </Html>
                 </group>
               )}
             </DragControls>

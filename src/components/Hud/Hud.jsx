@@ -34,12 +34,6 @@ export default function Hud({
       uiPath: "./img/button/test.jpg",
     },
     {
-      label: "Textures",
-      surfaces: "all",
-      category: "texture",
-      uiPath: "./img/button/test.jpg",
-    },
-    {
       label: "Tableaux",
       surfaces: "leftWall & rightWall",
       category: "tableau",
@@ -58,7 +52,7 @@ export default function Hud({
       uiPath: "./img/button/test.jpg",
     },
     {
-      label: "Décorations",
+      label: "Plantes",
       surfaces: "floor",
       category: "decoration",
       uiPath: "./img/button/test.jpg",

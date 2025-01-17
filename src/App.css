@@ -23,7 +23,8 @@ body,
 }
 
 canvas {
-    background-color: #f1f1f1;
+    background: rgb(169,177,181);
+    background: linear-gradient(180deg, rgba(169,177,181,1) 0%, rgba(124,125,132,1) 50%, rgba(68,61,61,1) 100%);
     width: 70dvw;
 }
 

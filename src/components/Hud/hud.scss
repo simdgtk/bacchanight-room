@@ -1,5 +1,10 @@
 @import "../../styles/base/variables";
 
+.logo{
+  margin-bottom: 48px;
+  margin-top: -130px;
+  width: 250px;
+}
 .hud-container {
   background-color: #fff;
   height: 100dvh;
@@ -40,6 +45,7 @@
 }
 .hud-text {
   font-size: 20px;
+  line-height: 130%;
 }
 hr {
   margin: 32px 0;

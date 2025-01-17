@@ -1,6 +1,6 @@
-@import '../../styles/base/variables';
+@import "../../styles/base/variables";
 
-.backbtn{
+.backbtn {
   background: none;
   border: none;
   display: flex;
@@ -9,6 +9,7 @@
   cursor: pointer;
   padding: 24px 0;
 }
-.backbtn:hover svg path{
-    fill: #404040;
+.backbtn:hover {
+  fill: #404040;
+  background-color: transparent;
 }

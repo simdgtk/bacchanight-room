@@ -1,6 +1,13 @@
 import "../styles/components/_button.scss";
-export default function CanvasToImg({ glRef }) {
+import { useState } from "react";
+export default function CanvasToImg({ glRef, ended = false }) {
+  const [isDownloading, setIsDownloading] = useState(false);
   function download() {
+    if (ended) {
+      window.location.href = "/les-salles";
+      return;
+    }
+    setIsDownloading(true);
     if (glRef.current) {
       // canvas to webp
       const canvas = glRef.current.domElement; // canvas
@@ -9,7 +16,7 @@ export default function CanvasToImg({ glRef }) {
         console.log("canvas", canvas);
         canvas.toBlob((blob) => {
           const formData = new FormData();
-          formData.append("file", blob, new Date().getTime() + ".png");
+          formData.append("file", blob, new Date().getTime() + ".webp");
           fetch("http://localhost:3000/upload", {
             method: "POST",
             body: formData,
@@ -23,14 +30,27 @@ export default function CanvasToImg({ glRef }) {
     } else {
       console.error("Le canvas n'a pas été trouvé");
     }
+    setTimeout(() => {
+      window.location.href = "/";
+      setIsDownloading(false);
+    }, 500);
   }
 
   return (
     <button
-      style={{ zIndex: 3, position: "fixed", bottom: "10px", right: "10px" }}
+      style={{
+        zIndex: 3,
+        position: "fixed",
+        top: "10px",
+        right: "10px",
+        fontSize: "16px",
+      }}
       onClick={download}
+      className={`${isDownloading ? "disabled" : ""} button-main`}
     >
-      Ajouter au musée collaboratif !
+      {ended
+        ? "Voir la fresque collaborative"
+        : "Ajouter au musée collaboratif"}
     </button>
   );
 }

@@ -8,6 +8,7 @@ import Hud from "../components/Hud/Hud.jsx";
 import { surfaces } from "../Experience/Utils/surface.jsx";
 
 import "../styles/pages/_index.scss";
+import CanvasToImg from "../components/CanvasToImg.jsx";
 
 export default function Index() {
   const [models, setModels] = useState([]);
@@ -15,9 +16,9 @@ export default function Index() {
   const [isCameraReset, setIsCameraReset] = useState(false);
 
   // Wall Color
-  const [leftWallColor, setLeftWallColor] = useState("#ffff00");
-  const [rightWallColor, setRightWallColor] = useState("#ff00ff");
-  const [floorColor, setFloorColor] = useState("#00ffff");
+  const [leftWallColor, setLeftWallColor] = useState("#fefefe");
+  const [rightWallColor, setRightWallColor] = useState("#eeeeee");
+  const [floorColor, setFloorColor] = useState("#cccccc");
 
   const glRef = useRef(null);
 
@@ -39,17 +40,28 @@ export default function Index() {
     });
   };
 
-  const addModel = (id, color, positionX, positionY, positionZ, name) => {
+  const addModel = (
+    id,
+    modelPath,
+    name,
+    position,
+    rotation,
+    sizes,
+    texture,
+    orientation
+  ) => {
     if (whichSurface !== "") {
       setModels((prevModels) => [
         ...prevModels,
         {
           id: id,
-          color: color,
-          positionX: positionX,
-          positionY: positionY,
-          positionZ: positionZ,
+          modelPath: modelPath,
           name: name,
+          position: position,
+          rotation: rotation,
+          sizes: sizes,
+          texture: texture,
+          orientation: orientation,
         },
       ]);
     }
@@ -67,6 +79,9 @@ export default function Index() {
     }
   };
 
+  // hidding grids
+  const [hide, setHide] = useState(false);
+
   return (
     <>
       <Hud
@@ -75,14 +90,15 @@ export default function Index() {
         addModel={addModel}
         changeColor={changeColor}
         whichSurface={whichSurface}
+        handleSetWhichSurface={handleSetWhichSurface}
       />
 
       <Canvas
         camera={{
-          position: [-10, 10, 10],
+          position: [-10, 20, 10],
           near: 0.01,
           far: 100,
-          zoom: 103,
+          zoom: 40,
         }}
         style={{ width: "70vw" }}
         orthographic={true}
@@ -93,6 +109,7 @@ export default function Index() {
         gl={{
           preserveDrawingBuffer: true,
         }}
+        shadows
       >
         <Experience
           isCameraReset={isCameraReset}
@@ -105,21 +122,21 @@ export default function Index() {
           floorColor={floorColor}
           removeModel={removeModel}
           replaceModel={replaceModel}
+          hide={hide}
         />
       </Canvas>
 
-      <div className="test">
-        <button
-          onClick={() => {
-            setIsCameraReset(true);
-          }}
-        >
-          Reset Camera
-        </button>
+      <div
+        className=""
+        onClick={() => {
+          setIsCameraReset(true);
+          setHide(true);
+        }}
+      >
+        <CanvasToImg glRef={glRef} />
       </div>
-
       <div className="legals-link">
-        <a href="/mentions-legales">mentions légales</a>
+        <a href="/mentions-legales">Mentions légales</a>
       </div>
     </>
   );

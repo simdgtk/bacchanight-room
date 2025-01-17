@@ -1,13 +1,14 @@
-// Composant
-import { useState } from "react";
-import BackBtn from "../BackBtn/BackBtn";
-import Button from "../Button/Button";
-import Choice from "../Choice/Choice";
-import Select from "../Select/Select";
-import Color from "../Color/Color";
+import { useState, useEffect } from "react";
+import BackBtn from "../BackBtn/BackBtn.jsx";
+import Button from "../Button/Button.jsx";
+import Choice from "../Choice/Choice.jsx";
+import Select from "../Select/Select.jsx";
+import Color from "../Color/Color.jsx";
+import { componentMapping } from "../../Experience/Utils/sources.jsx";
 
 // Style
 import "./hud.scss";
+import { surfaces } from "../../Experience/Utils/surface.jsx";
 
 export default function Hud({
   title,
@@ -15,117 +16,148 @@ export default function Hud({
   addModel,
   changeColor,
   whichSurface,
+  handleSetWhichSurface,
 }) {
-  // État local pour gérer "select" ou "choice" et la catégorie active
   const [state, setState] = useState("select");
   const [activeCategory, setActiveCategory] = useState(null);
 
-  // Mapping des catégories pour l'état select
+  useEffect(() => {
+    setState("select");
+    setActiveCategory(null);
+  }, [whichSurface]);
+
   const selectOptions = [
-    { label: "Couleurs", category: "color" },
-    { label: "Textures", category: "texture" },
-    { label: "Tableaux", category: "tableau" },
-    { label: "Statues", category: "statue" },
-    { label: "Mobilier", category: "furniture" },
-    { label: "Décorations", category: "decoration" },
+    {
+      label: "Couleurs",
+      surfaces: "all",
+      category: "color",
+      uiPath: "./img/button/test.jpg",
+    },
+    {
+      label: "Tableaux",
+      surfaces: "leftWall & rightWall",
+      category: "tableau",
+      uiPath: "./img/button/test.jpg",
+    },
+    {
+      label: "Statues",
+      surfaces: "floor",
+      category: "statue",
+      uiPath: "./img/button/test.jpg",
+    },
+    {
+      label: "Mobilier",
+      surfaces: "floor",
+      category: "furniture",
+      uiPath: "./img/button/test.jpg",
+    },
+    {
+      label: "Plantes",
+      surfaces: "floor",
+      category: "decoration",
+      uiPath: "./img/button/test.jpg",
+    },
   ];
 
-  // Mapping des composants dynamiques pour l'état choice
-  const componentMapping = {
-    color: [
-      { label: "Rouge", color: "red" },
-      { label: "Bleu", color: "blue" },
-      { label: "Noir", color: "black" },
-      { label: "Blanc", color: "white" },
-      { label: "Jaune", color: "yellow" },
-    ],
-    texture: [
-      { label: "Texture", path: "./img/button/test-1.png", color: "black" },
-      { label: "Texture", path: "./img/button/test-1.png", color: "red" },
-      { label: "Texture", path: "./img/button/test-1.png", color: "black" },
-    ],
-    tableau: [
-      { label: "Tableau", path: "./img/choice/tableau.svg", color: "blue" },
-      { label: "Tableau", path: "./img/choice/tableau.svg", color: "green" },
-    ],
-    statue: [
-      { label: "Statue", path: "./img/choice/tableau.svg", color: "blue" },
-      { label: "Statue", path: "./img/choice/tableau.svg", color: "green" },
-    ],
-    furniture: [
-      { label: "Sofa", path: "./img/choice/tableau.svg", color: "blue" },
-      { label: "Sofa", path: "./img/choice/tableau.svg", color: "green" },
-    ],
-    decoration: [
-      { label: "Plante", path: "./img/choice/tableau.svg", color: "blue" },
-      { label: "Plante", path: "./img/choice/tableau.svg", color: "green" },
-    ],
-  };
-
   const componentsToRender = componentMapping[activeCategory] || [];
+  const activeCategoryLabel =
+    state === "select"
+      ? ""
+      : selectOptions.find((option) => option.category === activeCategory)
+          ?.label;
 
   return (
-    <>
-      <div className="hud-container">
-        <div className="hud-top-content">
+    <div
+      className="hud-container"
+      style={
+        whichSurface === "" ? { display: "flex", alignItems: "center" } : {}
+      }
+    >
+      <div className="hud-top-content">
+        {whichSurface !== "" && (
           <BackBtn
             onClick={() => {
-              setState("select");
+              if (state === "select") {
+                handleSetWhichSurface("");
+              } else {
+                setState("select");
+              }
             }}
           />
-          <h2 className="hud-title">{title}</h2>
-          <p className="hud-subtitle">{componentsToRender[activeCategory]}</p>
-          <hr />
-          <p className="hud-text">{text}</p>
-        </div>
-        {whichSurface !== "" && (
-          <div className="hud-flex">
-            {state === "select"
-              ? // Rendu des boutons Select
-                selectOptions.map((option, index) => (
+        )}
+        {whichSurface === "" && (<img src="/public/img/logo.svg" alt="Logo Virtu'Aile" className="logo"></img>)}
+        <h2 className="hud-title">{title}</h2>
+        {activeCategoryLabel && (
+          <p className="hud-subtitle">({activeCategoryLabel})</p>
+        )}
+        <hr />
+        <p className="hud-text">{text}</p>
+      </div>
+      {whichSurface !== "" && (
+        <div className="hud-flex">
+          {state === "select"
+            ? selectOptions
+                .filter(
+                  (option) =>
+                    option.surfaces.includes(whichSurface) ||
+                    option.surfaces === "all"
+                )
+                .map((option, index) => (
                   <Select
                     key={index}
                     label={option.label}
+                    uiPath={option.uiPath}
                     onClick={() => {
                       setState("choice");
                       setActiveCategory(option.category);
                     }}
                   />
                 ))
-              : activeCategory === "color"
-              ? // Rendu des boutons Color
-                componentsToRender.map((config, index) => (
-                  <Color
-                    key={index}
-                    label={config.label}
-                    color={config.color}
-                    whichSurface={whichSurface}
-                    changeColor={changeColor}
-                  />
-                ))
-              : // Rendu des composants Choice
-                componentsToRender.map((config, index) => (
-                  <Choice
-                    key={index}
-                    label={config.label}
-                    path={config.path}
-                    addModel={addModel}
-                    color={config.color}
-                    positionX={0}
-                    positionY={0}
-                    positionZ={0}
-                    whichSurface={whichSurface}
-                    name={whichSurface}
-                  />
-                ))}
-          </div>
-        )}
-        {whichSurface !== "" && (
-          <div className="flex-button">
-            <Button onClick={() => setState("select")} label={"Précédent"} />
-          </div>
-        )}
-      </div>
-    </>
+            : activeCategory === "color"
+            ? componentsToRender.map((config, index) => (
+                <Color
+                  key={index}
+                  label={config.label}
+                  color={config.color}
+                  uiPath={config.uiPath}
+                  whichSurface={whichSurface}
+                  changeColor={changeColor}
+                />
+              ))
+            : componentsToRender.map((config, index) => (
+                <Choice
+                  key={index}
+                  label={config.label}
+                  uiPath={config.uiPath}
+                  modelPath={config.modelPath}
+                  addModel={addModel}
+                  whichSurface={whichSurface}
+                  name={whichSurface}
+                  position={[0, 0, 0]}
+                  rotation={[0, 0, 0]}
+                  orientation={config.orientation}
+                  sizes={config.sizes}
+                  texture={config.texture}
+                />
+              ))}
+        </div>
+      )}
+      {whichSurface !== "" && (
+        <div className="flex-button">
+          {whichSurface !== "" && (
+            <Button
+              label={"Précédent"}
+              onClick={() => {
+                if (state === "select") {
+                  handleSetWhichSurface(""); // Réinitialiser la surface à ""
+                } else {
+                  setState("select"); // Retourner à "select"
+                }
+              }}
+            />
+          )}
+        </div>
+      )}
+    </div>
   );
 }

@@ -1,3 +1,29 @@
-button {
-  padding: 15px 20px;
+@import '../../styles/base/variables';
+
+.button-main {
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $primary-color;
+  color: #FFF;
+  padding: 20px 42px;
+  width: auto;
+  font-size: 18px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #282828;
+  }
+
+  &:active {
+    background-color: #121212;
+  }
+
+}
+
+.disabled {
+  opacity: 0.1;
+  user-select: none;
+  pointer-events: none;
 }

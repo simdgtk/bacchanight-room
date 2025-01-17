@@ -18,8 +18,7 @@ html {
 }
 
 body {
-  font-family: 'Actor', sans-serif;
-
+  font-family: "Actor", sans-serif;
 }
 
 h1 {
@@ -32,6 +31,6 @@ a:visited {
   text-decoration: underline;
   display: inline-block;
   color: inherit;
-  text-decoration: 1px underline #000;
+  text-decoration: 1px solid inherit;
   text-underline-offset: 4px;
 }

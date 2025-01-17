@@ -223,7 +223,7 @@ export default function AllRooms({ ended = false }) {
               <div className="grid-container--absolute absolute--right">
                 <div className="grid-container__images">
                   {(arrayRooms !== null
-                    ? [...arrayRooms].reverse()
+                    ? [...arrayRooms]
                     : extendedTempRooms
                   ).map((room, index) => (
                     <React.Fragment key={index}>

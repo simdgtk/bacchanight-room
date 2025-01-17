@@ -17,6 +17,7 @@ export default function Room({
           gridSize / 2 + 0.001,
           -gridSize / 2 - surfaceWeight / 2,
         ]}
+        receiveShadow
         name="mur gauche"
         onPointerUp={() => {
           if (whichSurface !== "leftWall") {
@@ -31,7 +32,7 @@ export default function Room({
             surfaceWeight,
           ]}
         />
-        <meshBasicMaterial color={leftWallColor} />
+        <meshStandardMaterial color={leftWallColor} />
       </mesh>
 
       {!hide && (
@@ -52,12 +53,13 @@ export default function Room({
             handleSetWhichSurface("rightWall");
           }
         }}
+        receiveShadow
       >
         <boxGeometry
           args={[gridSize, gridSize + surfaceWeight / 2, surfaceWeight]}
         />
 
-        <meshBasicMaterial color={rightWallColor} />
+        <meshStandardMaterial color={rightWallColor} />
       </mesh>
       {!hide && (
         <gridHelper
@@ -77,6 +79,7 @@ export default function Room({
             handleSetWhichSurface("floor");
           }
         }}
+        castShadow
       >
         <boxGeometry
           args={[
@@ -86,7 +89,7 @@ export default function Room({
           ]}
         />
 
-        <meshBasicMaterial color={floorColor} />
+        <meshStandardMaterial color={floorColor} />
       </mesh>
 
       {!hide && (

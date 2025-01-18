@@ -138,6 +138,9 @@ export default function Experience({
                   onPointerDown={(e) => {
                     updateSurfaceOnDrag(e, handleSetWhichSurface);
                   }}
+                  onDoubleClick={() => {
+                    removeModel(model.id);
+                  }}
                 >
                   <primitive
                     object={gltf.scene}
@@ -146,7 +149,7 @@ export default function Experience({
                     rotation={model.rotation}
                     castShadow
                   />
-                  <Html>
+                  {/* <Html>
                     <button
                       className="button"
                       style={{
@@ -161,7 +164,7 @@ export default function Experience({
                     >
                       test
                     </button>
-                  </Html>
+                  </Html> */}
                 </group>
               )}
             </DragControls>

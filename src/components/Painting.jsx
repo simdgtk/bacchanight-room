@@ -3,14 +3,14 @@ import { useGLTF, useTexture } from "@react-three/drei";
 
 export default function Painting({
   orientation = "paysage",
-  texture = "/src/assets/walls/paintings/por-picture3.jpg",
+  texture = "/assets/walls/paintings/por-picture3.jpg",
   name,
   ...props
 }) {
   const glbFile =
     orientation == "portrait"
-      ? "/src/assets/walls/paintings/portrait-cadre.glb"
-      : "/src/assets/walls/paintings/paysage-cadre.glb";
+      ? "/assets/walls/paintings/portrait-cadre.glb"
+      : "/assets/walls/paintings/paysage-cadre.glb";
   const { nodes, materials } = useGLTF(glbFile);
   const texturePlane = useTexture(texture);
 

@@ -10,9 +10,9 @@ export default function Room({
   hide = false,
 }) {
   const surfaceWeight = 0.2;
-  // const gradientAlphaMaterial = useTexture(
-  //   "/src/Experience/assets/wallGradient.png"
-  // );
+  const gradientAlphaMaterial = useTexture(
+    "/assets/walls/textures/wallGradient.png"
+  );
 
   return (
     <>
@@ -24,7 +24,7 @@ export default function Room({
         ]}
         receiveShadow
         name="mur gauche"
-        onPointerUp={() => {
+        onPointerDown={() => {
           if (whichSurface !== "leftWall") {
             handleSetWhichSurface("leftWall");
           }
@@ -40,6 +40,8 @@ export default function Room({
         <meshStandardMaterial
           color={leftWallColor}
           // alphaMap={gradientAlphaMaterial}
+          roughnessMap={gradientAlphaMaterial}
+          roughness={0.4}
         />
       </mesh>
 
@@ -56,7 +58,7 @@ export default function Room({
       <mesh
         position={[gridSize / 2 + surfaceWeight / 2, gridSize / 2, 0]}
         rotation={[0, Math.PI / 2, 0]}
-        onPointerUp={() => {
+        onPointerDown={() => {
           if (whichSurface !== "rightWall") {
             handleSetWhichSurface("rightWall");
           }
@@ -82,7 +84,7 @@ export default function Room({
       <mesh
         position={[surfaceWeight / 2, -surfaceWeight / 2, -surfaceWeight / 2]}
         rotation={[-Math.PI / 2, 0, 0]}
-        onPointerUp={() => {
+        onPointerDown={() => {
           if (whichSurface !== "floor") {
             handleSetWhichSurface("floor");
           }

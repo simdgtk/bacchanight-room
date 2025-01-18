@@ -1,4 +1,5 @@
 import { useGLTF, useTexture } from "@react-three/drei";
+import { useEffect, useRef } from "react";
 
 export default function Painting({
   orientation = "paysage",
@@ -16,14 +17,24 @@ export default function Painting({
   const { nodes, materials } = useGLTF(glbFile);
   const texturePlane = useTexture(texture);
 
+  const cadre = useRef();
+  const paint = useRef();
+
   position[1] += orientation === "portrait" ? 0 : 1;
   rotation[1] = whichSurface === "rightWall" ? Math.PI / 2 : Math.PI;
   // rotation[1] = orientation === "portrait" ? -Math.PI : Math.PI;
   rotation[2] = Math.PI;
 
+  console.log(position);
+
+  useEffect(() => {
+    console.log(cadre, paint);
+  }, []);
+
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} ref={paint}>
       <group
+        ref={cadre}
         position={position}
         rotation={rotation}
         // Line Breaks

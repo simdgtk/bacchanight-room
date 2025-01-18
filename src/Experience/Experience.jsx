@@ -109,6 +109,18 @@ export default function Experience({
                   whichSurface,
                   model.sizes
                 );
+
+                if (model.id >= 11 && localMatrix.elements[12] >= 1) {
+                  localMatrix.elements[0] = 0;
+                  localMatrix.elements[2] = 1;
+                  localMatrix.elements[8] = -1;
+                  localMatrix.elements[10] = 0;
+                } else if (model.id >= 11) {
+                  localMatrix.elements[0] = 1;
+                  localMatrix.elements[2] = 0;
+                  localMatrix.elements[8] = 0;
+                  localMatrix.elements[10] = 1;
+                }
               }}
               onDragEnd={() => {
                 state.draggingModelIndex = null;

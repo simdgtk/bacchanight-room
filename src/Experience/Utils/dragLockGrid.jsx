@@ -20,16 +20,14 @@ export const dragLockGrid = (
 
   localMatrix.elements[12] =
     whichSurface === "rightWall"
-      ? localMatrix.elements[12]
+      ? 0
       : Math.round(clampedX / cellSize) * cellSize;
 
   localMatrix.elements[13] =
-    whichSurface === "floor"
-      ? localMatrix.elements[13]
-      : Math.round(clampedY / cellSize) * cellSize;
+    whichSurface === "floor" ? 0 : Math.round(clampedY / cellSize) * cellSize;
 
   localMatrix.elements[14] =
     whichSurface === "leftWall"
-      ? localMatrix.elements[14]
+      ? 0
       : Math.round(clampedZ / cellSize) * cellSize;
 };

@@ -30,15 +30,15 @@ export default function Index() {
     setModels((prevModels) => prevModels.filter((model) => model.id !== id));
   };
 
-  const replaceModel = (id, newColor) => {
-    setModels((prevModels) => {
-      const modelToUpdate = prevModels.find((model) => model.id === id);
-      if (modelToUpdate) {
-        modelToUpdate.color = newColor;
-      }
-      return [...prevModels];
-    });
-  };
+  // const replaceModel = (id, newColor) => {
+  //   setModels((prevModels) => {
+  //     const modelToUpdate = prevModels.find((model) => model.id === id);
+  //     if (modelToUpdate) {
+  //       modelToUpdate.color = newColor;
+  //     }
+  //     return [...prevModels];
+  //   });
+  // };
 
   const addModel = (
     id,
@@ -50,21 +50,25 @@ export default function Index() {
     texture,
     orientation
   ) => {
-    if (whichSurface !== "") {
-      setModels((prevModels) => [
+    setModels((prevModels) => {
+      if (prevModels.some((model) => model.id === id)) {
+        return prevModels;
+      }
+
+      return [
         ...prevModels,
         {
-          id: id,
-          modelPath: modelPath,
-          name: name,
-          position: position,
-          rotation: rotation,
-          sizes: sizes,
-          texture: texture,
-          orientation: orientation,
+          id,
+          modelPath,
+          name,
+          position,
+          rotation,
+          sizes,
+          texture,
+          orientation,
         },
-      ]);
-    }
+      ];
+    });
   };
 
   const changeColor = (newColor, whichSurface) => {
@@ -121,7 +125,6 @@ export default function Index() {
           rightWallColor={rightWallColor}
           floorColor={floorColor}
           removeModel={removeModel}
-          replaceModel={replaceModel}
           hide={hide}
         />
       </Canvas>

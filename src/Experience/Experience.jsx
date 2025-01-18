@@ -122,13 +122,14 @@ export default function Experience({
                   onDoubleClick={() => {
                     removeModel(model.id);
                   }}
-                  position={model.position}
-                  rotation={model.rotation}
                 >
                   <Painting
                     texture={model.texture}
                     orientation={model.orientation}
                     name={model.name}
+                    position={model.position}
+                    rotation={model.rotation}
+                    whichSurface={whichSurface}
                   />
                 </group>
               )}

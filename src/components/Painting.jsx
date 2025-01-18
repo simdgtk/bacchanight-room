@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 
 export default function Painting({
   orientation = "paysage",
   texture = "/assets/walls/paintings/por-picture3.jpg",
   name,
+  position,
+  rotation,
+  whichSurface,
   ...props
 }) {
   const glbFile =
@@ -14,15 +16,16 @@ export default function Painting({
   const { nodes, materials } = useGLTF(glbFile);
   const texturePlane = useTexture(texture);
 
-  const position = orientation === "portrait" ? [0, 0, 0] : [0, 1, 0];
-  const rotationModel =
-    orientation === "portrait" ? [Math.PI, 0, 0] : [Math.PI, 0, 0];
+  position[1] += orientation === "portrait" ? 0 : 1;
+  rotation[1] = whichSurface === "rightWall" ? Math.PI / 2 : Math.PI;
+  // rotation[1] = orientation === "portrait" ? -Math.PI : Math.PI;
+  rotation[2] = Math.PI;
 
   return (
     <group {...props} dispose={null}>
       <group
         position={position}
-        rotation={rotationModel}
+        rotation={rotation}
         // Line Breaks
       >
         {/* Cadre */}

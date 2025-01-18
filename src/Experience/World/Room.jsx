@@ -11,8 +11,9 @@ export default function Room({
 }) {
   const surfaceWeight = 0.2;
   const gradientAlphaMaterial = useTexture(
-    "/src/Experience/assets/wall gradient 3d.png"
+    "/src/Experience/assets/wallGradient.png"
   );
+
   return (
     <>
       <mesh

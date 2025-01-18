@@ -10,9 +10,9 @@ export default function Room({
   hide = false,
 }) {
   const surfaceWeight = 0.2;
-  const gradientAlphaMaterial = useTexture(
-    "/src/Experience/assets/wallGradient.png"
-  );
+  // const gradientAlphaMaterial = useTexture(
+  //   "/src/Experience/assets/wallGradient.png"
+  // );
 
   return (
     <>
@@ -39,7 +39,7 @@ export default function Room({
         />
         <meshStandardMaterial
           color={leftWallColor}
-          alphaMap={gradientAlphaMaterial}
+          // alphaMap={gradientAlphaMaterial}
         />
       </mesh>
 

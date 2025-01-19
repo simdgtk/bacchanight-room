@@ -15,7 +15,8 @@ export default function Choice({
   orientation,
   sizes,
 }) {
-  // console.log(position, whichSurface);
+  console.log("position avant ", position);
+  console.log("surface: ", whichSurface);
 
   switch (whichSurface) {
     case "leftWall":
@@ -35,6 +36,7 @@ export default function Choice({
       position[2] += 0;
       break;
   }
+  console.log("position après calcul ", position);
 
   return (
     <>

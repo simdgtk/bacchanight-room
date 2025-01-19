@@ -20,7 +20,7 @@ export default function Painting({
   const cadre = useRef();
   const paint = useRef();
 
-  position[1] += orientation === "portrait" ? 0 : 1;
+  position[1] = orientation === "portrait" ? position[1] + 0 : position[1] + 1;
   rotation[1] = whichSurface === "rightWall" ? Math.PI / 2 : Math.PI;
   rotation[2] = Math.PI;
 

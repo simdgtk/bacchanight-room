@@ -15,16 +15,18 @@ export default function Choice({
   orientation,
   sizes,
 }) {
+  // console.log(position, whichSurface);
+
   switch (whichSurface) {
     case "leftWall":
-      position[0] += 0;
-      position[1] += 2;
-      position[2] += -2 + 0.1;
+      position[0] = position[0] + 0;
+      position[1] = position[1] + 2;
+      position[2] = position[2] + -2 + 0.1;
       break;
     case "rightWall":
-      position[0] += 2 - 0.1;
-      position[1] += 2;
-      position[2] += 0;
+      position[0] = position[0] + 2 - 0.1;
+      position[1] = position[1] + 2;
+      position[2] = position[2];
       rotation[1] = -Math.PI / 2;
       break;
     case "floor":
@@ -47,7 +49,7 @@ export default function Choice({
             rotation,
             sizes,
             texture,
-            orientation,
+            orientation
           );
         }}
       >

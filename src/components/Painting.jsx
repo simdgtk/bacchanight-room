@@ -22,7 +22,6 @@ export default function Painting({
 
   position[1] += orientation === "portrait" ? 0 : 1;
   rotation[1] = whichSurface === "rightWall" ? Math.PI / 2 : Math.PI;
-  // rotation[1] = orientation === "portrait" ? -Math.PI : Math.PI;
   rotation[2] = Math.PI;
 
   console.log(position);

@@ -15,18 +15,15 @@ export default function Choice({
   orientation,
   sizes,
 }) {
-  console.log("position avant ", position);
-  console.log("surface: ", whichSurface);
-
   switch (whichSurface) {
     case "leftWall":
       position[0] = position[0] + 0;
-      position[1] = position[1] + 2;
-      position[2] = position[2] + -2 + 0.1;
+      position[1] = position[1] + 4;
+      position[2] = position[2] + -4 + 0.2;
       break;
     case "rightWall":
-      position[0] = position[0] + 2 - 0.1;
-      position[1] = position[1] + 2;
+      position[0] = position[0] + 4 - 0.2;
+      position[1] = position[1] + 4;
       position[2] = position[2];
       rotation[1] = -Math.PI / 2;
       break;
@@ -36,7 +33,6 @@ export default function Choice({
       position[2] += 0;
       break;
   }
-  console.log("position après calcul ", position);
 
   return (
     <>

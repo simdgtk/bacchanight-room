@@ -188,5 +188,5 @@ export default function Experience({
   );
 }
 
-useGLTF.preload("assets/walls/paintings/picture1.glb");
-useGLTF.preload("assets/walls/paintings/picture2.glb");
+useGLTF.preload("assets/walls/paintings/portrait-cadre.glb");
+useGLTF.preload("assets/walls/paintings/paysage-cadre.glb");

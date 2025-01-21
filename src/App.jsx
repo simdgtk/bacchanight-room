@@ -10,6 +10,7 @@ import {
 import Index from "./Pages/Index.jsx";
 import Legals from "./Pages/Legals.jsx";
 import AllRooms from "./Pages/AllRooms.jsx";
+import AllRoomsPublic from "./Pages/AllRoomsPublic.jsx";
 
 // Feuilles de style
 import "./App.css";
@@ -22,7 +23,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/mentions-legales" element={<Legals />} />
-          <Route path="/les-salles" element={<AllRooms />} />
+          <Route path="/les-salles" element={<AllRoomsPublic />} />
+          <Route path="/bacchanight" element={<AllRooms />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>

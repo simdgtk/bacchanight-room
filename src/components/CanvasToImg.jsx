@@ -3,10 +3,12 @@ import { useState } from "react";
 export default function CanvasToImg({ glRef, ended = false }) {
   const [isDownloading, setIsDownloading] = useState(false);
   function download() {
-    if (ended) {
+    // TODO, à changer le jour de la Bacchanight
+    if (!ended) {
       window.location.href = "/les-salles";
       return;
     }
+
     setIsDownloading(true);
     if (glRef.current) {
       // canvas to webp

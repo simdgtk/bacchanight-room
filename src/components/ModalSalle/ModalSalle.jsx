@@ -14,7 +14,7 @@ export default function ModaleSalle({ finished = false, started = false }) {
       </span>
       {!finished && (
         <>
-          <img src="/public/img/popup/qrcode.svg" alt="QR Code" />
+          <img src="/img/popup/qrcode.svg" alt="QR Code" />
           <a href="https://bacchanight-room.vercel.app/les-salles">
             bacchanight-room.vercel.app/les-salles
           </a>

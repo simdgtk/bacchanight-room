@@ -1,4 +1,4 @@
-import "../styles/pages/_all-rooms.scss";
+import "../styles/pages/_les-salles.scss";
 import React, { useEffect, useState, useRef } from "react";
 import Button from "../components/Button/Button";
 
@@ -31,7 +31,6 @@ export default function AllRooms() {
       .catch((err) => {
         console.error("Erreur lors du fetch :", err);
         setGetServerData(false);
-        
       });
   }, []);
 

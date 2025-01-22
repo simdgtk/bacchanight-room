@@ -23,7 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/mentions-legales" element={<Legals />} />
-          <Route path="/all-rooms" element={<AllRoomsPublic />} />
+          <Route path="/les-salles" element={<AllRoomsPublic />} />
           <Route path="/bacchanight" element={<AllRooms />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

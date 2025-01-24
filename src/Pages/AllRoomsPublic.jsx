@@ -191,13 +191,11 @@ export default function AllRoomsPublic({ ended = false }) {
           )}
         </div>
         <ModalSalle finished={false} started={false} />
-        {ended && (
           <div className="footer">
             <div className="links">
               <a href="/mentions-legales">Mentions légales</a>
             </div>
           </div>
-        )}
       </div>
     </div>
   );

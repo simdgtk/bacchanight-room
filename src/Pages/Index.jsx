@@ -9,6 +9,7 @@ import { surfaces } from "../Experience/Utils/surface.jsx";
 
 import "../styles/pages/_index.scss";
 import CanvasToImg from "../components/CanvasToImg.jsx";
+import NotificationPopup from "../components/NotificationPopup/NotificationPopup.jsx";
 
 export default function Index() {
   const [models, setModels] = useState([]);
@@ -138,6 +139,10 @@ export default function Index() {
       >
         <CanvasToImg glRef={glRef} />
       </div>
+      <NotificationPopup
+        message="Levez les yeux, votre salle est dans la fresque."
+        type="success"
+      />
       <div className="legals-link">
         <a href="/mentions-legales">Mentions légales</a>
       </div>

@@ -97,7 +97,7 @@ export default function AllRooms({ ended = false }) {
         .catch((err) => {
           console.error("Erreur lors du fetch :", err), setArrayRooms(null);
         });
-    }, 2000);
+    }, 3000);
 
     //   // crop le contenu de la page
 

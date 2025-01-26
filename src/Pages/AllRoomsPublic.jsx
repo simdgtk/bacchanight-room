@@ -2,17 +2,17 @@ import "../styles/pages/_all-rooms.scss";
 import React, { useEffect, useState, useRef } from "react";
 import ModalSalle from "../components/ModalSalle/ModalSalle";
 
-import room0 from "/assets/temporary-rooms/room0.png";
-import room1 from "/assets/temporary-rooms/room1.png";
-import room2 from "/assets/temporary-rooms/room2.png";
-import room3 from "/assets/temporary-rooms/room3.png";
-import room4 from "/assets/temporary-rooms/room4.png";
-import room5 from "/assets/temporary-rooms/room5.png";
-import room6 from "/assets/temporary-rooms/room6.png";
-import room8 from "/assets/temporary-rooms/room8.png";
-import room9 from "/assets/temporary-rooms/room9.png";
-import room10 from "/assets/temporary-rooms/room10.png";
-import room11 from "/assets/temporary-rooms/room11.png";
+import room0 from "/assets/temporary-rooms/room0.webp";
+import room1 from "/assets/temporary-rooms/room1.webp";
+import room2 from "/assets/temporary-rooms/room2.webp";
+import room3 from "/assets/temporary-rooms/room3.webp";
+import room4 from "/assets/temporary-rooms/room4.webp";
+import room5 from "/assets/temporary-rooms/room5.webp";
+import room6 from "/assets/temporary-rooms/room6.webp";
+import room8 from "/assets/temporary-rooms/room8.webp";
+import room9 from "/assets/temporary-rooms/room9.webp";
+import room10 from "/assets/temporary-rooms/room10.webp";
+import room11 from "/assets/temporary-rooms/room11.webp";
 
 export default function AllRoomsPublic({ ended = false }) {
   const [arrayRooms, setArrayRooms] = useState([]);
@@ -191,11 +191,11 @@ export default function AllRoomsPublic({ ended = false }) {
           )}
         </div>
         <ModalSalle finished={false} started={false} />
-          <div className="footer">
-            <div className="links">
-              <a href="/mentions-legales">Mentions légales</a>
-            </div>
+        <div className="footer">
+          <div className="links">
+            <a href="/mentions-legales">Mentions légales</a>
           </div>
+        </div>
       </div>
     </div>
   );

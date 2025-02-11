@@ -1,4 +1,4 @@
-@import "../../styles/base/variables";
+@use "../../styles/base/variables" as *;
 
 .color-container {
   aspect-ratio: 1/0.7;

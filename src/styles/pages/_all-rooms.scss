@@ -132,19 +132,9 @@
         margin-top: -11.3vw;
       }
 
-      // @media screen and (max-width: 920px) {
-      //   max-width: 12vw;
-
-      //   // img {
-      //   //   margin-top: 0.9rem;
-      //   // }
-      // }
-
-      // @media screen and (max-width: 600px) {
-      //   max-width: 10rem;
-      // }
-
-      transition: transform 0.3s ease-in-out;
+      & {
+        transition: transform 0.3s ease-in-out;
+      }
 
       img {
         width: 101%;

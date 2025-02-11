@@ -1,4 +1,4 @@
-@import "../../styles/base/variables";
+@use "../../styles/base/variables" as *;
 
 .backbtn {
   background: none;
@@ -9,6 +9,7 @@
   cursor: pointer;
   padding: 24px 0;
 }
+
 .backbtn:hover {
   fill: #404040;
   background-color: transparent;

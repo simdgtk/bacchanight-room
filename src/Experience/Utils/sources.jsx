@@ -236,4 +236,13 @@ export const componentMapping = {
       sizes: [1.86, 1.87, 1.71],
     },
   ],
+  statuesNouv: [
+    {
+      id: 26,
+      label: "Statue 2D1",
+      uiPath: "/assets/floor/statues/statue.png",
+      modelPath: "/assets/floor/statues/model.glb",
+      sizes: [1.86, 1.87, 1.71],
+    },
+  ],
 };

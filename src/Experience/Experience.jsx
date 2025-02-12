@@ -60,13 +60,19 @@ export default function Experience({
       />
 
       {/* Ligths */}
-      <ambientLight intensity={3} />
-      <directionalLight
+      {/* <ambientLight intensity={3} /> */}
+      {/* <directionalLight
         position={[-10, 2, 10]}
         scale={[1.5, 1.5, 1.5]}
         intensity={1.5}
         castShadow
+      /> */}
+      <directionalLight
+        position={[1, 1, 1]}
+        intensity={1.5}
+        castShadow={false}
       />
+      <ambientLight intensity={3} />
 
       {/* World */}
       <group position={[0, -3.9, 0]}>
@@ -80,10 +86,22 @@ export default function Experience({
           floorColor={floorColor}
           hide={hide}
         />
+        {/* <mesh>
+          <boxGeometry />
+          <meshStandardMaterial color="lightblue" flatShading />
+        </mesh> */}
 
         {/* Objects */}
         {models.map((model) => {
           const gltf = useGLTF(model.modelPath);
+          gltf.scene.traverse((child) => {
+            if (child.isMesh) {
+              // child.material.transparent = true;
+              // child.material.opacity = 1;
+              child.geometry.computeVertexNormals();
+              child.material.flatShading = true;
+            }
+          });
           let initialMatrix;
           return (
             <DragControls

@@ -57,6 +57,12 @@ export default function Hud({
       category: "decoration",
       uiPath: "./img/button/test.jpg",
     },
+    {
+      label: "Nouvelles Statues",
+      surfaces: "floor",
+      category: "statuesNouv",
+      uiPath: "./img/button/test.jpg",
+    },
   ];
 
   const componentsToRender = componentMapping[activeCategory] || [];

@@ -2,14 +2,14 @@
 import "./modalsalle.scss";
 
 // Composant BackBtn
-export default function ModaleSalle({ finished = false, started = false }) {
+export default function ModaleSalle({ finished = false, started = true }) {
   return (
     <div className="modale-salle">
       <span className="title-modal">
         {finished
           ? "Virtu'aile - l'aile collaborative réalisée par les visiteurs de la Bacchanight du MUSBA le 25 mars 2025"
           : started
-          ? "Retrouvez cette page finie dès demain :"
+          ? "Retrouvez la fresque finie dès demain :"
           : "Rendez-vous à la Bacchanight du MUSBA le 25 mars 2025 et participez à la création de l'aile collaborative"}
       </span>
       {!finished && (

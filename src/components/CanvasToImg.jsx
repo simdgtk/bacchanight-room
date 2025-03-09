@@ -4,7 +4,7 @@ export default function CanvasToImg({ glRef, ended = false }) {
   const [isDownloading, setIsDownloading] = useState(false);
   function download() {
     // TODO, à changer le jour de la Bacchanight, !ended to ended
-    if (!ended) {
+    if (ended) {
       window.location.href = "/les-salles";
       return;
     }

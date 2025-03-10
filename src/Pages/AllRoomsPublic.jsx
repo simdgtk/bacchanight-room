@@ -2,18 +2,6 @@ import "../styles/pages/_all-rooms.scss";
 import React, { useEffect, useState, useRef } from "react";
 import ModalSalle from "../components/ModalSalle/ModalSalle";
 
-import room0 from "/assets/temporary-rooms/room0.webp";
-import room1 from "/assets/temporary-rooms/room1.webp";
-import room2 from "/assets/temporary-rooms/room2.webp";
-import room3 from "/assets/temporary-rooms/room3.webp";
-import room4 from "/assets/temporary-rooms/room4.webp";
-import room5 from "/assets/temporary-rooms/room5.webp";
-import room6 from "/assets/temporary-rooms/room6.webp";
-import room8 from "/assets/temporary-rooms/room8.webp";
-import room9 from "/assets/temporary-rooms/room9.webp";
-import room10 from "/assets/temporary-rooms/room10.webp";
-import room11 from "/assets/temporary-rooms/room11.webp";
-
 export default function AllRoomsPublic({ ended = false }) {
   const [arrayRooms, setArrayRooms] = useState([]);
   const space = useRef(9);
@@ -21,19 +9,13 @@ export default function AllRoomsPublic({ ended = false }) {
   const [getServerData, setGetServerData] = useState(true);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const container = useRef(null);
-  const tempRooms = [
-    room0,
-    room1,
-    room2,
-    room3,
-    room4,
-    room5,
-    room6,
-    room8,
-    room9,
-    room10,
-    room11,
-  ];
+
+  // TOOD, changer pour /src/images/*.webp
+  const images = import.meta.glob("/src/images/temporary-rooms/*.webp", {
+    eager: true,
+  });
+  const tempRooms = Object.values(images).map((module) => module.default);
+
   const extendedTempRooms = Array.from(
     { length: tempRooms.length * 4 },
     (_, i) => {

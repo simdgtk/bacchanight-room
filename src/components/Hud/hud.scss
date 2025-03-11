@@ -32,7 +32,7 @@
 }
 
 .hud-subtitle {
-  margin-top: 8px;
+  margin-top: 12px;
   color: #646464;
   font-size: 20px;
 }
@@ -42,6 +42,7 @@
   padding: 28px 2vw;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .hud-text {
   font-size: 20px;

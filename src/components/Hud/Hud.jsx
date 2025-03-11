@@ -28,26 +28,31 @@ export default function Hud({
   const selectOptions = [
     {
       label: "Couleurs",
+      description: "Changez la couleur",
       surfaces: "all",
       category: "color",
     },
     {
       label: "Tableaux",
+      description: "Ajoutez des tableaux",
       surfaces: "leftWall & rightWall",
       category: "tableau",
     },
     {
       label: "Statues",
+      description: "Ajoutez des statues",
       surfaces: "floor",
       category: "statue",
     },
     {
       label: "Mobilier",
+      description: "Ajoutez du mobilier",
       surfaces: "floor",
       category: "furniture",
     },
     {
       label: "Plantes",
+      description: "Ajoutez des plantes",
       surfaces: "floor",
       category: "decoration",
     },
@@ -59,6 +64,12 @@ export default function Hud({
       ? ""
       : selectOptions.find((option) => option.category === activeCategory)
           ?.label;
+
+  const descriptionCategoryLabel =
+    state === "select"
+      ? ""
+      : selectOptions.find((option) => option.category === activeCategory)
+          ?.description;
 
   return (
     <div
@@ -84,7 +95,7 @@ export default function Hud({
         )}
         <h2 className="hud-title">{title}</h2>
         {activeCategoryLabel && (
-          <p className="hud-subtitle">({activeCategoryLabel})</p>
+          <p className="hud-subtitle">{descriptionCategoryLabel}</p>
         )}
         <hr />
         <p className="hud-text">{text}</p>

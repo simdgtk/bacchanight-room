@@ -1,8 +1,5 @@
-# React + Vite
+# Bacchanight room creator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Site étudiant pour la Bacchanight 2025 dans le cadre de notre BUT. Les visiteurs créent leur salle ici, et un serveur local la traite et l'affiche de manière quasi directe pour créer une aile de musée numérique.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Avec React Three Fiber, Drei, Sass, Vite js et Express js pour le serveur.

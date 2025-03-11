@@ -3,10 +3,10 @@ import {
   DragControls,
   OrbitControls,
   useGLTF,
-  useHelper,
+  // useHelper,
 } from "@react-three/drei";
 import { useRef, useEffect } from "react";
-import { DirectionalLightHelper } from "three";
+// import { DirectionalLightHelper } from "three";
 
 // World
 import Room from "./World/Room";
@@ -29,9 +29,12 @@ export default function Experience({
   rightWallColor,
   floorColor,
   removeModel,
-  replaceModel,
   hide = false,
 }) {
+  const directionalLight = useRef();
+
+  // useHelper(directionalLight, DirectionalLightHelper, 0.5, "red");
+
   const gridSize = 8;
   const gridDivision = 8;
   const cellSize = gridSize / gridDivision;
@@ -54,9 +57,6 @@ export default function Experience({
       resetCamera();
     }
   }, [isCameraReset]);
-
-  const directionalLight = useRef();
-  useHelper(directionalLight, DirectionalLightHelper, 0.5, "red");
 
   return (
     <>

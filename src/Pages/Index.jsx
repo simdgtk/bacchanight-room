@@ -31,16 +31,6 @@ export default function Index() {
     setModels((prevModels) => prevModels.filter((model) => model.id !== id));
   };
 
-  // const replaceModel = (id, newColor) => {
-  //   setModels((prevModels) => {
-  //     const modelToUpdate = prevModels.find((model) => model.id === id);
-  //     if (modelToUpdate) {
-  //       modelToUpdate.color = newColor;
-  //     }
-  //     return [...prevModels];
-  //   });
-  // };
-
   const addModel = (
     id,
     modelPath,

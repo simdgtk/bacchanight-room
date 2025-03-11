@@ -1,6 +1,12 @@
 // Dependencies
-import { DragControls, OrbitControls, useGLTF, Html } from "@react-three/drei";
+import {
+  DragControls,
+  OrbitControls,
+  useGLTF,
+  useHelper,
+} from "@react-three/drei";
 import { useRef, useEffect } from "react";
+import { DirectionalLightHelper } from "three";
 
 // World
 import Room from "./World/Room";
@@ -49,6 +55,9 @@ export default function Experience({
     }
   }, [isCameraReset]);
 
+  const directionalLight = useRef();
+  useHelper(directionalLight, DirectionalLightHelper, 0.5, "red");
+
   return (
     <>
       {/* Controls */}
@@ -59,17 +68,11 @@ export default function Experience({
         // Line Breaks
       />
 
-      {/* Ligths */}
-      {/* <ambientLight intensity={3} /> */}
-      {/* <directionalLight
-        position={[-10, 2, 10]}
-        scale={[1.5, 1.5, 1.5]}
-        intensity={1.5}
-        castShadow
-      /> */}
       <directionalLight
-        position={[1, 1, 1]}
-        intensity={1.5}
+        ref={directionalLight}
+        position={[-4, 1, 4]}
+        intensity={5}
+        scale={5}
         castShadow={false}
       />
       <ambientLight intensity={3} />
@@ -86,10 +89,6 @@ export default function Experience({
           floorColor={floorColor}
           hide={hide}
         />
-        {/* <mesh>
-          <boxGeometry />
-          <meshStandardMaterial color="lightblue" flatShading />
-        </mesh> */}
 
         {/* Objects */}
         {models.map((model) => {

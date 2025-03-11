@@ -1,4 +1,7 @@
 import { useTexture } from "@react-three/drei";
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
+
 export default function Room({
   whichSurface,
   handleSetWhichSurface,
@@ -9,10 +12,38 @@ export default function Room({
   floorColor,
   hide = false,
 }) {
+  const floor = useRef();
   const surfaceWeight = 0.2;
-  const gradientAlphaMaterial = useTexture(
+
+  const wallsRougnessMap = useTexture(
     "/assets/walls/textures/wallGradient.png"
   );
+
+  const floorRougnessMap = useTexture(
+    "/assets/walls/textures/floorGradient.png"
+  );
+
+  useEffect(() => {
+    if (!floor.current) return;
+
+    // Récupérer la géométrie
+    const geometry = floor.current.geometry;
+
+    // Forcer la mise à jour des UVs
+    geometry.computeBoundingBox();
+    geometry.attributes.uv.needsUpdate = true;
+
+    // Modifier les UVs pour mieux correspondre
+    const uvAttribute = geometry.getAttribute("uv");
+    const uvs = new Float32Array(uvAttribute.count * 2);
+
+    for (let i = 0; i < uvAttribute.count; i++) {
+      uvs[i * 2] = uvAttribute.getX(i) * 2; // Ajuste l'échelle
+      uvs[i * 2 + 1] = uvAttribute.getY(i) * 2;
+    }
+
+    geometry.setAttribute("uv", new THREE.BufferAttribute(uvs, 2));
+  }, []);
 
   return (
     <>
@@ -39,9 +70,9 @@ export default function Room({
         />
         <meshStandardMaterial
           color={leftWallColor}
-          // alphaMap={gradientAlphaMaterial}
-          roughnessMap={gradientAlphaMaterial}
-          roughness={0.4}
+          roughnessMap={wallsRougnessMap}
+          metalness={0.75}
+          roughness={1}
         />
       </mesh>
 
@@ -69,7 +100,12 @@ export default function Room({
           args={[gridSize, gridSize + surfaceWeight / 2, surfaceWeight]}
         />
 
-        <meshStandardMaterial color={rightWallColor} />
+        <meshStandardMaterial
+          color={rightWallColor}
+          roughnessMap={wallsRougnessMap}
+          metalness={0.75}
+          roughness={1}
+        />
       </mesh>
       {!hide && (
         <gridHelper
@@ -82,6 +118,7 @@ export default function Room({
 
       {/* Floor */}
       <mesh
+        ref={floor}
         position={[surfaceWeight / 2, -surfaceWeight / 2, -surfaceWeight / 2]}
         rotation={[-Math.PI / 2, 0, 0]}
         onPointerDown={() => {
@@ -99,7 +136,12 @@ export default function Room({
           ]}
         />
 
-        <meshStandardMaterial color={floorColor} />
+        <meshStandardMaterial
+          color={floorColor}
+          roughnessMap={floorRougnessMap}
+          metalness={0.5}
+          roughness={1}
+        />
       </mesh>
 
       {!hide && (

@@ -3,6 +3,24 @@
   bottom: 12px;
   right: 12px;
   font-size: 14px;
-  color: #fefefe;
+  color: #000;
   text-decoration: 1px solid white !important;
+  z-index: 9999999;
+
+  @media screen and (max-width: 900px) {
+    position: fixed;
+    bottom: 10px;
+    right: 0;
+    left: 0;
+    text-align: center;
+  }
+}
+
+.responsive-canvas {
+  width: 70%;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    height: 50% !important;
+  }
 }

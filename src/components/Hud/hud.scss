@@ -1,10 +1,11 @@
 @use "../../styles/base/variables" as *;
 
-.logo{
+.logo {
   margin-bottom: 48px;
   margin-top: -130px;
   width: 250px;
 }
+
 .hud-container {
   background-color: #fff;
   height: 100dvh;
@@ -12,13 +13,24 @@
   overflow-y: scroll;
 
   /* Compatibilité avec Firefox */
-  scrollbar-width: thin; /* Réduit la largeur */
-  scrollbar-color: $primary-color #fff; /* Barre et piste */
+  scrollbar-width: thin;
+  /* Réduit la largeur */
+  scrollbar-color: $primary-color #fff;
+  /* Barre et piste */
+
+  @media screen and (max-width: 900px) {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 999999;
+    width: 100%;
+  }
 }
 
 .hud-top-content {
   padding: 28px 2vw;
 }
+
 .flex-button {
   display: flex;
   justify-content: space-between;
@@ -44,10 +56,12 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .hud-text {
   font-size: 20px;
   line-height: 130%;
 }
+
 hr {
   margin: 32px 0;
 }

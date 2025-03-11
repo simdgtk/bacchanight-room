@@ -105,7 +105,7 @@ export default function Index() {
           far: 100,
           zoom: 40,
         }}
-        style={{ width: "70vw" }}
+        className="responsive-canvas"
         orthographic={true}
         onCreated={({ gl }) => {
           glRef.current = gl;

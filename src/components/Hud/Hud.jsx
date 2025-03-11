@@ -8,7 +8,6 @@ import { componentMapping } from "../../Experience/Utils/sources.jsx";
 
 // Style
 import "./hud.scss";
-import { surfaces } from "../../Experience/Utils/surface.jsx";
 
 export default function Hud({
   title,
@@ -32,35 +31,30 @@ export default function Hud({
       description: "Changez la couleur",
       surfaces: "all",
       category: "color",
-      uiPath: "./img/button/test.jpg",
     },
     {
       label: "Tableaux",
       description: "Ajoutez des tableaux",
       surfaces: "leftWall & rightWall",
       category: "tableau",
-      uiPath: "./img/button/test.jpg",
     },
     {
       label: "Statues",
       description: "Ajoutez des statues",
       surfaces: "floor",
       category: "statue",
-      uiPath: "./img/button/test.jpg",
     },
     {
       label: "Mobilier",
       description: "Ajoutez du mobilier",
       surfaces: "floor",
       category: "furniture",
-      uiPath: "./img/button/test.jpg",
     },
     {
       label: "Plantes",
       description: "Ajoutez des plantes",
       surfaces: "floor",
       category: "decoration",
-      uiPath: "./img/button/test.jpg",
     },
   ];
 
@@ -119,7 +113,6 @@ export default function Hud({
                   <Select
                     key={index}
                     label={option.label}
-                    uiPath={option.uiPath}
                     onClick={() => {
                       setState("choice");
                       setActiveCategory(option.category);

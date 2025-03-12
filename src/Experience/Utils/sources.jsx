@@ -166,7 +166,7 @@ export const componentMapping = {
       label: "Canapé bleu",
       uiPath: "/assets/floor/furnitures/furniture_1.png",
       modelPath: "/assets/floor/furnitures/furniture_1.glb",
-      sizes: [4, 10, 1],
+      sizes: [4.5, 5, 2],
     },
     {
       id: 17,

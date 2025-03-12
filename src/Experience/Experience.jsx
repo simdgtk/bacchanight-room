@@ -110,6 +110,7 @@ export default function Experience({
                 }
               }}
               onDrag={(localMatrix) => {
+                handleSetWhichSurface(model.name);
                 if (state.draggingModelIndex != model.id) {
                   localMatrix.elements[12] = initialMatrix.x;
                   localMatrix.elements[13] = initialMatrix.y;
@@ -142,7 +143,7 @@ export default function Experience({
             >
               {model.texture && (
                 <group
-                  onPointerDown={(e) => {
+                  onClick={(e) => {
                     updateSurfaceOnDrag(e, handleSetWhichSurface);
                   }}
                   onDoubleClick={() => {

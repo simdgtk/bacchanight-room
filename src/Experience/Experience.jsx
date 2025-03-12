@@ -71,7 +71,7 @@ export default function Experience({
       <directionalLight
         ref={directionalLight}
         position={[-4, 1, 4]}
-        intensity={5}
+        intensity={3}
         scale={5}
         castShadow={false}
       />
@@ -95,10 +95,7 @@ export default function Experience({
           const gltf = useGLTF(model.modelPath);
           gltf.scene.traverse((child) => {
             if (child.isMesh) {
-              // child.material.transparent = true;
-              // child.material.opacity = 1;
-              child.geometry.computeVertexNormals();
-              child.material.flatShading = true;
+              child.geometry.computeVertexNormals(true);
             }
           });
           let initialMatrix;

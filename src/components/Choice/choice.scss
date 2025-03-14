@@ -11,10 +11,14 @@
   cursor: pointer;
   width: 45%;
   aspect-ratio: 1/1;
+
+  height: fit-content;
   background-color: #FFF;
+
   &:hover {
     background-color: #f0f0f0;
   }
+
   &:active {
     background-color: #ecebeb;
   }
@@ -32,8 +36,14 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   line-height: 1.2em;
   max-height: 3.6em;
+
+  span {
+    &.italic {
+      font-style: italic;
+    }
+  }
 }

@@ -78,7 +78,7 @@ export default function Room({
 
       {!hide && (
         <gridHelper
-          args={[gridSize, gridDivision, 0xffffff, 0xffffff]}
+          args={[gridSize, gridDivision, 0x000000, 0x000000]}
           position={[0, gridSize / 2, -gridSize / 2]}
           rotation={[Math.PI / 2, 0, 0]}
           visible={whichSurface === "leftWall" ? true : false}
@@ -109,7 +109,7 @@ export default function Room({
       </mesh>
       {!hide && (
         <gridHelper
-          args={[gridSize, gridDivision, 0xffffff, 0xffffff]}
+          args={[gridSize, gridDivision, 0x000000, 0x000000]}
           position={[gridSize / 2, gridSize / 2, 0]}
           rotation={[0, 0, Math.PI / 2]}
           visible={whichSurface === "rightWall" ? true : false}
@@ -146,7 +146,7 @@ export default function Room({
 
       {!hide && (
         <gridHelper
-          args={[gridSize, gridDivision, 0xffffff, 0xffffff]}
+          args={[gridSize, gridDivision, 0x000000, 0x000000]}
           position={[0, 0, 0]}
           visible={whichSurface === "floor" ? true : false}
         />

@@ -6,6 +6,8 @@ export default function Choice({
   position,
   rotation,
   label,
+  author,
+  date,
   uiPath,
   modelPath,
   addModel,
@@ -38,6 +40,13 @@ export default function Choice({
     <>
       <button
         className="choice"
+        title={
+          label
+            ? `${label}${author ? ` - ${author}` : ""}${
+                date ? `, ${date}` : ""
+              }`
+            : ""
+        }
         onClick={() => {
           addModel(
             id,
@@ -52,7 +61,12 @@ export default function Choice({
         }}
       >
         <img src={uiPath} width={40} />
-        <p className="label-choice">{label}</p>
+        <p className="label-choice">
+          <span className={author ? "italic" : ""}>{label}</span>
+          {label
+            ? `${author ? ` - ${author}` : ""}${date ? `, ${date}` : ""}`
+            : ""}
+        </p>
       </button>
     </>
   );

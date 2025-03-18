@@ -11,6 +11,7 @@
   cursor: pointer;
   width: 45%;
   aspect-ratio: 1/1;
+  position: relative;
 
   height: fit-content;
   background-color: #FFF;
@@ -22,7 +23,24 @@
   &:active {
     background-color: #ecebeb;
   }
+
+  &.reserve {
+    &::after {
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin: 5px;
+      content: 'En réserves';
+      background-color: $primary-color;
+      color: #FFF;
+      padding: 4px 8px;
+      border-radius: 9000px;
+    }
+  }
+
 }
+
+
 
 .choice img {
   width: 80%;

@@ -7,6 +7,7 @@ export default function Choice({
   rotation,
   label,
   author,
+  reserve,
   date,
   uiPath,
   modelPath,
@@ -39,7 +40,7 @@ export default function Choice({
   return (
     <>
       <button
-        className="choice"
+        className={`choice ${reserve ? "reserve" : ""}`}
         title={
           label
             ? `${label}${author ? ` - ${author}` : ""}${

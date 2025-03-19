@@ -10,10 +10,8 @@
   user-select: none;
   cursor: pointer;
   width: 45%;
-  aspect-ratio: 1/1;
+  /* aspect-ratio: 1 / 1; */
   position: relative;
-
-  height: fit-content;
   background-color: #FFF;
 
   &:hover {
@@ -35,6 +33,19 @@
       color: #FFF;
       padding: 4px 8px;
       border-radius: 9000px;
+    }
+  }
+
+  .img-container {
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    object-fit: contain;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
   }
 

@@ -61,7 +61,9 @@ export default function Choice({
           );
         }}
       >
-        <img src={uiPath} width={40} />
+        <div className="img-container">
+          <img src={uiPath} width={40} />
+        </div>
         <p className="label-choice">
           <span className={author ? "italic" : ""}>{label}</span>
           {label

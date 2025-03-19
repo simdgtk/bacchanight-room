@@ -1,5 +1,3 @@
-import { data } from "react-router-dom";
-
 export const componentMapping = {
   color: [
     { label: "Blanc", color: "#dbdbdb" },
@@ -194,7 +192,10 @@ export const componentMapping = {
     },
     {
       id: 16,
-      label: "Nature mysterieuse",
+      label: "La Nature mystérieuse et voilée se découvre devant la Science",
+      author: "BARRIAS Louis-Ernest",
+      reserve: false,
+      date: "1893",
       uiPath: "/assets/floor/statues/nature-mysterieuse.webp",
       modelPath: "/assets/floor/statues/nature-mysterieuse.glb",
       sizes: [1.18, 1.06, 3],
@@ -202,6 +203,9 @@ export const componentMapping = {
     {
       id: 17,
       label: "Pomone",
+      author: "WLERICK Robert",
+      reserve: true,
+      date: "1936",
       uiPath: "/assets/floor/statues/pomone.webp",
       modelPath: "/assets/floor/statues/pomone.glb",
       sizes: [2.35, 2.5, 2],
@@ -209,6 +213,9 @@ export const componentMapping = {
     {
       id: 18,
       label: "Primavera",
+      author: "FROMENT-MEURICE Jacques",
+      reserve: true,
+      date: "1903",
       uiPath: "/assets/floor/statues/primavera.webp",
       modelPath: "/assets/floor/statues/primavera.glb",
       sizes: [1.01, 1.23, 2.54],
@@ -266,19 +273,5 @@ export const componentMapping = {
       modelPath: "/assets/floor/flowers/plante_3.glb",
       sizes: [1.68, 1.62, 1.99],
     },
-    // {
-    //   id: 24,
-    //   label: "Plante 4",
-    //   uiPath: "/assets/floor/flowers/plante_4.png",
-    //   modelPath: "/assets/floor/flowers/plante_4.glb",
-    //   sizes: [1.64, 1.6, 2.43],
-    // },
-    // {
-    //   id: 25,
-    //   label: "Plante 5",
-    //   uiPath: "/assets/floor/flowers/plante_5.png",
-    //   modelPath: "/assets/floor/flowers/plante_5.glb",
-    //   sizes: [1.86, 1.87, 1.71],
-    // },
   ],
 };

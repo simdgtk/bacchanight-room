@@ -134,6 +134,11 @@ export default function Hud({
                 <Choice
                   key={index}
                   label={config.label}
+                  author={config.author}
+                  reserve={config.reserve}
+                  large={config.large}
+                  long={config.long}
+                  date={config.date}
                   uiPath={config.uiPath}
                   modelPath={config.modelPath}
                   addModel={addModel}

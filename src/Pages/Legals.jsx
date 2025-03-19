@@ -12,7 +12,7 @@ export default function Legals() {
           <h2 className="content__section__title">1. Informations Générales</h2>
           <div className="content__section__text">
             Ce site a été réalisé dans le cadre d&apos;un projet étudiant pour
-            l&apos;événement de la Bacchanigth organisé par le MUSBA (Musée des
+            l&apos;événement de la Bacchanight organisé par le MUSBA (Musée des
             Beaux-Arts de Bordeaux).
           </div>
           <ul className="content__section__list">
@@ -40,7 +40,7 @@ export default function Legals() {
           </div>
           <ul className="content__section__list">
             <li>
-              Les éléments liés au MUSBA et à l&apos;événement Bacchanigth sont
+              Les éléments liés au MUSBA et à l&apos;événement Bacchanight sont
               la propriété exclusive du MUSBA, sauf mention contraire.
             </li>
             <li>

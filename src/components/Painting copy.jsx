@@ -1,55 +1,58 @@
-import React, { useRef } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 
 export default function Painting({
-  orientation = "portrait",
+  orientation = "paysage",
   texture = "/assets/walls/paintings/por-picture3.jpg",
   name,
   position,
   rotation,
   whichSurface,
-  large = false,
-  long = false,
   ...props
 }) {
   const glbFile =
     orientation == "portrait"
-      ? "/assets/walls/paintings/tableau-portrait-moyen.glb"
-      : "/assets/walls/paintings/tableau-paysage-moyen.glb";
-
+      ? "/assets/walls/paintings/portrait-cadre.glb"
+      : "/assets/walls/paintings/paysage-cadre.glb";
   const { nodes, materials } = useGLTF(glbFile);
   const texturePlane = useTexture(texture);
+
+  position[1] = orientation === "portrait" ? position[1] + 0 : position[1] + 1;
+  rotation[1] = whichSurface === "rightWall" ? Math.PI / 2 : Math.PI;
+  rotation[2] = Math.PI;
 
   return (
     <group {...props} dispose={null}>
       <group
         position={position}
         rotation={rotation}
-        scale={[large ? 1.4 : 1, long ? 1.4 : 1, 1.0]}
+        // Line Breaks
       >
+        {/* Cadre */}
         <mesh
           castShadow
           receiveShadow
           name={name}
-          geometry={nodes.Cube004.geometry}
-          material={materials.outline}
-          rotation={[0, Math.PI, Math.PI]}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          name={name}
-          geometry={nodes.Cube004_1.geometry}
-          material={materials.cadre}
-          rotation={[0, Math.PI, Math.PI]}
+          geometry={
+            orientation === "portrait"
+              ? nodes.Cube001_1.geometry
+              : nodes.Cube001.geometry
+          }
+          material={
+            orientation === "portrait"
+              ? materials.Cadre
+              : materials["Cadre.001"]
+          }
         />
         {/* Plane avec texture */}
         <mesh
           castShadow
           receiveShadow
           name={name}
-          geometry={nodes.Cube004_2.geometry}
-          rotation={[0, Math.PI, Math.PI]}
+          geometry={
+            orientation === "portrait"
+              ? nodes.Cube001_2.geometry
+              : nodes.Cube001_1.geometry
+          }
         >
           <meshStandardMaterial map={texturePlane} />
         </mesh>

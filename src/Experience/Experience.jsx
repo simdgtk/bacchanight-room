@@ -156,6 +156,8 @@ export default function Experience({
                     name={model.name}
                     position={model.position}
                     rotation={model.rotation}
+                    large={model.large}
+                    long={model.long}
                     whichSurface={whichSurface}
                   />
                 </group>

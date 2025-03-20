@@ -16,6 +16,7 @@ export default function Choice({
   name,
   texture,
   orientation,
+  large,
   sizes,
 }) {
   switch (whichSurface) {
@@ -57,7 +58,8 @@ export default function Choice({
             rotation,
             sizes,
             texture,
-            orientation
+            orientation,
+            large
           );
         }}
       >

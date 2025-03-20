@@ -39,7 +39,8 @@ export default function Index() {
     rotation,
     sizes,
     texture,
-    orientation
+    orientation,
+    large
   ) => {
     setModels((prevModels) => {
       if (prevModels.some((model) => model.id === id)) {
@@ -57,6 +58,7 @@ export default function Index() {
           sizes,
           texture,
           orientation,
+          large
         },
       ];
     });

@@ -13,7 +13,63 @@ export default function Legals() {
           <div className="content__section__text">
             Ce site a été réalisé dans le cadre d&apos;un projet étudiant pour
             l&apos;événement de la Bacchanight organisé par le MUSBA (Musée des
-            Beaux-Arts de Bordeaux).
+            Beaux-Arts de Bordeaux). Nous sommes des étudiants en BUT MMI, Métiers du Multimédia et de l'Internet à l&apos;IUT Bordeaux Montaigne.
+          </div>
+          <div className="content__section__text">
+            Réalisé par{" "}
+            <a
+              href="https://www.linkedin.com/in/billel-tighidet-76b292234/"
+              target="_blank"
+              rel="noreferrer"
+              className="legals__link"
+            >
+              Billel Tighidet
+            </a>
+            ,{" "}
+            <a
+              href="https://www.linkedin.com/in/thomas-riq/"
+              target="_blank"
+              rel="noreferrer"
+              className="legals__link"
+            >
+              Thomas Riquier
+            </a>
+            ,{" "}
+            <a
+              href="https://www.linkedin.com/in/simon-daguet-kargl/"
+              target="_blank"
+              rel="noreferrer"
+              className="legals__link"
+            >
+              Simon Daguet-Kargl
+            </a>
+            ,{" "}
+            <a
+              href="https://fr.linkedin.com/in/antoine-corberand-49898b294"
+              target="_blank"
+              rel="noreferrer"
+              className="legals__link"
+            >
+              Antoine Corberand
+            </a>
+            ,{" "}
+            <a
+              href="https://www.linkedin.com/in/edgar-quemere/"
+              target="_blank"
+              rel="noreferrer"
+              className="legals__link"
+            >
+              Edgar Quéméré
+            </a>{" "}
+            et{" "}
+            <a
+              href="https://fr.linkedin.com/in/alexis-juhel16"
+              target="_blank"
+              rel="noreferrer"
+              className="legals__link"
+            >
+              Alexis Juhel
+            </a>.
           </div>
           <ul className="content__section__list">
             <li>

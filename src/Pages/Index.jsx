@@ -58,7 +58,7 @@ export default function Index() {
           sizes,
           texture,
           orientation,
-          large
+          large,
         },
       ];
     });
@@ -131,12 +131,12 @@ export default function Index() {
       >
         <CanvasToImg glRef={glRef} />
       </div>
-      <NotificationPopup
+      {/* <NotificationPopup
         message="Levez les yeux, votre salle est dans la fresque."
         type="success"
-      />
+      /> */}
       <div className="legals-link">
-        <a href="/mentions-legales">Mentions légales</a>
+        <a href="/mentions-legales">Mentions légales et crédits</a>
       </div>
     </>
   );

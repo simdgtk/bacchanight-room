@@ -11,17 +11,17 @@ export default function AllRoomsPublic({ ended = false }) {
   const container = useRef(null);
 
   // TOOD, changer pour /src/images/*.webp
-  const images = import.meta.glob("/src/images/temporary-rooms/*.webp", {
+  const images = import.meta.glob("/src/images/*.webp", {
     eager: true,
   });
   const tempRooms = Object.values(images).map((module) => module.default);
 
-  const extendedTempRooms = Array.from(
-    { length: tempRooms.length * 4 },
-    (_, i) => {
-      return tempRooms[i % tempRooms.length];
-    }
-  );
+  // const extendedTempRooms = Array.from(
+  //   { length: tempRooms.length * 4 },
+  //   (_, i) => {
+  //     return tempRooms[i % tempRooms.length];
+  //   }
+  // );
 
   useEffect(() => {
     if (window.innerWidth < 920) {
@@ -38,12 +38,12 @@ export default function AllRoomsPublic({ ended = false }) {
     return arr;
   }
   return (
-    <div className="container no-scroll">
-      <div className="cropped-container" ref={container}>
+    <div className="container">
+      <div className="" ref={container}>
         <div className="rooms">
           <div className="grid-container">
             <div className="grid-container__images">
-              {fisherYatesShuffle(extendedTempRooms).map((room, index) => (
+              {tempRooms.map((room, index) => (
                 <React.Fragment key={index}>
                   <div className="grid-container__images__img-container">
                     <img src={room} alt={`Salle ${index + 1}`} loading="lazy" />
@@ -59,7 +59,7 @@ export default function AllRoomsPublic({ ended = false }) {
             <>
               <div className="grid-container--absolute absolute--small--left">
                 <div className="grid-container__images">
-                  {fisherYatesShuffle(extendedTempRooms).map((room, index) => (
+                  {tempRooms.map((room, index) => (
                     <React.Fragment key={index}>
                       <div className="grid-container__images__img-container">
                         <img
@@ -77,7 +77,7 @@ export default function AllRoomsPublic({ ended = false }) {
               </div>
               <div className="grid-container--absolute absolute--small--right">
                 <div className="grid-container__images">
-                  {fisherYatesShuffle(extendedTempRooms).map((room, index) => (
+                  {tempRooms.map((room, index) => (
                     <React.Fragment key={index}>
                       <div className="grid-container__images__img-container">
                         <img
@@ -99,7 +99,7 @@ export default function AllRoomsPublic({ ended = false }) {
             <>
               <div className="grid-container--absolute absolute--right">
                 <div className="grid-container__images">
-                  {fisherYatesShuffle(extendedTempRooms).map((room, index) => (
+                  {tempRooms.map((room, index) => (
                     <React.Fragment key={index}>
                       <div className="grid-container__images__img-container">
                         <img
@@ -117,7 +117,7 @@ export default function AllRoomsPublic({ ended = false }) {
               </div>
               <div className="grid-container--absolute absolute--left">
                 <div className="grid-container__images">
-                  {fisherYatesShuffle(extendedTempRooms).map((room, index) => (
+                  {tempRooms.map((room, index) => (
                     <React.Fragment key={index}>
                       <div className="grid-container__images__img-container">
                         <img
@@ -135,7 +135,7 @@ export default function AllRoomsPublic({ ended = false }) {
               </div>
               <div className="grid-container--absolute absolute--top-left">
                 <div className="grid-container__images">
-                  {fisherYatesShuffle(extendedTempRooms).map((room, index) => (
+                  {tempRooms.map((room, index) => (
                     <React.Fragment key={index}>
                       <div className="grid-container__images__img-container">
                         <img
@@ -153,7 +153,7 @@ export default function AllRoomsPublic({ ended = false }) {
               </div>
               <div className="grid-container--absolute absolute--top-right">
                 <div className="grid-container__images">
-                  {fisherYatesShuffle(extendedTempRooms).map((room, index) => (
+                  {tempRooms.map((room, index) => (
                     <React.Fragment key={index}>
                       <div className="grid-container__images__img-container">
                         <img
@@ -175,7 +175,7 @@ export default function AllRoomsPublic({ ended = false }) {
         <ModalSalle finished={false} started={false} />
         <div className="footer">
           <div className="links">
-            <a href="/mentions-legales">Mentions légales</a>
+            <a href="/mentions-legales">Mentions légales et crédits</a>
           </div>
         </div>
       </div>

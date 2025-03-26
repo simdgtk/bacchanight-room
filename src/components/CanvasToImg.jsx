@@ -1,6 +1,6 @@
 import "../styles/components/_button.scss";
 import { useState } from "react";
-export default function CanvasToImg({ glRef, ended = false }) {
+export default function CanvasToImg({ glRef, ended = true }) {
   const [isDownloading, setIsDownloading] = useState(false);
   function download() {
     // TODO, à changer le jour de la Bacchanight, !ended to ended

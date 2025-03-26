@@ -325,7 +325,7 @@ export default function AllRooms({ ended = false }) {
         {ended && (
           <div className="footer">
             <div className="links">
-              <a href="/mentions-legales">Mentions légales</a>
+              <a href="/mentions-legales">Mentions légales et crédits</a>
             </div>
           </div>
         )}

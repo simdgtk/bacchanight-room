@@ -73,12 +73,12 @@
 }
 
 .absolute--small--left {
-  transform: translateX(36vw);
+  transform: translateX(36vw) translateY(-60vw);
   z-index: -1;
 }
 
 .absolute--small--right {
-  transform: translateX(-36vw);
+  transform: translateX(-36vw) translateY(-60vw);
   z-index: -1;
 }
 

@@ -16,19 +16,21 @@ export default function AllRoomsPublic({ ended = false }) {
   });
   const tempRooms = Object.values(images).map((module) => module.default);
 
-  // const extendedTempRooms = Array.from(
-  //   { length: tempRooms.length * 4 },
-  //   (_, i) => {
-  //     return tempRooms[i % tempRooms.length];
-  //   }
-  // );
-
   useEffect(() => {
-    if (window.innerWidth < 920) {
-      setIsSmallScreen(true);
-      space.current = 3;
-      spaceAfter.current = 1;
+    function handleResize() {
+      if (window.innerWidth < 920) {
+        setIsSmallScreen(true);
+        space.current = 3;
+        spaceAfter.current = 1;
+      } else {
+        setIsSmallScreen(false);
+        space.current = 9;
+        spaceAfter.current = 4;
+      }
     }
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
   function fisherYatesShuffle(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -173,11 +175,6 @@ export default function AllRoomsPublic({ ended = false }) {
           )}
         </div>
         <ModalSalle finished={false} started={false} />
-        <div className="footer">
-          <div className="links">
-            <a href="/mentions-legales">Mentions légales et crédits</a>
-          </div>
-        </div>
       </div>
     </div>
   );

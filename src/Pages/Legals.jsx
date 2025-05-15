@@ -4,7 +4,7 @@ export default function Legals() {
   return (
     <div className="legals">
       <h1>Mentions légales</h1>
-      <a href="/" className="legals__link">
+      <a href="/" className="legals__link-first ">
         Revenir à l&apos;expérience 3D
       </a>
       <div className="content">
@@ -13,7 +13,9 @@ export default function Legals() {
           <div className="content__section__text">
             Ce site a été réalisé dans le cadre d&apos;un projet étudiant pour
             l&apos;événement de la Bacchanight organisé par le MUSBA (Musée des
-            Beaux-Arts de Bordeaux). Nous sommes des étudiants en BUT MMI, Métiers du Multimédia et de l'Internet à l&apos;IUT Bordeaux Montaigne.
+            Beaux-Arts de Bordeaux). Nous sommes des étudiants en BUT MMI,
+            Métiers du Multimédia et de l'Internet à l&apos;IUT Bordeaux
+            Montaigne.
           </div>
           <div className="content__section__text">
             Réalisé par{" "}
@@ -69,7 +71,8 @@ export default function Legals() {
               className="legals__link"
             >
               Alexis Juhel
-            </a>.
+            </a>
+            .
           </div>
           <ul className="content__section__list">
             <li>

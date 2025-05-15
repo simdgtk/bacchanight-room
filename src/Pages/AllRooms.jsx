@@ -83,6 +83,43 @@ export default function AllRooms({ ended = false }) {
       });
   }, []);
 
+  
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 920) {
+        setIsSmallScreen(true);
+        space.current = 3;
+        spaceAfter.current = 1;
+      } else {
+        setIsSmallScreen(false);
+        space.current = 9;
+        spaceAfter.current = 4;
+      }
+      fetch("http://localhost:3000/all/")
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Erreur de réponse du serveur");
+          }
+          return res.json();
+        })
+        .then((json) => {
+          if (Array.isArray(json)) {
+            setArrayRooms(json);
+          } else {
+            setGetServerData(false);
+            setArrayRooms(tempRooms);
+          }
+        })
+        .catch(() => {
+          setGetServerData(false);
+          setArrayRooms(tempRooms);
+        });
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       fetch("http://localhost:3000/all/")
